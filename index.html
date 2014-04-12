@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="images/piranhamoose_icon.ico" type="image/x-icon"/>
     <title>Skii</title>
 	<script type="text/javascript" src="index.js"></script>
 
@@ -22,22 +23,25 @@
     <h1>Skii</h1>
     <div>
       <div id="trip_info">
-        Leaving at: 8:00am, Mar 17<br>
-        Leaving from: Student Center<br>
-        Octavius' phone number: 617-682-5966<br>
-        Predicted weather: Snowy<br>
-        Car ride length: 2 hours<br>
+        <div id="trip_header">Trip Info</div>
+        <div><span id="field">Leaving at: </span> <span id="leaving_at">8:00am, Mar 17</span><img src="images/pencil_icon.png" alt="edit"></div>
+        <div><span id="field">Leaving from: </span><span id="leaving_from">Student Center</span><img src="images/pencil_icon.png" alt="edit"></div>
+        <div><span id="field">Octavius' phone number: </span><span id="organizer_number">617-682-5966</span><img src="images/pencil_icon.png" alt="edit"></div>
+        <div><span id="field">Predicted weather: </span><span id="weather">Snowy</span></div>
+        <div><span id="field">Car ride length: </span><span id="car_time">2 hours</span></div>
       </div>
       <div id="resort_info">
-        Snowy Peaks Resort<br>
-        39 Beach St, Westford MA 02446<br>
-        Available slope difficulties: circle-double diamond<br>
-        Cost of day pass: $80<br>
-        Distance: 2 hours<br>
-        Number of ski patrol: 617-623-4582 (write this down!)<br>
+        <div id="resort_header">Resort Info</div>
+        <div><span id="resort_name">Snowy Peaks Resort</span></div>
+        <div><span id="resort_address">39 Beach St, Westford MA 02446</span></div>
+        <div><span id="field">Available slope difficulties: </span><span id="resort_difficulty">circle-double diamond</span></div>
+        <div><span id="field">Cost of day pass: </span><span id="resort_price">$80</span></div>
+        <div><span id="field">Distance: </span><span id="resort_distance">2 hours</span></div>
+        <div><span id="field">Number of ski patrol: </span><span id="ski_patrol_number">617-623-4582 (write this down!)</span></div>
         <input id="resort_button" type="button" value="Change resort">
       </div>
     </div>
+
     <table id="people">
       <tr>
         <td id="name"><b>Name</b></td>
@@ -50,6 +54,7 @@
         <td><input id="equipment_field" type="field" class="std"></td>
         <td><input id="experience_field" type="field" class="std"></td>
         <td><input id="skill_field" type="field" class="std"></td>
+        <td><input id="add_person" type="button" class="std" value="Add person"></td>
       </tr> 
     </table>
 

@@ -43,13 +43,41 @@ body {
 
 /* Table settings */
 table {
-    table-layout: fixed
+    border-collapse: collapse;
+    table-layout: fixed;
     width: 90%;
+    margin-top: 40px;
 }
 
 td {
-    width: 360px;
     margin: 10px 10px 10px 10px;
 }
 
 /* Input fields */
+
+#field {
+    font-weight: bold;
+}
+
+/* trip info */
+
+#trip_header {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+/* resort info */
+
+#resort_header {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+#resort_name {
+    font-size: 1.6em;
+    font-weight: bold;
+}
+
+#resort_address {
+    font-size: 1.4em;
+}
