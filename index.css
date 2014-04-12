@@ -5,6 +5,7 @@ html {
 
 body {
     font-family: Garamond;
+    margin: 0;
 }
 
 .std {
@@ -28,6 +29,7 @@ body {
     width: 40%; 
     margin-left: auto; 
     margin-right: auto;
+    vertical-align: top;
     display: inline-block;
 }
 
@@ -35,6 +37,7 @@ body {
     width: 40%;
     margin-left: auto; 
     margin-right: auto;
+    vertical-align: top;
     display: inline-block;
 }
 
@@ -45,7 +48,7 @@ table {
 }
 
 td {
-    width: 240px;
+    width: 360px;
     margin: 10px 10px 10px 10px;
 }
 
