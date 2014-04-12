@@ -1,0 +1,60 @@
+html {
+    background-color: #eee;
+}
+
+body {
+    font-family: Garamond;
+}
+
+.std {
+    font-size: 20px;
+    position: absolute;
+}
+
+
+#header {
+    font-size: 32px;
+    position: absolute;
+    top: 5px;
+    left: 20px;
+}
+
+#name {
+    top: 120px;
+    left: 20px;
+}
+
+#experience_level {
+    top: 120px;
+    left: 260px;
+}
+
+#equipment {
+    top: 120px;
+    left: 500px;
+}
+
+#skill_level {
+    top: 120px;
+    left: 740px;
+}
+
+#name_field {
+    top: 150px;
+    left: 20px;
+}
+
+#experience_field {
+    top: 150px;
+    left: 260px;
+}
+
+#equipment_field {
+    top: 150px;
+    left: 500px;
+}
+
+#skill_field {
+    top: 150px;
+    left: 740px;
+}
