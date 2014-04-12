@@ -21,18 +21,33 @@
   <body>
     <h1>Skii</h1>
     <div>
-      <div id="trip_info"></div>
-      <div id="resort_info"></div>
+      <div id="trip_info">
+        Leaving at: 8:00am, Mar 17<br>
+        Leaving from: Student Center<br>
+        Octavius' phone number: 617-682-5966<br>
+        Predicted weather: Snowy<br>
+        Car ride length: 2 hours<br>
+      </div>
+      <div id="resort_info">
+        Snowy Peaks Resort<br>  
+        <input id="resort_button" type="button" value="Change resort">
+      </div>
     </div>
-  	<input id="resort_button" type="button" value="Change resort">
-  	<div id="name" class="std">Name</div>
-    <div id="equipment" class="std">Equipment</div>
-  	<div id="experience_level" class="std">Experience Level</div>
-    <div id="skill_level" class="std">Skill Level</div>
-  	<input id="name_field" type="field" class="std">
-    <input id="equipment_field" type="field" class="std">
-  	<input id="experience_field" type="field" class="std">
-    <input id="skill_field" type="field" class="std">
+    <table id="people">
+      <tr>
+        <td id="name"><b>Name</b></td>
+        <td id="equipment"><b>Equipment</b></td>
+        <td id="experience_level"><b>Experience Level</b></td>
+        <td id="skill_level"><b>Skill Level</b></td>
+      </tr>
+      <tr>
+        <td><input id="name_field" type="field" class="std"></td>
+        <td><input id="equipment_field" type="field" class="std"></td>
+        <td><input id="experience_field" type="field" class="std"></td>
+        <td><input id="skill_field" type="field" class="std"></td>
+      </tr>
+    </table>
+
   	
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

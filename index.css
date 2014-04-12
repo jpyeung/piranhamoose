@@ -1,3 +1,4 @@
+/* Document-wide */
 html {
     background-color: #eee;
 }
@@ -12,6 +13,8 @@ body {
 }
 
 
+/* Headers and things */
+
 #header {
     font-size: 32px;
     position: absolute;
@@ -19,42 +22,31 @@ body {
     left: 20px;
 }
 
-#name {
-    top: 120px;
-    left: 20px;
+
+/* Info boxes */
+#trip_info {
+    width: 40%; 
+    margin-left: auto; 
+    margin-right: auto;
+    display: inline-block;
 }
 
-#experience_level {
-    top: 120px;
-    left: 260px;
+#resort_info {
+    width: 40%;
+    margin-left: auto; 
+    margin-right: auto;
+    display: inline-block;
 }
 
-#equipment {
-    top: 120px;
-    left: 500px;
+/* Table settings */
+table {
+    table-layout: fixed
+    width: 90%;
 }
 
-#skill_level {
-    top: 120px;
-    left: 740px;
+td {
+    width: 240px;
+    margin: 10px 10px 10px 10px;
 }
 
-#name_field {
-    top: 150px;
-    left: 20px;
-}
-
-#experience_field {
-    top: 150px;
-    left: 260px;
-}
-
-#equipment_field {
-    top: 150px;
-    left: 500px;
-}
-
-#skill_field {
-    top: 150px;
-    left: 740px;
-}
+/* Input fields */
