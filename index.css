@@ -1,77 +1,15 @@
 /* Document-wide */
-html {
-    background-color: #eee;
-}
-
-body {
-    font-family: Garamond;
-    margin: 0;
-}
 
 label, input {
     display: block;
 }
+
 
 .std {
     font-size: 20px;
     position: absolute;
 }
 
-/* Headers and things */
-
-#header {
-    font-size: 32px;
-    position: absolute;
-    top: 5px;
-    left: 20px;
-}
-
-
-/* Info boxes */
-#trip_info {
-    width: 40%; 
-    margin-left: auto; 
-    margin-right: auto;
-    vertical-align: top;
-    display: inline-block;
-}
-
-#resort_info {
-    width: 40%;
-    margin-left: auto; 
-    margin-right: auto;
-    vertical-align: top;
-    display: inline-block;
-}
-
-/* Input fields */
-
-#field {
-    font-weight: bold;
-}
-
-/* trip info */
-
-#trip_header {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-}
-
-/* resort info */
-
-#resort_header {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-}
-
-#resort_name {
-    font-size: 1.6em;
-    font-weight: bold;
-}
-
-#resort_address {
-    font-size: 1.4em;
-}
 
 input.text {
     margin-bottom: 12px;
@@ -83,10 +21,7 @@ fieldset {
     border: 0;
     margin-top: 25px;
 }
-h1 {
-    font-size: 1.2em;
-    margin: .6em 0;
-}
+
 div#users-contain {
     width: 1600px;
     margin: 20px 0;

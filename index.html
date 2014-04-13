@@ -3,80 +3,122 @@
   <head>
     <meta charset="utf-8" />
     <title>Skii</title>
+
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+
     <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
     <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
-    <link href="index.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="index.css" >
+
     <link rel="shortcut icon" href="images/piranhamoose_icon.ico" type="image/x-icon"/>
+
     <script type="text/javascript" src="index.js"></script>
   </head>
   <body>
-    <h1>Skii</h1>
-    <div>
-      <div id="trip_info">
-        <div id="trip_header">Trip Info</div>
-        <div><span id="field">Leaving at: </span> <span id="leaving_at">8:00am, Mar 17</span><img src="images/pencil_icon.png" alt="edit"></div>
-        <div><span id="field">Leaving from: </span><span id="leaving_from">Student Center</span><img src="images/pencil_icon.png" alt="edit"></div>
-        <div><span id="field">Octavius' phone number: </span><span id="organizer_number">617-682-5966</span><img src="images/pencil_icon.png" alt="edit"></div>
-        <div><span id="field">Predicted weather: </span><span id="weather">Snowy</span></div>
-        <div><span id="field">Car ride length: </span><span id="car_time">2 hours</span></div>
-      </div>
-      <div id="resort_info">
-        <div id="resort_header">Resort Info</div>
-        <div><span id="resort_name">Snowy Peaks Resort</span></div>
-        <div><span id="resort_address">39 Beach St, Westford MA 02446</span></div>
-        <div><span id="field">Available slope difficulties: </span><span id="resort_difficulty">circle-double diamond</span></div>
-        <div><span id="field">Cost of day pass: </span><span id="resort_price">$80</span></div>
-        <div><span id="field">Distance: </span><span id="resort_distance">2 hours</span></div>
-        <div><span id="field">Number of ski patrol: </span><span id="ski_patrol_number">617-623-4582 (write this down!)</span></div>
-        <input id="resort_button" type="button" value="Change resort">
-      </div>
-    </div>
-    <div id="dialog-form" title="Add a person">
-        <p class="validateTips">All form fields are required.</p>
-        <form>
-            <fieldset>
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all" />
-                <label for="equipment">Equipment</label>
-                <input type="text" name="equipment" id="equipment" value="" class="text ui-widget-content ui-corner-all" />
-                <label for="skill_level">Skill Level</label>
-                  <select id="skill_level">
-                    <option value="1">Beginner</option>
-                    <option value="2">Intermediate</option>
-                    <option value="3">Advanced</option>
-                  </select>
-                <label for="phone_number">Phone Number</label>
-                <input type="text" name="phone_number" id="phone_number" value=""
-                class="text ui-widget-content ui-corner-all" />
-            </fieldset>
-        </form>
-    </div>
-    <div id="users-contain" class="ui-widget">
-          <h1>People on Trip:</h1>
+    <div class="container-fluid">
+      <h1>Skii</h1>
+      <div class="row">
+        <div class="col-md-6" id="trip_info">
+          <ul class="list-group">
+            <h3 class="list-group-item list-group-item-info" id="trip_header">Trip Info</h3>
+            <div class="list-group-item">
+              <dl class="dl-horizontal">
+                <dt>Leaving at:</dt>
+                <dd class="trip_info" id="leaving_at">8:00am, Mar 17</span>
+                </dd>
+                <dt>Leaving from:</dt>
+                <dd class="trip_info" id="leaving_from">Student Center</span>
+                </dd>
+                <dt>Organizer phone:</dt>
+                <dd class="trip_info" id="organizer_number">617-682-5966</span>
+                </dd>
+                <dt>Predicted weather:</dt>
+                <dd id="weather">Snowy</span>
+                </dd>
+                <dt>Car ride length:</dt>
+                <dd id="car_time">2 hours</span>
+                </dd>
+              </dl>
+            </div>
+            <div class="list-group-item">
+              <input class="btn btn-default btn-block" id="edit_info_button" type="button" value="Edit Info">
+            </div>
+          </ul>
+        </div>
 
-        <table id="users" class="ui-widget ui-widget-content">
-            <thead>
-                <tr class="ui-widget-header ">
-                    <th>Name</th>
-                    <th>Equipment Needed</th>
-                    <th>Skill Level</th>
-                    <th>Phone Number</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                  <td class="custom-name">James Yeung</td>
-                  <td>None</td>
-                  <td>Advanced</td>
-                  <td>857-991-6460</td>
-                  <td><a class="edit" href="">Edit</a></td>
-                  <td><span class="delete"><a href="">Delete</a></span></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="col-md-6" id="resort_info">
+          <ul class="list-group">
+            <h3 class="list-group-item list-group-item-info" id="resort_header">Resort Info</h3>
+            <div class="list-group-item">
+              <dl class="dl-horizontal">
+                <dt>Resort Name:</dt>
+                <dd id="resort_name">Snowy Peaks Resort</dd>
+                <dt>Address:</dt>
+                <dd id="resort_address">39 Beach St, Westford MA 02446</dd>
+                <dt>Slope difficulties:</dt>
+                <dd id="resort_difficulty">circle-double diamond</dd>
+                <dt>Cost of day pass:</dt>
+                <dd id="resort_price">$80</dd>
+                <dt>Number of ski patrol:</dt>
+                <dd><span id="ski_patrol_number">617-623-4582</span> (write this down!)</dd>
+              </dl>
+            </div>
+            <div class="list-group-item">
+              <input class="btn btn-default btn-block" id="change_resort_button" type="button" value="Change resort">
+            </div>
+          </ul>
+        </div>
+      </div>
+
+      <div id="dialog-form" title="Add a person">
+          <p class="validateTips">All form fields are required.</p>
+          <form>
+              <fieldset>
+                  <label for="name">Name</label>
+                  <input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all" />
+                  <label for="equipment">Equipment</label>
+                  <input type="text" name="equipment" id="equipment" value="" class="text ui-widget-content ui-corner-all" />
+                  <label for="skill_level">Skill Level</label>
+                    <select id="skill_level">
+                      <option value="1">Beginner</option>
+                      <option value="2">Intermediate</option>
+                      <option value="3">Advanced</option>
+                    </select>
+                  <label for="phone_number">Phone Number</label>
+                  <input type="text" name="phone_number" id="phone_number" value=""
+                  class="text ui-widget-content ui-corner-all" />
+              </fieldset>
+          </form>
+      </div>
+
+      <div id="users-contain" class="ui-widget">
+          <h2>People on Trip:</h2>
+
+          <table id="users" class="table ui-widget ui-widget-content">
+              <thead>
+                  <tr class="ui-widget-header ">
+                      <th>Name</th>
+                      <th>Equipment Needed</th>
+                      <th>Skill Level</th>
+                      <th>Phone Number</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td class="custom-name">James Yeung</td>
+                    <td>None</td>
+                    <td>Advanced</td>
+                    <td>857-991-6460</td>
+                    <td><a class="edit" href="">Edit</a></td>
+                    <td><span class="delete"><a href="">Delete</a></span></td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+      <button id="add-person">Add a person</button>
     </div>
-    <button id="add-person">Add a person</button>
   </body>
 </html>
