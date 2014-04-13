@@ -10,6 +10,20 @@ label, input {
     position: absolute;
 }
 
+#title {
+    font-size: 4em;
+    font-family: 'Gochi Hand', cursive;
+    vertical-align: bottom;
+}
+
+/* Headers and things */
+
+#header {
+    font-size: 32px;
+    position: absolute;
+    top: 5px;
+    left: 20px;
+}
 
 input.text {
     margin-bottom: 12px;
@@ -45,5 +59,4 @@ div#users-contain table td, div#users-contain table th {
 }
 #dialog-form {
     display: none;
-}
 }
