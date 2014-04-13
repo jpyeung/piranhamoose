@@ -17,6 +17,11 @@ label, input {
     position: absolute;
 }
 
+#title {
+    font-size: 5em;
+    font-family: 'Gochi Hand', cursive;
+}
+
 /* Headers and things */
 
 #header {
