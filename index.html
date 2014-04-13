@@ -15,9 +15,9 @@
     <div>
       <div id="trip_info">
         <div id="trip_header">Trip Info</div>
-        <div><span id="field">Leaving at: </span> <span id="leaving_at">8:00am, Mar 17</span><img src="images/pencil_icon.png" alt="edit"></div>
-        <div><span id="field">Leaving from: </span><span id="leaving_from">Student Center</span><img src="images/pencil_icon.png" alt="edit"></div>
-        <div><span id="field">Octavius' phone number: </span><span id="organizer_number">617-682-5966</span><img src="images/pencil_icon.png" alt="edit"></div>
+        <div><span id="field">Leaving at: </span> <span id="leaving_at">8:00am, Mar 17</span><img src="images/pencil_16x16.png" alt="edit"></div>
+        <div><span id="field">Leaving from: </span><span id="leaving_from">Student Center</span><img src="images/pencil_16x16.png" alt="edit"></div>
+        <div><span id="field">Octavius' phone number: </span><span id="organizer_number">617-682-5966</span><img src="images/pencil_16x16.png" alt="edit"></div>
         <div><span id="field">Predicted weather: </span><span id="weather">Snowy</span></div>
         <div><span id="field">Car ride length: </span><span id="car_time">2 hours</span></div>
       </div>
@@ -33,49 +33,47 @@
       </div>
     </div>
     <div id="dialog-form" title="Add a person">
-        <p class="validateTips">All form fields are required.</p>
-        <form>
-            <fieldset>
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all" />
-                <label for="equipment">Equipment</label>
-                <input type="text" name="equipment" id="equipment" value="" class="text ui-widget-content ui-corner-all" />
-                <label for="skill_level">Skill Level</label>
-                  <select id="skill_level">
-                    <option value="1">Beginner</option>
-                    <option value="2">Intermediate</option>
-                    <option value="3">Advanced</option>
-                  </select>
-                <label for="phone_number">Phone Number</label>
-                <input type="text" name="phone_number" id="phone_number" value=""
-                class="text ui-widget-content ui-corner-all" />
-            </fieldset>
-        </form>
+      <p class="validateTips">All form fields are required.</p>
+      <form>
+      <fieldset>
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all" />
+          <label for="equipment">Equipment</label>
+          <input type="text" name="equipment" id="equipment" value="" class="text ui-widget-content ui-corner-all" />
+          <label for="skill_level">Skill Level</label>
+          <select id="skill_level">
+            <option value="1">Beginner</option>
+            <option value="2">Intermediate</option>
+            <option value="3">Advanced</option>
+          </select>
+          <label for="phone_number">Phone Number</label>
+          <input type="text" name="phone_number" id="phone_number" value=""
+          class="text ui-widget-content ui-corner-all" />
+        </fieldset>
+      </form>
     </div>
     <div id="users-contain" class="ui-widget">
-          <h1>People on Trip:</h1>
-
-        <table id="users" class="ui-widget ui-widget-content">
-            <thead>
-                <tr class="ui-widget-header ">
-                    <th>Name</th>
-                    <th>Equipment Needed</th>
-                    <th>Skill Level</th>
-                    <th>Phone Number</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                  <td class="custom-name">James Yeung</td>
-                  <td>None</td>
-                  <td>Advanced</td>
-                  <td>857-991-6460</td>
-                  <td><a class="edit" href="">Edit</a></td>
-                  <td><span class="delete"><a href="">Delete</a></span></td>
-                </tr>
-            </tbody>
-        </table>
+      <h1>People on Trip:</h1>
+      <table id="users" class="ui-widget ui-widget-content">
+        <thead>
+          <tr class="ui-widget-header ">
+            <th>Name</th>
+            <th>Equipment Needed</th>
+            <th>Skill Level</th>
+            <th>Phone Number</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="custom-name">James Yeung</td>
+            <td>None</td>
+            <td>Advanced</td>
+            <td>857-991-6460</td>
+            <td><a class="edit" href=""><img src="images/pencil_16x16.png" alt="edit"></a> <span class="delete"><a href=""><img src="images/cross_16x16.png"></a></span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <button id="add-person">Add a person</button>
   </body>

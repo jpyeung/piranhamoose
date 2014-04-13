@@ -37,7 +37,7 @@ $(document).ready(function() {
         dlg.dialog(config);
 
         function save_data() {
-        	$("#users tbody").append("<tr>" + "<td>" + name.val() + "</td>" + "<td>" + equipment.val() + "</td>" + "<td>" + skill_level.find("option:selected").text() + "</td>" + "<td>" + phone_number.val() + "</td>" + "<td><a href='' class='edit'>Edit</a></td>" + "<td><span class='delete'><a href=''>Delete</a></span></td>" + "</tr>");
+        	$("#users tbody").append("<tr>" + "<td>" + name.val() + "</td>" + "<td>" + equipment.val() + "</td>" + "<td>" + skill_level.find("option:selected").text() + "</td>" + "<td>" + phone_number.val() + "</td>" + "<td><a class='edit' href=''><img src='images/pencil_16x16.png' alt='edit'></a> <span class='delete'><a href=''><img src='images/cross_16x16.png'></a></span></td>" + "</tr>");
             dlg.dialog("close");
         }
     };
