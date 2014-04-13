@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8" />
     <title>Skii</title>
-    <link rel="shortcut icon" href="images/piranhamoose_icon.ico" type="image/x-icon"/>
-
-    <!-- Bootstrap -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
     <link href="index.css" rel="stylesheet">
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="images/piranhamoose_icon.ico" type="image/x-icon"/>
     <script type="text/javascript" src="index.js"></script>
   </head>
   <body>
@@ -37,21 +32,51 @@
         <input id="resort_button" type="button" value="Change resort">
       </div>
     </div>
+    <div id="dialog-form" title="Add a person">
+        <p class="validateTips">All form fields are required.</p>
+        <form>
+            <fieldset>
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all" />
+                <label for="equipment">Equipment</label>
+                <input type="text" name="equipment" id="equipment" value="" class="text ui-widget-content ui-corner-all" />
+                <label for="skill_level">Skill Level</label>
+                  <select id="skill_level">
+                    <option value="1">Beginner</option>
+                    <option value="2">Intermediate</option>
+                    <option value="3">Advanced</option>
+                  </select>
+                <label for="phone_number">Phone Number</label>
+                <input type="text" name="phone_number" id="phone_number" value=""
+                class="text ui-widget-content ui-corner-all" />
+            </fieldset>
+        </form>
+    </div>
+    <div id="users-contain" class="ui-widget">
+          <h1>People on Trip:</h1>
 
-    <table id="people">
-      <tr>
-        <td id="name"><b>Name</b></td>
-        <td id="equipment"><b>Equipment</b></td>
-        <td id="skill_level"><b>Skill Level</b></td>
-        <td id="phone_number"><b>Phone Number</b></td>
-      </tr>
-      <tr>
-        <td><input id="name_field" type="field"></td>
-        <td><input id="equipment_field" type="field"></td>
-        <td><input id="skill_field" type="field"></td>
-        <td><input id="phone_number_field" type="field"></td>
-        <td><input id="add_person" type="button" value="Add person"></td>
-      </tr> 
-    </table>
+        <table id="users" class="ui-widget ui-widget-content">
+            <thead>
+                <tr class="ui-widget-header ">
+                    <th>Name</th>
+                    <th>Equipment Needed</th>
+                    <th>Skill Level</th>
+                    <th>Phone Number</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td class="custom-name">James Yeung</td>
+                  <td>None</td>
+                  <td>Advanced</td>
+                  <td>857-991-6460</td>
+                  <td><a class="edit" href="">Edit</a></td>
+                  <td><span class="delete"><a href="">Delete</a></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button id="add-person">Add a person</button>
   </body>
 </html>

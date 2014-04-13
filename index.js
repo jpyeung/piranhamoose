@@ -2,25 +2,60 @@
 // has finished loading in the browser.
 
 $(document).ready(function() {
-	var submit = function() {
-		// get the input and insert a new row for it
-		var name = document.getElementById('name_field').value;
-		var equipment = document.getElementById('equipment_field').value;
-		var skill = document.getElementById('skill_field').value;
-		var phone = document.getElementById('phone_number_field').value;
-		var table = document.getElementById("people");
-		var row = table.insertRow(-1);
-		var name_cell = row.insertCell(0);
-		var equipment_cell = row.insertCell(1);
-		var skill_cell = row.insertCell(2);
-		var phone_cell = row.insertCell(3);
-		var edit_cell = row.insertCell(4);
-		name_cell.innerHTML = name;
-		equipment_cell.innerHTML = equipment;
-		skill_cell.innerHTML = skill;
-		phone_cell.innerHTML = phone;
-		edit_cell.innerHTML = "<img src='images/pencil_icon.png' alt='edit'>"
-	}
-	$('#add_person').click(submit);
+    var new_dialog = function (type, row) {
+        var dlg = $("#dialog-form").clone();
+        var name = dlg.find(("#name")),
+            equipment = dlg.find(("#equipment")),
+            skill_level = dlg.find(("#skill_level")),
+            phone_number = dlg.find(("#phone_number"));
+        type = type || 'Create';
+        var config = {
+            autoOpen: true,
+            height: 300,
+            width: 350,
+            modal: true,
+            buttons: {
+                "Add a person": save_data,
+                    "Cancel": function () {
+                    dlg.dialog("close");
+                }
+            },
+            close: function () {
+                dlg.remove();
+            }
+        };
+        if (type === 'Edit') {
+            config.title = "Edit User";
+            delete(config.buttons['Add a person']);
+            config.buttons['Edit person'] = function () {
+                row.remove();
+                save_data();
+
+            };
+
+        }
+        dlg.dialog(config);
+
+        function save_data() {
+        	$("#users tbody").append("<tr>" + "<td>" + name.val() + "</td>" + "<td>" + equipment.val() + "</td>" + "<td>" + skill_level.find("option:selected").text() + "</td>" + "<td>" + phone_number.val() + "</td>" + "<td><a href='' class='edit'>Edit</a></td>" + "<td><span class='delete'><a href=''>Delete</a></span></td>" + "</tr>");
+            dlg.dialog("close");
+        }
+    };
+
+    $(document).on('click', 'span.delete', function () {
+        $(this).closest('tr').find('td').fadeOut(1000,
+
+        function () {
+            $(this).parents('tr:first').remove();
+        });
+
+        return false;
+    });
+    $(document).on('click', 'td a.edit', function () {
+        new_dialog('Edit', $(this).parents('tr'));
+        return false;
+    });
+
+    $("#add-person").button().click(new_dialog);
 });
 
