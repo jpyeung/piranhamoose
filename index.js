@@ -11,8 +11,8 @@ $(document).ready(function() {
         type = type || 'Create';
         var config = {
             autoOpen: true,
-            height: 300,
-            width: 350,
+            height: 600,
+            width: 700,
             modal: true,
             buttons: {
                 "Add a person": save_data,

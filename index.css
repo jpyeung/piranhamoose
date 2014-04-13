@@ -17,7 +17,6 @@ label, input {
     position: absolute;
 }
 
-
 /* Headers and things */
 
 #header {
@@ -89,7 +88,7 @@ h1 {
     margin: .6em 0;
 }
 div#users-contain {
-    width: 350px;
+    width: 1600px;
     margin: 20px 0;
 }
 div#users-contain table {
