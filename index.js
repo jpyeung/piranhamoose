@@ -10,14 +10,16 @@ $(document).ready(function() {
 		var phone = document.getElementById('phone_number_field').value;
 		var table = document.getElementById("people");
 		var row = table.insertRow(-1);
-		var cell1 = row.insertCell(0);
-		var cell2 = row.insertCell(1);
-		var cell3 = row.insertCell(2);
-		var cell4 = row.insertCell(3);
-		cell1.innerHTML = name;
-		cell2.innerHTML = equipment;
-		cell3.innerHTML = skill;
-		cell4.innerHTML = phone;
+		var name_cell = row.insertCell(0);
+		var equipment_cell = row.insertCell(1);
+		var skill_cell = row.insertCell(2);
+		var phone_cell = row.insertCell(3);
+		var edit_cell = row.insertCell(4);
+		name_cell.innerHTML = name;
+		equipment_cell.innerHTML = equipment;
+		skill_cell.innerHTML = skill;
+		phone_cell.innerHTML = phone;
+		edit_cell.innerHTML = "<img src='images/pencil_icon.png' alt='edit'>"
 	}
 	$('#add_person').click(submit);
 });
