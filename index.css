@@ -18,8 +18,9 @@ label, input {
 }
 
 #title {
-    font-size: 5em;
+    font-size: 4em;
     font-family: 'Gochi Hand', cursive;
+    vertical-align: bottom;
 }
 
 /* Headers and things */
@@ -60,6 +61,7 @@ label, input {
 #trip_header {
     font-size: 2.5em;
     margin-bottom: 10px;
+    font-family: Garamond;
 }
 
 /* resort info */
@@ -67,6 +69,7 @@ label, input {
 #resort_header {
     font-size: 2.5em;
     margin-bottom: 10px;
+    font-family: Garamond;
 }
 
 #resort_name {
@@ -115,5 +118,4 @@ div#users-contain table td, div#users-contain table th {
 }
 #dialog-form {
     display: none;
-}
 }
