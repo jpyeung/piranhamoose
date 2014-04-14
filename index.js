@@ -25,7 +25,7 @@ $(document).ready(function() {
             }
         };
         if (type === 'Edit') {
-            config.title = "Edit User";
+            config.title = "Edit Person";
             delete(config.buttons['Add a person']);
             config.buttons['Edit person'] = function () {
                 row.remove();

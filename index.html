@@ -45,7 +45,7 @@
         <div id="resort_header">Resort Info</div>
         <div><span id="resort_name">Snowy Peaks Resort</span></div>
         <div><span id="resort_address">39 Beach St, Westford MA 02446</span></div>
-        <div><span id="field">Available slope difficulties: </span><span id="resort_difficulty">circle-double diamond</span></div>
+        <div><span id="field">Available slope difficulties: </span><span id="resort_difficulty"><img src="images/green_circle_16x16.png" alt="green circle"><b> &mdash; </b><img src="images/double_black_diamond_16x16.png" alt="double black diamond"></span></div>
         <div><span id="field">Cost of day pass: </span><span id="resort_price">$80</span></div>
         <div><span id="field">Distance: </span><span id="resort_distance">2 hours</span></div>
         <div><span id="field">Number of ski patrol: </span><span id="ski_patrol_number">617-623-4582 (write this down!)</span></div>
@@ -61,11 +61,14 @@
           <label for="equipment">Equipment</label>
           <input type="text" name="equipment" id="equipment" value="" class="text ui-widget-content ui-corner-all" />
           <label for="skill_level">Skill Level</label>
+          <br>
           <select id="skill_level">
             <option value="1">Beginner</option>
             <option value="2">Intermediate</option>
             <option value="3">Advanced</option>
           </select>
+          <br>
+          <br>
           <label for="phone_number">Phone Number</label>
           <input type="text" name="phone_number" id="phone_number" value=""
           class="text ui-widget-content ui-corner-all" />
