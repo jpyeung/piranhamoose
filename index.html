@@ -41,23 +41,31 @@
         <div class="col-md-6" id="trip_info">
           <ul class="list-group">
             <h3 class="list-group-item list-group-item-info" id="trip_header">Trip Info</h3>
+                <div id="trip-form" title="Add a person">
+                  <p class="validateTips">All form fields are required.</p>
+                  <form>
+                  <fieldset>
+                      <label for="leaving_at">Leaving at</label>
+                      <input type="text" name="leaving_at" id="leaving_at" value="" class="text ui-widget-content ui-corner-all" />
+                      <label for="leaving_from">Leaving from</label>
+                      <input type="text" name="leaving_from" id="leaving_from" value="" class="text ui-widget-content ui-corner-all" />
+                      <label for="organizer_number">Organizer number</label>
+                      <input type="text" name="organizer_number" id="organizer_number" value="" class="text ui-widget-content ui-corner-all" />
+                    </fieldset>
+                  </form>
+                </div>
             <div class="list-group-item">
               <dl class="dl-horizontal">
                 <dt>Leaving at:</dt>
-                <dd class="trip_info" id="leaving_at">8:00am, Mar 17</span>
-                </dd>
+                <dd class="trip_info" id="leaving_at_val">8:00am, Mar 17</dd>
                 <dt>Leaving from:</dt>
-                <dd class="trip_info" id="leaving_from">Student Center</span>
-                </dd>
-                <dt>Organizer phone:</dt>
-                <dd class="trip_info" id="organizer_number">617-682-5966</span>
-                </dd>
+                <dd class="trip_info" id="leaving_from_val">Student Center</dd>
+                <dt>Organizer number:</dt>
+                <dd class="trip_info" id="organizer_number_val">617-682-5966</dd>
                 <dt>Predicted weather:</dt>
-                <dd id="weather">Snowy</span>
-                </dd>
+                <dd id="weather">Snowy</span></dd>
                 <dt>Car ride length:</dt>
-                <dd id="car_time">2 hours</span>
-                </dd>
+                <dd id="car_time">2 hours</span></dd>
               </dl>
             </div>
             <div class="list-group-item">
@@ -100,7 +108,6 @@
           <label for="equipment">Equipment</label>
           <input type="text" name="equipment" id="equipment" value="" class="text ui-widget-content ui-corner-all" />
           <label for="skill_level">Skill Level</label>
-          <br>
           <select id="skill_level">
             <option value="1">Beginner</option>
             <option value="2">Intermediate</option>
@@ -137,6 +144,7 @@
         </tbody>
       </table>
     </div>
-    <button id="add-person">Add a person</button>
+    <input class="btn btn-default" id="add-person" type="button" value="Add a person">
+    </div>
   </body>
 </html>

@@ -2,6 +2,37 @@
 // has finished loading in the browser.
 
 $(document).ready(function() {
+
+    var trip_dialog = function () {
+        var dlg = $("#trip-form").clone();
+        var leaving_at = dlg.find(("#leaving_at")),
+            leaving_from = dlg.find(("#leaving_from")),
+            organizer_number = dlg.find(("#organizer_number"));
+        var config = {
+            autoOpen: true,
+            height: 600,
+            width: 700,
+            modal: true,
+            buttons: {
+                "Save": save_data,
+                    "Cancel": function () {
+                    dlg.dialog("close");
+                }
+            },
+            close: function () {
+                dlg.remove();
+            }
+        };
+        dlg.dialog(config);
+
+        function save_data() {
+        	$("#leaving_at_val").text(leaving_at.val());
+        	$("#leaving_from_val").text(leaving_from.val());
+        	$("#organizer_number_val").text(organizer_number.val());
+            dlg.dialog("close");
+        }
+    };
+
     var new_dialog = function (type, row) {
         var dlg = $("#dialog-form").clone();
         var name = dlg.find(("#name")),
@@ -15,7 +46,7 @@ $(document).ready(function() {
             width: 700,
             modal: true,
             buttons: {
-                "Add person": save_data,
+                "Save": save_data,
                     "Cancel": function () {
                     dlg.dialog("close");
                 }
@@ -27,7 +58,7 @@ $(document).ready(function() {
         if (type === 'Edit') {
             config.title = "Edit Person";
             delete(config.buttons['Add person']);
-            config.buttons['Edit person'] = function () {
+            config.buttons['Save'] = function () {
                 row.remove();
                 save_data();
 
@@ -57,5 +88,5 @@ $(document).ready(function() {
     });
 
     $("#add-person").button().click(new_dialog);
+    $("#edit_info_button").button().click(trip_dialog);
 });
-

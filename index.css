@@ -60,3 +60,6 @@ div#users-contain table td, div#users-contain table th {
 #dialog-form {
     display: none;
 }
+#trip-form {
+    display: none;
+}
