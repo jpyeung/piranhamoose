@@ -23,6 +23,7 @@ $(document).ready(function() {
                 dlg.remove();
             }
         };
+        config.title = "Edit trip information";
         dlg.dialog(config);
 
         function save_data() {
