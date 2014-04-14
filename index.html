@@ -3,53 +3,92 @@
   <head>
     <meta charset="utf-8" />
     <title>Skii</title>
+
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
     <link href='http://fonts.googleapis.com/css?family=Gochi+Hand' rel='stylesheet' type='text/css'>
-    <link href="index.css" rel="stylesheet">
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link rel="shortcut icon" href="images/piranhamoose_icon.ico" type="image/x-icon"/>
+
     <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
     <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="index.css" >
+
+    <link rel="shortcut icon" href="images/piranhamoose_icon.ico" type="image/x-icon"/>
+
     <script type="text/javascript" src="index.js"></script>
   </head>
   <body>
-  <div class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" id="title" href="#">Skii</a>
-          </div>
-          <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Hi, James Yeung!</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
+    <div class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" id="title" href="#">Skii</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Hi, James Yeung!</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!--/.container-fluid -->
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6" id="trip_info">
+          <ul class="list-group">
+            <h3 class="list-group-item list-group-item-info" id="trip_header">Trip Info</h3>
+            <div class="list-group-item">
+              <dl class="dl-horizontal">
+                <dt>Leaving at:</dt>
+                <dd class="trip_info" id="leaving_at">8:00am, Mar 17</span>
+                </dd>
+                <dt>Leaving from:</dt>
+                <dd class="trip_info" id="leaving_from">Student Center</span>
+                </dd>
+                <dt>Organizer phone:</dt>
+                <dd class="trip_info" id="organizer_number">617-682-5966</span>
+                </dd>
+                <dt>Predicted weather:</dt>
+                <dd id="weather">Snowy</span>
+                </dd>
+                <dt>Car ride length:</dt>
+                <dd id="car_time">2 hours</span>
+                </dd>
+              </dl>
+            </div>
+            <div class="list-group-item">
+              <input class="btn btn-default btn-block" id="edit_info_button" type="button" value="Edit Info">
+            </div>
+          </ul>
+        </div>
+
+        <div class="col-md-6" id="resort_info">
+          <ul class="list-group">
+            <h3 class="list-group-item list-group-item-info" id="resort_header">Resort Info</h3>
+            <div class="list-group-item">
+              <dl class="dl-horizontal">
+                <dt>Resort Name:</dt>
+                <dd id="resort_name">Snowy Peaks Resort</dd>
+                <dt>Address:</dt>
+                <dd id="resort_address">39 Beach St, Westford MA 02446</dd>
+                <dt>Slope difficulties:</dt>
+                <dd id="resort_difficulty"><img src="images/green_circle_16x16.png" alt="green circle"><b> &mdash; </b><img src="images/double_black_diamond_16x16.png" alt="double black diamond"></dd>
+                <dt>Cost of day pass:</dt>
+                <dd id="resort_price">$80</dd>
+                <dt>Number of ski patrol:</dt>
+                <dd><span id="ski_patrol_number">617-623-4582</span> (write this down!)</dd>
+              </dl>
+            </div>
+            <div class="list-group-item">
+              <input class="btn btn-default btn-block" id="change_resort_button" type="button" value="Change resort">
+            </div>
+          </ul>
+        </div>
       </div>
-    <div>
-      <div id="trip_info">
-        <div id="trip_header">Trip Info</div>
-        <div><span id="field">Leaving at: </span> <span id="leaving_at">8:00am, Mar 17</span><img src="images/pencil_16x16.png" alt="edit"></div>
-        <div><span id="field">Leaving from: </span><span id="leaving_from">Student Center</span><img src="images/pencil_16x16.png" alt="edit"></div>
-        <div><span id="field">Octavius' phone number: </span><span id="organizer_number">617-682-5966</span><img src="images/pencil_16x16.png" alt="edit"></div>
-        <div><span id="field">Predicted weather: </span><span id="weather">Snowy</span></div>
-        <div><span id="field">Car ride length: </span><span id="car_time">2 hours</span></div>
-      </div>
-      <div id="resort_info">
-        <div id="resort_header">Resort Info</div>
-        <div><span id="resort_name">Snowy Peaks Resort</span></div>
-        <div><span id="resort_address">39 Beach St, Westford MA 02446</span></div>
-        <div><span id="field">Available slope difficulties: </span><span id="resort_difficulty"><img src="images/green_circle_16x16.png" alt="green circle"><b> &mdash; </b><img src="images/double_black_diamond_16x16.png" alt="double black diamond"></span></div>
-        <div><span id="field">Cost of day pass: </span><span id="resort_price">$80</span></div>
-        <div><span id="field">Distance: </span><span id="resort_distance">2 hours</span></div>
-        <div><span id="field">Number of ski patrol: </span><span id="ski_patrol_number">617-623-4582 (write this down!)</span></div>
-        <input id="resort_button" type="button" value="Change resort">
       </div>
     </div>
     <div id="dialog-form" title="Add a person">

@@ -15,7 +15,7 @@ $(document).ready(function() {
             width: 700,
             modal: true,
             buttons: {
-                "Add a person": save_data,
+                "Add person": save_data,
                     "Cancel": function () {
                     dlg.dialog("close");
                 }
@@ -26,7 +26,7 @@ $(document).ready(function() {
         };
         if (type === 'Edit') {
             config.title = "Edit Person";
-            delete(config.buttons['Add a person']);
+            delete(config.buttons['Add person']);
             config.buttons['Edit person'] = function () {
                 row.remove();
                 save_data();
