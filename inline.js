@@ -209,6 +209,7 @@ $(document).ready(function() {
     editListener('#organizer-number-val');
   });
 
+
   // save buttons
   $('#save-leaving-at').click(function() {
     saveListener('#leaving-at-val');
@@ -231,4 +232,17 @@ $(document).ready(function() {
     cancelListener('#organizer-number-val');
   });
 
+  ///////////////////////////////////////
+  // Name
+  ///////////////////////////////////////
+
+  $('#name-div button.editing').hide();
+
+  $('#edit-name').click(function() {
+    editListener('#name');
+  });
+
+  $('#save-name').click(function() {
+    saveListener('#name');
+  });
 });
