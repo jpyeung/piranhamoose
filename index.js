@@ -135,10 +135,18 @@ $(document).ready(function() {
 	});
 	*/
 	
-	$("#mountainview_button").click(function(evt) {
-		console.log("hi");
+	var changeResort = function(){
+	};
+
+	$("#snowy-peaks-button").click(function(evt) {
+		changeResort();
 	});
 
-    //$("#add-person").button().click(new_dialog);
-    $("#edit_info_button").button().click(trip_dialog);
+	$("#mountainview-button").click(function(evt) {
+		changeResort();
+	});
+
+	$("#barren-snowscape-button").click(function(evt) {
+		changeResort();
+	});
 });
