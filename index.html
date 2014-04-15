@@ -16,6 +16,7 @@
     <link rel="shortcut icon" href="images/piranhamoose_icon.ico" type="image/x-icon"/>
 
     <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="inline.js"></script>
   </head>
   <body>
     <div class="navbar navbar-default" role="navigation">
@@ -97,6 +98,45 @@
           </ul>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-12">
+          <table id="user-table" class="table">
+            <thead><tr>
+              <th>Name</th>
+              <th>Equipment Needed</th>
+              <th>Skill Level</th>
+              <th>Phone Number</th>
+              <th>Actions</th>
+            </tr></thead>
+            <tbody>
+              <!-- <tr>
+                <td>James Yeung</td>
+                <td>None</td>
+                <td>Advanced</td>
+                <td>857-991-6460</td>
+                <td>
+                  <button id="edit-row0" class="not-editing btn btn-default btn-xs">
+                    <span class="glyphicon glyphicon-pencil"></span> Edit
+                  </button>
+                  <button id="delete-row0" class="not-editing btn btn-default btn-xs">
+                    <span class="glyphicon glyphicon-remove"></span> Delete
+                  </button>
+                  <button id="save-row0" class="editing btn btn-default btn-xs">
+                    <span class="glyphicon glyphicon-ok"></span> Save
+                  </button>
+                  <button id="cancel-row0" class="editing btn btn-default btn-xs">
+                    <span class="glyphicon glyphicon-remove"></span> Cancel
+                  </button>
+                </td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button id="add-person" class="btn btn-default">Add Person</button>
+        </div>
       </div>
     </div>
     <div id="dialog-form" title="Add a person">
@@ -121,7 +161,8 @@
         </fieldset>
       </form>
     </div>
-    <div id="users-contain" class="ui-widget">
+    
+    <!-- <div id="users-contain" class="ui-widget">
       <h1>People on Trip:</h1>
       <table id="users" class="ui-widget ui-widget-content">
         <thead>
@@ -145,6 +186,6 @@
       </table>
     </div>
     <input class="btn btn-default" id="add-person" type="button" value="Add a person">
-    </div>
+    </div> -->
   </body>
 </html>
