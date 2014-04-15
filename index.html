@@ -40,8 +40,10 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-6" id="trip_info">
-          <ul class="list-group">
-            <h3 class="list-group-item list-group-item-info" id="trip_header">Trip Info</h3>
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title" id="trip_header">Trip Info</h3>
+            </div>
                 <div id="trip-form" title="Add a person">
                   <p class="validateTips">All form fields are required.</p>
                   <form>
@@ -55,7 +57,7 @@
                     </fieldset>
                   </form>
                 </div>
-            <div class="list-group-item">
+            <div class="panel-body">
               <dl class="dl-horizontal">
                 <dt>Leaving at:</dt>
                 <dd class="trip_info" id="leaving_at_val">8:00am, Mar 17</dd>
@@ -69,16 +71,20 @@
                 <dd id="car_time">2 hours</span></dd>
               </dl>
             </div>
-            <div class="list-group-item">
-              <input class="btn btn-default btn-block" id="edit_info_button" type="button" value="Edit Info">
-            </div>
-          </ul>
+            <ul class="list-group">
+              <div class="list-group-item">
+                <input class="btn btn-default btn-block" id="edit_info_button" type="button" value="Edit Info">
+              </div>
+            </ul>
+          </div>
         </div>
 
         <div class="col-md-6" id="resort_info">
-          <ul class="list-group">
-            <h3 class="list-group-item list-group-item-info" id="resort_header">Resort Info</h3>
-            <div class="list-group-item">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title" id="resort_header">Resort Info</h3>
+            </div>
+            <div class="panel-body">
               <dl class="dl-horizontal">
                 <dt>Resort Name:</dt>
                 <dd id="resort_name">Snowy Peaks Resort</dd>
@@ -92,17 +98,19 @@
                 <dd><span id="ski_patrol_number">617-623-4582</span> (write this down!)</dd>
               </dl>
             </div>
-            <div class="list-group-item">
-              <input class="btn btn-default btn-block" id="change_resort_button" type="button" value="Change resort">
-            </div>
-          </ul>
+            <ul class="list-group">
+              <div class="list-group-item">
+                <input class="btn btn-default btn-block" id="change_resort_button" type="button" value="Change resort">
+              </div>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h2 class="panel-title">People on Trip</h2>
+              <h3 class="panel-title">People on Trip</h3>
             </div>
             <table id="user-table" class="table">
               <thead><tr>
