@@ -1,6 +1,9 @@
 $(document).ready(function() {
+  // hide buttons only used while editing
   $('#user-table tbody button.editing').hide();
 
+  // individual table cell functions
+  // Turn a cell into a text input. Returns old field value.
   var cellToTextInput = function(cell) {
     var text = cell.text();
     cell.empty();
@@ -11,6 +14,7 @@ $(document).ready(function() {
     return text;
   };
 
+  // Turn a cell into a selection dropdown. Returns old field value.
   var cellToDropdown = function(cell) {
     var text = cell.text();
     cell.empty();
@@ -38,6 +42,8 @@ $(document).ready(function() {
     cell.text(old_val);
   };
 
+  // whole table row functions
+  // turn a whole row into inputs. Returns the old values of fields
   var makeRowEditable = function(row) {
     var cells = row.find('td');
 
@@ -52,6 +58,7 @@ $(document).ready(function() {
     return { name: old_name, equip: old_equip, diff: old_diff, phone: old_phone };
   };
 
+  // sets field values to the current values of the respective inputs
   var saveRowChanges = function(row) {
     row.removeClass('new-row');
     var cells = row.find('td');
@@ -64,6 +71,8 @@ $(document).ready(function() {
     cells.eq(4).find('button.editing').hide();
   };
 
+  // restores old values of fields, if the row was previously saved, otherwise
+  // removes the row entirely
   var cancelRowChanges = function(row) {
     if (row.hasClass('new-row')) {
       row.remove();
@@ -81,6 +90,10 @@ $(document).ready(function() {
     cells.eq(4).find('button.editing').hide();
   };
 
+  // adding a new row. Includes listeners on the buttons
+  // note: because buttons are IDed by their current position in the table,
+  //  some combinations of adds and deletes will produce buttons with the same
+  //  ID. This could cause issues!
   var addBlankRow = function() {
     var rows = $('#user-table tbody tr');
     var index = rows.length;
@@ -91,7 +104,6 @@ $(document).ready(function() {
       '<button id="edit-row'+index+'" class="not-editing btn btn-default btn-xs">' +
       '<span class="glyphicon glyphicon-pencil"></span> Edit </button>'
     ).click(function() {
-      //var row = $('#user-table tbody tr').eq(index);
       var old_data = makeRowEditable(empty_row);
       empty_row.data('old_data', old_data);
     });
@@ -128,25 +140,5 @@ $(document).ready(function() {
   }
 
   $('#add-person').click(addBlankRow);
-
-  // $('#edit-row0').click(function() {
-  //   var row0 = $('#user-table tbody tr').eq(0)
-  //   var old_data = makeRowEditable(row0);
-  //   row0.data('old_data', old_data);
-  // });
-
-  // $('#save-row0').click(function() {
-  //   // console.log('clicked');
-  //   saveRowChanges($('#user-table tbody tr').eq(0));
-  // });
-
-  // $('#cancel-row0').click(function() {
-  //   // console.log('clicked');
-  //   cancelRowChanges($('#user-table tbody tr').eq(0));
-  // });
-
-  // $('#delete-row0').click(function() {
-  //   $('#user-table tbody tr').eq(0).remove();
-  // });
 
 });
