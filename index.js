@@ -89,5 +89,5 @@ $(document).ready(function() {
     });
 
     //$("#add-person").button().click(new_dialog);
-    //$("#edit_info_button").button().click(trip_dialog);
+    $("#edit_info_button").button().click(trip_dialog);
 });
