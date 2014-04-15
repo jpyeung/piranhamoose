@@ -9,6 +9,7 @@
 
     <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
     <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
 
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" href="index.css" >
@@ -91,11 +92,6 @@
                 <dd id="car_time">2 hours</span></dd>
               </dl>
             </div>
-            <!-- <ul class="list-group">
-              <div class="list-group-item">
-                <input class="btn btn-default btn-block" id="edit_info_button" type="button" value="Edit Info">
-              </div>
-            </ul> -->
           </div>
         </div>
 
@@ -105,59 +101,74 @@
               <h3 class="panel-title" id="resort_header">Resort Info</h3>
             </div>
             <ul class="list-group">
-    			    <div id="resort-form" title="Add a person">
-      					<div class="list-group-item">
-      					  <dl class="dl-horizontal">
-      						<dt>Resort Name:</dt>
-      						<dd id="resort_name">Snowy Peaks Resort</dd>
-      						<dt>Address:</dt>
-      						<dd id="resort_address">39 Beach St, Westford MA 02446</dd>
-      						<dt>Slope difficulties:</dt>
-      						<dd id="resort_difficulty"><img src="images/green_circle_16x16.png" alt="green circle"><b> &mdash; </b><img src="images/double_black_diamond_16x16.png" alt="double black diamond"></dd>
-      						<dt>Cost of day pass:</dt>
-      						<dd id="resort_price">$80</dd>
-      						<dt>Number of ski patrol:</dt>
-      						<dd><span id="ski_patrol_number">617-623-4582</span></dd>
-      						<dt>Distance:</dt>
-      						<dd id="resort_distance">27.1 miles</dd>
-      						<input type="button" name="snowy_peaks_button" id="snowy_peaks_button" value="Pick this resort" onclick="hi"> 
-      					  </dl>
-      					</div>
-      					<div class="list-group-item">
-      					  <dl class="dl-horizontal">
-      						<dt>Resort Name:</dt>
-      						<dd id="resort_name">Mountainview Resort</dd>
-      						<dt>Address:</dt>
-      						<dd id="resort_address">10 Radcliffe St, Woburn MA 02291</dd>
-      						<dt>Slope difficulties:</dt>
-      						<dd id="resort_difficulty"><img src="images/blue_square_16x16.png" alt="blue circle"><b> &mdash; </b><img src="images/double_black_diamond_16x16.png" alt="double black diamond"></dd>
-      						<dt>Cost of day pass:</dt>
-      						<dd id="resort_price">$100</dd>
-      						<dt>Number of ski patrol:</dt>
-      						<dd><span id="ski_patrol_number">617-495-0261</span></dd>
-      						<dt>Distance:</dt>
-      						<dd id="resort_distance">73.8 miles</dd>
-      						<input type="button" name="mountainview_button" id="mountainview_button" value="Pick this resort" /> 
-      					  </dl>
-      					</div>			
-      					<div class="list-group-item">
-      					  <dl class="dl-horizontal">
-      						<dt>Resort Name:</dt>
-      						<dd id="resort_name">Barren Snowscape Resort</dd>
-      						<dt>Address:</dt>
-      						<dd id="resort_address">495 Empty Ave, Lexington MA 02991</dd>
-      						<dt>Slope difficulties:</dt>
-      						<dd id="resort_difficulty"><img src="images/green_circle_16x16.png" alt="green circle"><b> &mdash; </b><img src="images/black_diamond_16x16.png" alt="black diamond"></dd>
-      						<dt>Cost of day pass:</dt>
-      						<dd id="resort_price">$100</dd>
-      						<dt>Number of ski patrol:</dt>
-      						<dd><span id="ski_patrol_number">617-495-0261</span></dd>
-      						<dt>Distance:</dt>
-      						<dd id="resort_distance">46.0 miles</dd>
-      						<input type="button" name="barren_snowscape_button" id="barren_snowscape_button" value="Pick this resort" /> 
-      					  </dl>
-      					</div>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                  </div>
+                  <div class="modal-body">
+                                <div id="resort-form" title="Add a person">
+                <div class="list-group-item">
+                  <dl class="dl-horizontal">
+                  <dt>Resort Name:</dt>
+                  <dd id="resort_name">Snowy Peaks Resort</dd>
+                  <dt>Address:</dt>
+                  <dd id="resort_address">39 Beach St, Westford MA 02446</dd>
+                  <dt>Slope difficulties:</dt>
+                  <dd id="resort_difficulty"><img src="images/green_circle_16x16.png" alt="green circle"><b> &mdash; </b><img src="images/double_black_diamond_16x16.png" alt="double black diamond"></dd>
+                  <dt>Cost of day pass:</dt>
+                  <dd id="resort_price">$80</dd>
+                  <dt>Number of ski patrol:</dt>
+                  <dd><span id="ski_patrol_number">617-623-4582</span></dd>
+                  <dt>Distance:</dt>
+                  <dd id="resort_distance">27.1 miles</dd>
+                  <button type="button" name="snowy_peaks_button" id="snowy_peaks_button" data-dismiss="modal">Pick this resort</button> 
+                  </dl>
+                </div>
+                <div class="list-group-item">
+                  <dl class="dl-horizontal">
+                  <dt>Resort Name:</dt>
+                  <dd id="resort_name">Mountainview Resort</dd>
+                  <dt>Address:</dt>
+                  <dd id="resort_address">10 Radcliffe St, Woburn MA 02291</dd>
+                  <dt>Slope difficulties:</dt>
+                  <dd id="resort_difficulty"><img src="images/blue_square_16x16.png" alt="blue circle"><b> &mdash; </b><img src="images/double_black_diamond_16x16.png" alt="double black diamond"></dd>
+                  <dt>Cost of day pass:</dt>
+                  <dd id="resort_price">$100</dd>
+                  <dt>Number of ski patrol:</dt>
+                  <dd><span id="ski_patrol_number">617-495-0261</span></dd>
+                  <dt>Distance:</dt>
+                  <dd id="resort_distance">73.8 miles</dd>
+                  <button type="button" name="mountainview_button" id="mountainview_button" data-dismiss="modal">Pick this resort</button> 
+                  </dl>
+                </div>      
+                <div class="list-group-item">
+                  <dl class="dl-horizontal">
+                  <dt>Resort Name:</dt>
+                  <dd id="resort_name">Barren Snowscape Resort</dd>
+                  <dt>Address:</dt>
+                  <dd id="resort_address">495 Empty Ave, Lexington MA 02991</dd>
+                  <dt>Slope difficulties:</dt>
+                  <dd id="resort_difficulty"><img src="images/green_circle_16x16.png" alt="green circle"><b> &mdash; </b><img src="images/black_diamond_16x16.png" alt="black diamond"></dd>
+                  <dt>Cost of day pass:</dt>
+                  <dd id="resort_price">$100</dd>
+                  <dt>Number of ski patrol:</dt>
+                  <dd><span id="ski_patrol_number">617-495-0261</span></dd>
+                  <dt>Distance:</dt>
+                  <dd id="resort_distance">46.0 miles</dd>
+                  <button type="button" name="barren_snowscape_button" id="barren_snowscape_button" data-dismiss="modal">Pick this resort</button> 
+                  </dl>
+                </div>
               </div>
+                  </div>
+                  <div class="modal-footer">
+                  </div>
+                </div>
+              </div>
+            </div>
               <div class="list-group-item">
                 <dl class="dl-horizontal">
                   <dt>Resort Name:</dt>
@@ -173,7 +184,7 @@
                 </dl>
               </div>
               <div class="list-group-item">
-                <input class="btn btn-default btn-block" id="change_resort_button" type="button" value="Change resort">
+                <button class="btn btn-default btn-block" data-toggle="modal" data-target="#myModal">Change resort</button>
               </div>
             </ul>
           </div>
@@ -194,26 +205,6 @@
                 <th>Actions</th>
               </tr></thead>
               <tbody>
-                <!-- <tr>
-                  <td>James Yeung</td>
-                  <td>None</td>
-                  <td>Advanced</td>
-                  <td>857-991-6460</td>
-                  <td>
-                    <button id="edit-row0" class="not-editing btn btn-default btn-xs">
-                      <span class="glyphicon glyphicon-pencil"></span> Edit
-                    </button>
-                    <button id="delete-row0" class="not-editing btn btn-default btn-xs">
-                      <span class="glyphicon glyphicon-remove"></span> Delete
-                    </button>
-                    <button id="save-row0" class="editing btn btn-default btn-xs">
-                      <span class="glyphicon glyphicon-ok"></span> Save
-                    </button>
-                    <button id="cancel-row0" class="editing btn btn-default btn-xs">
-                      <span class="glyphicon glyphicon-remove"></span> Cancel
-                    </button>
-                  </td>
-                </tr> -->
               </tbody>
             </table>
             <ul class="list-group">
@@ -225,28 +216,6 @@
         </div>
       </div>
     </div>
-    <!-- <div id="dialog-form" title="Add a person">
-      <p class="validateTips">All form fields are required.</p>
-      <form>
-      <fieldset>
-          <label for="name">Name</label>
-          <input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all" />
-          <label for="equipment">Equipment</label>
-          <input type="text" name="equipment" id="equipment" value="" class="text ui-widget-content ui-corner-all" />
-          <label for="skill_level">Skill Level</label>
-          <select id="skill_level">
-            <option value="1">Beginner</option>
-            <option value="2">Intermediate</option>
-            <option value="3">Advanced</option>
-          </select>
-          <br>
-          <br>
-          <label for="phone_number">Phone Number</label>
-          <input type="text" name="phone_number" id="phone_number" value=""
-          class="text ui-widget-content ui-corner-all" />
-        </fieldset>
-      </form>
-    </div> -->
     <div id="trip-form" title="Add a person">
       <p class="validateTips">All form fields are required.</p>
       <form>
@@ -270,39 +239,6 @@
 		</span>
 	  </div>
 	</div>
-	<!-- <script type="text/javascript">
-	  $(function() {
-		$('#datetimepicker2').datetimepicker({
-		  language: 'en',
-		  pick12HourFormat: true
-		});
-	  });
-	</script> -->
-
-    <!-- <div id="users-contain" class="ui-widget">
-      <h1>People on Trip:</h1>
-      <table id="users" class="ui-widget ui-widget-content">
-        <thead>
-          <tr class="ui-widget-header ">
-            <th>Name</th>
-            <th>Equipment Needed</th>
-            <th>Skill Level</th>
-            <th>Phone Number</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="custom-name">James Yeung</td>
-            <td>None</td>
-            <td>Advanced</td>
-            <td>857-991-6460</td>
-            <td><a class="edit" href=""><img src="images/pencil_16x16.png" alt="edit"></a> <span class="delete"><a href=""><img src="images/cross_16x16.png"></a></span></td>
-          </tr>
-        </tbody>
-      </table>
     </div>
-    <input class="btn btn-default" id="add-person" type="button" value="Add a person">
-    </div> -->
   </body>
 </html>

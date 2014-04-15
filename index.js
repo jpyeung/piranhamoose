@@ -128,10 +128,12 @@ $(document).ready(function() {
         return false;
     });
 	
+	/*
 	$("#change_resort_button").click(function(evt) {
 		resort_dialog();
         return false;
 	});
+	*/
 	
 	$("#mountainview_button").click(function(evt) {
 		console.log("hi");
