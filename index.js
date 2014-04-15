@@ -124,6 +124,6 @@ $(document).ready(function() {
         return false;
 	});
 
-    $("#add-person").button().click(new_dialog);
+    //$("#add-person").button().click(new_dialog);
     $("#edit_info_button").button().click(trip_dialog);
 });

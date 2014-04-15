@@ -16,6 +16,7 @@
     <link rel="shortcut icon" href="images/piranhamoose_icon.ico" type="image/x-icon"/>
 
     <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="inline.js"></script>
   </head>
   <body>
     <div class="navbar navbar-default" role="navigation">
@@ -39,22 +40,11 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-6" id="trip_info">
-          <ul class="list-group">
-            <h3 class="list-group-item list-group-item-info" id="trip_header">Trip Info</h3>
-                <div id="trip-form" title="Add a person">
-                  <p class="validateTips">All form fields are required.</p>
-                  <form>
-                  <fieldset>
-                      <label for="leaving_at">Leaving at</label>
-                      <input type="text" name="leaving_at" id="leaving_at" value="" class="text ui-widget-content ui-corner-all" />
-                      <label for="leaving_from">Leaving from</label>
-                      <input type="text" name="leaving_from" id="leaving_from" value="" class="text ui-widget-content ui-corner-all" />
-                      <label for="organizer_number">Organizer number</label>
-                      <input type="text" name="organizer_number" id="organizer_number" value="" class="text ui-widget-content ui-corner-all" />
-                    </fieldset>
-                  </form>
-                </div>
-            <div class="list-group-item">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title" id="trip_header">Trip Info</h3>
+            </div>
+            <div class="panel-body">
               <dl class="dl-horizontal">
                 <dt>Leaving at:</dt>
                 <dd class="trip_info" id="leaving_at_val">8:00am, Mar 17</dd>
@@ -68,10 +58,12 @@
                 <dd id="car_time">2 hours</span></dd>
               </dl>
             </div>
-            <div class="list-group-item">
-              <input class="btn btn-default btn-block" id="edit_info_button" type="button" value="Edit Info">
-            </div>
-          </ul>
+            <ul class="list-group">
+              <div class="list-group-item">
+                <input class="btn btn-default btn-block" id="edit_info_button" type="button" value="Edit Info">
+              </div>
+            </ul>
+          </div>
         </div>
 
         <div class="col-md-6" id="resort_info">
@@ -131,6 +123,11 @@
 					</div>	
                 </div>
             <div class="list-group-item">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title" id="resort_header">Resort Info</h3>
+            </div>
+            <div class="panel-body">
               <dl class="dl-horizontal">
                 <dt>Resort Name:</dt>
                 <dd id="resort_name">Snowy Peaks Resort</dd>
@@ -144,15 +141,61 @@
                 <dd><span id="ski_patrol_number">617-623-4582</span> (write this down!)</dd>
               </dl>
             </div>
-            <div class="list-group-item">
-              <input class="btn btn-default btn-block" id="change_resort_button" type="button" value="Change resort">
-            </div>
-          </ul>
+            <ul class="list-group">
+              <div class="list-group-item">
+                <input class="btn btn-default btn-block" id="change_resort_button" type="button" value="Change resort">
+              </div>
+            </ul>
+          </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">People on Trip</h3>
+            </div>
+            <table id="user-table" class="table">
+              <thead><tr>
+                <th>Name</th>
+                <th>Equipment Needed</th>
+                <th>Skill Level</th>
+                <th>Phone Number</th>
+                <th>Actions</th>
+              </tr></thead>
+              <tbody>
+                <!-- <tr>
+                  <td>James Yeung</td>
+                  <td>None</td>
+                  <td>Advanced</td>
+                  <td>857-991-6460</td>
+                  <td>
+                    <button id="edit-row0" class="not-editing btn btn-default btn-xs">
+                      <span class="glyphicon glyphicon-pencil"></span> Edit
+                    </button>
+                    <button id="delete-row0" class="not-editing btn btn-default btn-xs">
+                      <span class="glyphicon glyphicon-remove"></span> Delete
+                    </button>
+                    <button id="save-row0" class="editing btn btn-default btn-xs">
+                      <span class="glyphicon glyphicon-ok"></span> Save
+                    </button>
+                    <button id="cancel-row0" class="editing btn btn-default btn-xs">
+                      <span class="glyphicon glyphicon-remove"></span> Cancel
+                    </button>
+                  </td>
+                </tr> -->
+              </tbody>
+            </table>
+            <ul class="list-group">
+              <div class="list-group-item">
+                <button id="add-person" class="btn btn-default">Add Person</button>
+              </div>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
-    <div id="dialog-form" title="Add a person">
+    <!-- <div id="dialog-form" title="Add a person">
       <p class="validateTips">All form fields are required.</p>
       <form>
       <fieldset>
@@ -173,8 +216,22 @@
           class="text ui-widget-content ui-corner-all" />
         </fieldset>
       </form>
+    </div> -->
+    <div id="trip-form" title="Add a person">
+      <p class="validateTips">All form fields are required.</p>
+      <form>
+      <fieldset>
+          <label for="leaving_at">Leaving at</label>
+          <input type="text" name="leaving_at" id="leaving_at" value="" class="text ui-widget-content ui-corner-all" />
+          <label for="leaving_from">Leaving from</label>
+          <input type="text" name="leaving_from" id="leaving_from" value="" class="text ui-widget-content ui-corner-all" />
+          <label for="organizer_number">Organizer number</label>
+          <input type="text" name="organizer_number" id="organizer_number" value="" class="text ui-widget-content ui-corner-all" />
+        </fieldset>
+      </form>
     </div>
-    <div id="users-contain" class="ui-widget">
+    
+    <!-- <div id="users-contain" class="ui-widget">
       <h1>People on Trip:</h1>
       <table id="users" class="ui-widget ui-widget-content">
         <thead>
@@ -198,6 +255,6 @@
       </table>
     </div>
     <input class="btn btn-default" id="add-person" type="button" value="Add a person">
-    </div>
+    </div> -->
   </body>
 </html>
