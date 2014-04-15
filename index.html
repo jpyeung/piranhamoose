@@ -39,30 +39,63 @@
     </div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-6" id="trip_info">
+        <div class="col-md-6">
           <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title" id="trip_header">Trip Info</h3>
             </div>
             <div class="panel-body">
-              <dl class="dl-horizontal">
+              <dl class="dl-horizontal" id="trip-info">
                 <dt>Leaving at:</dt>
-                <dd class="trip_info" id="leaving_at_val">8:00am, Mar 17</dd>
+                <dd>
+                  <span id="leaving-at-val">8:00am, Mar 17</span>
+                  <button class="not-editing btn btn-default btn-xs" id="edit-leaving-at">
+                    <span class="glyphicon glyphicon-pencil"></span> Edit 
+                  </button>
+                  <button class="editing btn btn-default btn-xs" id="save-leaving-at">
+                    <span class="glyphicon glyphicon-ok"></span> Save  
+                  </button>
+                  <button class="editing btn btn-default btn-xs" id="cancel-leaving-at">
+                    <span class="glyphicon glyphicon-remove"></span> Cancel   
+                  </button>
+                </dd>
                 <dt>Leaving from:</dt>
-                <dd class="trip_info" id="leaving_from_val">Student Center</dd>
+                <dd>
+                  <span id="leaving-from-val">Student Center</span>
+                  <button class="not-editing btn btn-default btn-xs" id="edit-leaving-from">
+                    <span class="glyphicon glyphicon-pencil"></span> Edit 
+                  </button>
+                  <button class="editing btn btn-default btn-xs" id="save-leaving-from">
+                    <span class="glyphicon glyphicon-ok"></span> Save  
+                  </button>
+                  <button class="editing btn btn-default btn-xs" id="cancel-leaving-from">
+                    <span class="glyphicon glyphicon-remove"></span> Cancel   
+                  </button>
+                </dd>
                 <dt>Organizer number:</dt>
-                <dd class="trip_info" id="organizer_number_val">617-682-5966</dd>
+                <dd>
+                  <span id="organizer-number-val">617-682-5966</span>
+                  <button class="not-editing btn btn-default btn-xs" id="edit-organizer-number">
+                    <span class="glyphicon glyphicon-pencil"></span> Edit 
+                  </button>
+                  <button class="editing btn btn-default btn-xs" id="save-organizer-number">
+                    <span class="glyphicon glyphicon-ok"></span> Save  
+                  </button>
+                  <button class="editing btn btn-default btn-xs" id="cancel-organizer-number">
+                    <span class="glyphicon glyphicon-remove"></span> Cancel   
+                  </button>
+                </dd>
                 <dt>Predicted weather:</dt>
                 <dd id="weather">Snowy</span></dd>
                 <dt>Car ride length:</dt>
                 <dd id="car_time">2 hours</span></dd>
               </dl>
             </div>
-            <ul class="list-group">
+            <!-- <ul class="list-group">
               <div class="list-group-item">
                 <input class="btn btn-default btn-block" id="edit_info_button" type="button" value="Edit Info">
               </div>
-            </ul>
+            </ul> -->
           </div>
         </div>
 
@@ -237,14 +270,14 @@
 		</span>
 	  </div>
 	</div>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 	  $(function() {
 		$('#datetimepicker2').datetimepicker({
 		  language: 'en',
 		  pick12HourFormat: true
 		});
 	  });
-	</script>
+	</script> -->
 
     <!-- <div id="users-contain" class="ui-widget">
       <h1>People on Trip:</h1>

@@ -1,4 +1,8 @@
 $(document).ready(function() {
+  ///////////////////////////////////////
+  // Table
+  ///////////////////////////////////////
+
   // hide buttons only used while editing
   $('#user-table tbody button.editing').hide();
 
@@ -140,5 +144,91 @@ $(document).ready(function() {
   }
 
   $('#add-person').click(addBlankRow);
+
+
+  ///////////////////////////////////////
+  // Trip info
+  ///////////////////////////////////////
+  $('#trip-info button.editing').hide();
+
+  var spanToTextInput = function(span) {
+    var text = span.text();
+    var input = $('<input type="text">').val(text);
+
+    span.empty();
+    span.append(input);
+
+    return text;
+  };
+
+  var saveSpanChanges = function(span) {
+    var text = span.find('input').val();
+    span.empty();
+    span.append(text);
+  };
+
+  var cancelSpanChanges = function(span) {
+    var old_val = span.data('old_data');
+    span.empty();
+    span.text(old_val);
+  };
+
+  var editListener = function(selector) {
+    var span = $(selector);
+    var old_val = spanToTextInput(span);
+    span.data('old_data', old_val);
+
+    span.parent().find('button.not-editing').hide();
+    span.parent().find('button.editing').show();
+  };
+
+  var cancelListener = function(selector) {
+    var span = $(selector);
+    cancelSpanChanges(span);
+
+    span.parent().find('button.not-editing').show();
+    span.parent().find('button.editing').hide();
+  }
+
+  var saveListener = function(selector) {
+    var span = $(selector);
+    saveSpanChanges(span);
+
+    span.parent().find('button.not-editing').show();
+    span.parent().find('button.editing').hide();
+  }
+
+  // edit buttons
+  $('#edit-leaving-at').click(function() {
+    editListener('#leaving-at-val');
+  });
+  $('#edit-leaving-from').click(function() {
+    editListener('#leaving-from-val');
+  });
+  $('#edit-organizer-number').click(function() {
+    editListener('#organizer-number-val');
+  });
+
+  // save buttons
+  $('#save-leaving-at').click(function() {
+    saveListener('#leaving-at-val');
+  });
+  $('#save-leaving-from').click(function() {
+    saveListener('#leaving-from-val');
+  });
+  $('#save-organizer-number').click(function() {
+    saveListener('#organizer-number-val');
+  });
+
+  // cancel buttons
+  $('#cancel-leaving-at').click(function() {
+    cancelListener('#leaving-at-val');
+  });
+  $('#cancel-leaving-from').click(function() {
+    cancelListener('#leaving-from-val');
+  });
+  $('#cancel-organizer-number').click(function() {
+    cancelListener('#organizer-number-val');
+  });
 
 });
