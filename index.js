@@ -3,6 +3,37 @@
 
 $(document).ready(function() {
 
+	var resort_dialog = function () {
+		var dlg = $("#resort-form").clone();
+        var leaving_at = dlg.find(("#leaving_at")),
+            leaving_from = dlg.find(("#leaving_from")),
+            organizer_number = dlg.find(("#organizer_number"));
+        var config = {
+            autoOpen: true,
+            height: 600,
+            width: 700,
+            modal: true,
+            buttons: {
+                "Save": save_data,
+                    "Cancel": function () {
+                    dlg.dialog("close");
+                }
+            },
+            close: function () {
+                dlg.remove();
+            }
+        };
+        config.title = "Edit trip information";
+        dlg.dialog(config);
+
+        function save_data() {
+        	$("#leaving_at_val").text(leaving_at.val());
+        	$("#leaving_from_val").text(leaving_from.val());
+        	$("#organizer_number_val").text(organizer_number.val());
+            dlg.dialog("close");
+        }
+	}
+		
     var trip_dialog = function () {
         var dlg = $("#trip-form").clone();
         var leaving_at = dlg.find(("#leaving_at")),
@@ -87,6 +118,11 @@ $(document).ready(function() {
         new_dialog('Edit', $(this).parents('tr'));
         return false;
     });
+	
+	$("#change_resort_button").click(function(evt) {
+		resort_dialog();
+        return false;
+	});
 
     $("#add-person").button().click(new_dialog);
     $("#edit_info_button").button().click(trip_dialog);
