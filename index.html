@@ -100,44 +100,54 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <table id="user-table" class="table">
-            <thead><tr>
-              <th>Name</th>
-              <th>Equipment Needed</th>
-              <th>Skill Level</th>
-              <th>Phone Number</th>
-              <th>Actions</th>
-            </tr></thead>
-            <tbody>
-              <!-- <tr>
-                <td>James Yeung</td>
-                <td>None</td>
-                <td>Advanced</td>
-                <td>857-991-6460</td>
-                <td>
-                  <button id="edit-row0" class="not-editing btn btn-default btn-xs">
-                    <span class="glyphicon glyphicon-pencil"></span> Edit
-                  </button>
-                  <button id="delete-row0" class="not-editing btn btn-default btn-xs">
-                    <span class="glyphicon glyphicon-remove"></span> Delete
-                  </button>
-                  <button id="save-row0" class="editing btn btn-default btn-xs">
-                    <span class="glyphicon glyphicon-ok"></span> Save
-                  </button>
-                  <button id="cancel-row0" class="editing btn btn-default btn-xs">
-                    <span class="glyphicon glyphicon-remove"></span> Cancel
-                  </button>
-                </td>
-              </tr> -->
-            </tbody>
-          </table>
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h2 class="panel-title">People on Trip</h2>
+            </div>
+            <table id="user-table" class="table">
+              <thead><tr>
+                <th>Name</th>
+                <th>Equipment Needed</th>
+                <th>Skill Level</th>
+                <th>Phone Number</th>
+                <th>Actions</th>
+              </tr></thead>
+              <tbody>
+                <!-- <tr>
+                  <td>James Yeung</td>
+                  <td>None</td>
+                  <td>Advanced</td>
+                  <td>857-991-6460</td>
+                  <td>
+                    <button id="edit-row0" class="not-editing btn btn-default btn-xs">
+                      <span class="glyphicon glyphicon-pencil"></span> Edit
+                    </button>
+                    <button id="delete-row0" class="not-editing btn btn-default btn-xs">
+                      <span class="glyphicon glyphicon-remove"></span> Delete
+                    </button>
+                    <button id="save-row0" class="editing btn btn-default btn-xs">
+                      <span class="glyphicon glyphicon-ok"></span> Save
+                    </button>
+                    <button id="cancel-row0" class="editing btn btn-default btn-xs">
+                      <span class="glyphicon glyphicon-remove"></span> Cancel
+                    </button>
+                  </td>
+                </tr> -->
+              </tbody>
+            </table>
+            <ul class="list-group">
+              <div class="list-group-item">
+                <button id="add-person" class="btn btn-default">Add Person</button>
+              </div>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-md-12">
           <button id="add-person" class="btn btn-default">Add Person</button>
         </div>
-      </div>
+      </div> -->
     </div>
     <div id="dialog-form" title="Add a person">
       <p class="validateTips">All form fields are required.</p>
