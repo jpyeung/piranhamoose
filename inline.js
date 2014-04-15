@@ -53,7 +53,8 @@ $(document).ready(function() {
   };
 
   var saveRowChanges = function(row) {
-    var cells = row.find('td')
+    row.removeClass('new-row');
+    var cells = row.find('td');
 
     cells.slice(0, 4).each(function() {
       saveCellChanges($(this));
@@ -64,6 +65,10 @@ $(document).ready(function() {
   };
 
   var cancelRowChanges = function(row) {
+    if (row.hasClass('new-row')) {
+      row.remove();
+      return;
+    }
     var cells = row.find('td');
     var old_data = row.data('old_data');
 
@@ -80,36 +85,36 @@ $(document).ready(function() {
     var rows = $('#user-table tbody tr');
     var index = rows.length;
 
-    var empty_row = $('<tr><td></td><td></td><td>Beginner</td><td></td></tr>');
+    var empty_row = $('<tr class="new-row"><td></td><td></td><td>Beginner</td><td></td></tr>');
 
     var edit_button = $(
       '<button id="edit-row'+index+'" class="not-editing btn btn-default btn-xs">' +
       '<span class="glyphicon glyphicon-pencil"></span> Edit </button>'
     ).click(function() {
-      var row = $('#user-table tbody tr').eq(index);
-      var old_data = makeRowEditable(row);
-      row.data('old_data', old_data);
+      //var row = $('#user-table tbody tr').eq(index);
+      var old_data = makeRowEditable(empty_row);
+      empty_row.data('old_data', old_data);
     });
     
     var delete_button = $(
       '<button id="delete-row'+index+'" class="not-editing btn btn-default btn-xs">' +
       '<span class="glyphicon glyphicon-remove"></span> Delete </button>'
     ).click(function() {
-      $('#user-table tbody tr').eq(index).remove();
+      empty_row.remove();
     });
 
     var save_button = $(
       '<button id="save-row'+index+'" class="editing btn btn-default btn-xs">' +
       '<span class="glyphicon glyphicon-ok"></span> Save </button> '
     ).click(function() {
-      saveRowChanges($('#user-table tbody tr').eq(index));
+      saveRowChanges(empty_row);
     }).hide();
 
     var cancel_button = $(
       '<button id="cancel-row'+index+'" class="editing btn btn-default btn-xs">' +
       '<span class="glyphicon glyphicon-remove"></span> Cancel </button>'
     ).click(function() {
-      cancelRowChanges($('#user-table tbody tr').eq(index));
+      cancelRowChanges(empty_row);
     }).hide();
 
     var action_cell = $('<td></td>').append(
@@ -118,6 +123,8 @@ $(document).ready(function() {
 
     empty_row.append(action_cell);
     $('#user-table tbody').append(empty_row);
+
+    edit_button.click();
   }
 
   $('#add-person').click(addBlankRow);
