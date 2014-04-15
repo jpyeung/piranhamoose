@@ -1,8 +1,12 @@
 // This allows the Javascript code inside this block to only run when the page
 // has finished loading in the browser.
 
-$(document).ready(function() {
+var hi = function () {
+	console.log("hi");
+}
 
+
+$(document).ready(function() {
 	var resort_dialog = function () {
 		var dlg = $("#resort-form").clone();
         var leaving_at = dlg.find(("#leaving_at")),
@@ -14,7 +18,7 @@ $(document).ready(function() {
             width: 700,
             modal: true,
             buttons: {
-                "Save": save_data,
+ //               "Save": save_data,
                     "Cancel": function () {
                     dlg.dialog("close");
                 }
@@ -25,7 +29,11 @@ $(document).ready(function() {
         };
         config.title = "Edit trip information";
         dlg.dialog(config);
-
+		
+/*		$("#snowy_peaks_button").click(function(evt) {
+			console.log("hi");
+		});*/
+		
         function save_data() {
         	$("#leaving_at_val").text(leaving_at.val());
         	$("#leaving_from_val").text(leaving_from.val());
@@ -71,6 +79,7 @@ $(document).ready(function() {
             equipment = dlg.find(("#equipment")),
             skill_level = dlg.find(("#skill_level")),
             phone_number = dlg.find(("#phone_number"));
+			
         type = type || 'Create';
         var config = {
             autoOpen: true,
@@ -122,6 +131,10 @@ $(document).ready(function() {
 	$("#change_resort_button").click(function(evt) {
 		resort_dialog();
         return false;
+	});
+	
+	$("#mountainview_button").click(function(evt) {
+		console.log("hi");
 	});
 
     //$("#add-person").button().click(new_dialog);

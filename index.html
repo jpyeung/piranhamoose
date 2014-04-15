@@ -84,7 +84,7 @@
 						<dd><span id="ski_patrol_number">617-623-4582</span></dd>
 						<dt>Distance:</dt>
 						<dd id="resort_distance">27.1 miles</dd>
-						<input type="button" name="snowy_peaks_button" id="snowy_peaks_button" value="Pick this resort" /> 
+						<input type="button" name="snowy_peaks_button" id="snowy_peaks_button" value="Pick this resort" onclick="hi"> 
 					  </dl>
 					</div>
 					<div class="list-group-item">
@@ -111,7 +111,7 @@
 						<dt>Address:</dt>
 						<dd id="resort_address">495 Empty Ave, Lexington MA 02991</dd>
 						<dt>Slope difficulties:</dt>
-						<dd id="resort_difficulty"><img src="images/blue_square_16x16.png" alt="blue circle"><b> &mdash; </b><img src="images/double_black_diamond_16x16.png" alt="double black diamond"></dd>
+						<dd id="resort_difficulty"><img src="images/green_circle_16x16.png" alt="green circle"><b> &mdash; </b><img src="images/black_diamond_16x16.png" alt="black diamond"></dd>
 						<dt>Cost of day pass:</dt>
 						<dd id="resort_price">$100</dd>
 						<dt>Number of ski patrol:</dt>
@@ -122,11 +122,6 @@
 					  </dl>
 					</div>	
                 </div>
-            <div class="list-group-item">
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <h3 class="panel-title" id="resort_header">Resort Info</h3>
-            </div>
             <div class="panel-body">
               <dl class="dl-horizontal">
                 <dt>Resort Name:</dt>
@@ -231,6 +226,24 @@
       </form>
     </div>
     
+	<div class="well">
+	  <div id="datetimepicker2" class="input-append">
+		<input data-format="MM/dd/yyyy HH:mm:ss PP" type="text"></input>
+		<span class="add-on">
+		  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+		  </i>
+		</span>
+	  </div>
+	</div>
+	<script type="text/javascript">
+	  $(function() {
+		$('#datetimepicker2').datetimepicker({
+		  language: 'en',
+		  pick12HourFormat: true
+		});
+	  });
+	</script>
+
     <!-- <div id="users-contain" class="ui-widget">
       <h1>People on Trip:</h1>
       <table id="users" class="ui-widget ui-widget-content">
