@@ -102,7 +102,7 @@ $(document).ready(function() {
     var rows = $('#user-table tbody tr');
     var index = rows.length;
 
-    var empty_row = $('<tr class="new-row"><td></td><td></td><td>Beginner</td><td></td></tr>');
+    var empty_row = $('<tr class="new-row"><td></td><td>Helmet, Boots, Skis, Poles</td><td>Beginner</td><td></td></tr>');
 
     var edit_button = $(
       '<button id="edit-row'+index+'" class="not-editing btn btn-default btn-xs">' +
