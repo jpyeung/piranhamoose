@@ -35,12 +35,15 @@
           <ul class="nav navbar-nav navbar-right">
           <div id="name-div">
             <span id="name">James Yeung</span>
-                    <button class="not-editing btn btn-default btn-xs navbar-btn" id="edit-name">
-                      <span class="glyphicon glyphicon-pencil"></span> Change name 
-                    </button>
-                    <button class="editing btn btn-default btn-xs navbar-btn" id="save-name">
-                      <span class="glyphicon glyphicon-ok"></span> Save  
-                    </button>
+              <button class="not-editing btn btn-default btn-xs navbar-btn" id="edit-name">
+                <span class="glyphicon glyphicon-pencil"></span> Change name
+              </button>
+              <button class="editing btn btn-success btn-xs navbar-btn" id="save-name">
+                <span class="glyphicon glyphicon-ok"></span> Save
+              </button>
+              <button class="editing btn btn-warning btn-xs navbar-btn" id="cancel-name">
+                <span class="glyphicon glyphicon-remove"></span> Cancel
+              </button>
             </ul>
           </div>
         </div><!--/.nav-collapse -->
@@ -62,10 +65,10 @@
                     <span class="glyphicon glyphicon-pencil"></span> 
                   </button>
                   <button class="editing btn btn-success btn-xs" id="save-leaving-at">
-                    <span class="glyphicon glyphicon-ok"></span> Save  
+                    <span class="glyphicon glyphicon-ok"></span>
                   </button>
-                  <button class="editing btn btn-danger btn-xs" id="cancel-leaving-at">
-                    <span class="glyphicon glyphicon-remove"></span> Cancel   
+                  <button class="editing btn btn-warning btn-xs" id="cancel-leaving-at">
+                    <span class="glyphicon glyphicon-remove"></span>
                   </button>
                 </dd>
                 <dt>Leaving from:</dt>
@@ -75,10 +78,10 @@
                     <span class="glyphicon glyphicon-pencil"></span>
                   </button>
                   <button class="editing btn btn-success btn-xs" id="save-leaving-from">
-                    <span class="glyphicon glyphicon-ok"></span> Save  
+                    <span class="glyphicon glyphicon-ok"></span>
                   </button>
-                  <button class="editing btn btn-danger btn-xs" id="cancel-leaving-from">
-                    <span class="glyphicon glyphicon-remove"></span> Cancel   
+                  <button class="editing btn btn-warning btn-xs" id="cancel-leaving-from">
+                    <span class="glyphicon glyphicon-remove"></span>
                   </button>
                 </dd>
                 <dt>Organizer number:</dt>
@@ -88,10 +91,10 @@
                     <span class="glyphicon glyphicon-pencil"></span>
                   </button>
                   <button class="editing btn btn-success btn-xs" id="save-organizer-number">
-                    <span class="glyphicon glyphicon-ok"></span> Save  
+                    <span class="glyphicon glyphicon-ok"></span>
                   </button>
-                  <button class="editing btn btn-danger btn-xs" id="cancel-organizer-number">
-                    <span class="glyphicon glyphicon-remove"></span> Cancel   
+                  <button class="editing btn btn-warning btn-xs" id="cancel-organizer-number">
+                    <span class="glyphicon glyphicon-remove"></span>
                   </button>
                 </dd>
                 <dt>Predicted weather:</dt>
@@ -118,66 +121,59 @@
                     <h4 class="modal-title" id="myModalLabel">Resorts</h4>
                   </div>
                   <div class="modal-body">
-                                <div id="resort-form" title="Add a person">
-                <div class="list-group-item">
-                  <dl class="dl-horizontal">
-                  <dt>Resort Name:</dt>
-                  <dd id="snowy-peaks-name">Snowy Peaks Resort</dd>
-                  <dt>Address:</dt>
-                  <dd id="snowy-peaks-address">39 Beach St, Westford MA 02446</dd>
-                  <dt>Slope difficulties:</dt>
-                  <dd id="snowy-peaks-difficulty"><img src="images/green_circle_16x16.png" alt="green circle"><b> &mdash; </b><img src="images/double_black_diamond_16x16.png" alt="double black diamond"></dd>
-                  <dt>Cost of day pass:</dt>
-                  <dd id="snowy-peaks-price">$80</dd>
-                  <dt>Number of ski patrol:</dt>
-                  <dd><span id="snowy-peaks-ski-patrol-number">617-623-4582</span></dd>
-                  <dt>Distance:</dt>
-                  <dd id="snowy-peaks-distance">27.1 miles</dd>
-                  <dd><button type="button" name="snowy-peaks-button" id="snowy-peaks-button" class="btn btn-primary" data-dismiss="modal">Pick this resort</button></dd>
-				  <script>
-					$('#snowy-peaks-btn').click(function () {
-						alert("hi");
-					});
-					</script>
-                  </dl>
-                </div>
-                <div class="list-group-item">
-                  <dl class="dl-horizontal">
-                  <dt>Resort Name:</dt>
-                  <dd id="mountainview-name">Mountainview Resort</dd>
-                  <dt>Address:</dt>
-                  <dd id="mountainview-address">10 Radcliffe St, Woburn MA 02291</dd>
-                  <dt>Slope difficulties:</dt>
-                  <dd id="mountainview-difficulty"><img src="images/blue_square_16x16.png" alt="blue circle"><b> &mdash; </b><img src="images/double_black_diamond_16x16.png" alt="double black diamond"></dd>
-                  <dt>Cost of day pass:</dt>
-                  <dd id="mountainview-price">$100</dd>
-                  <dt>Number of ski patrol:</dt>
-                  <dd><span id="mountainview-ski-patrol-number">617-495-0261</span></dd>
-                  <dt>Distance:</dt>
-                  <dd id="mountainview-distance">73.8 miles</dd>
-                  <dd><button type="button" name="mountainview-button" id="mountainview-button" class="btn btn-primary" data-dismiss="modal">Pick this resort</button></dd> 
-                  </dl>
-                </div>      
-                <div class="list-group-item">
-                  <dl class="dl-horizontal">
-                  <dt>Resort Name:</dt>
-                  <dd id="barren-snowscape-name">Barren Snowscape Resort</dd>
-                  <dt>Address:</dt>
-                  <dd id="barren-snowscape-address">495 Empty Ave, Lexington MA 02991</dd>
-                  <dt>Slope difficulties:</dt>
-                  <dd id="barren-snowscape-difficulty"><img src="images/green_circle_16x16.png" alt="green circle"><b> &mdash; </b><img src="images/black_diamond_16x16.png" alt="black diamond"></dd>
-                  <dt>Cost of day pass:</dt>
-                  <dd id="barren-snowscape-price">$20</dd>
-                  <dt>Number of ski patrol:</dt>
-                  <dd><span id="barren-snowscape-ski-patrol-number">617-431-0136</span></dd>
-                  <dt>Distance:</dt>
-                  <dd id="barren-snowscape-distance">46.0 miles</dd>
-                  <dd><button type="button" name="barren-snowscape-button" id="barren-snowscape-button" class="btn btn-primary" data-dismiss="modal">Pick this resort</button></dd>
-                  </dl>
-                </div>
-              </div>
-                  </div>
-                  <div class="modal-footer">
+                    <div id="resort-form" title="Add a person">
+                    <div class="list-group-item">
+                      <dl class="dl-horizontal">
+                      <dt>Resort Name:</dt>
+                      <dd id="snowy-peaks-name">Snowy Peaks Resort</dd>
+                      <dt>Address:</dt>
+                      <dd id="snowy-peaks-address">39 Beach St, Westford MA 02446</dd>
+                      <dt>Slope difficulties:</dt>
+                      <dd id="snowy-peaks-difficulty"><img src="images/green_circle_16x16.png" alt="green circle"><b> &mdash; </b><img src="images/double_black_diamond_16x16.png" alt="double black diamond"></dd>
+                      <dt>Cost of day pass:</dt>
+                      <dd id="snowy-peaks-price">$80</dd>
+                      <dt>Number of ski patrol:</dt>
+                      <dd><span id="snowy-peaks-ski-patrol-number">617-623-4582</span></dd>
+                      <dt>Distance:</dt>
+                      <dd id="snowy-peaks-distance">27.1 miles</dd>
+                      </dl>
+                      <button type="button" name="snowy-peaks-button" id="snowy-peaks-button" class="btn btn-primary btn-block" data-dismiss="modal">Pick this resort</button>
+                    </div>
+                    <div class="list-group-item">
+                      <dl class="dl-horizontal">
+                      <dt>Resort Name:</dt>
+                      <dd id="mountainview-name">Mountainview Resort</dd>
+                      <dt>Address:</dt>
+                      <dd id="mountainview-address">10 Radcliffe St, Woburn MA 02291</dd>
+                      <dt>Slope difficulties:</dt>
+                      <dd id="mountainview-difficulty"><img src="images/blue_square_16x16.png" alt="blue circle"><b> &mdash; </b><img src="images/double_black_diamond_16x16.png" alt="double black diamond"></dd>
+                      <dt>Cost of day pass:</dt>
+                      <dd id="mountainview-price">$100</dd>
+                      <dt>Number of ski patrol:</dt>
+                      <dd><span id="mountainview-ski-patrol-number">617-495-0261</span></dd>
+                      <dt>Distance:</dt>
+                      <dd id="mountainview-distance">73.8 miles</dd>
+                      </dl>
+                      <button type="button" name="mountainview-button" id="mountainview-button" class="btn btn-primary btn-block" data-dismiss="modal">Pick this resort</button>
+                    </div>
+                    <div class="list-group-item">
+                      <dl class="dl-horizontal">
+                      <dt>Resort Name:</dt>
+                      <dd id="barren-snowscape-name">Barren Snowscape Resort</dd>
+                      <dt>Address:</dt>
+                      <dd id="barren-snowscape-address">495 Empty Ave, Lexington MA 02991</dd>
+                      <dt>Slope difficulties:</dt>
+                      <dd id="barren-snowscape-difficulty"><img src="images/green_circle_16x16.png" alt="green circle"><b> &mdash; </b><img src="images/black_diamond_16x16.png" alt="black diamond"></dd>
+                      <dt>Cost of day pass:</dt>
+                      <dd id="barren-snowscape-price">$20</dd>
+                      <dt>Number of ski patrol:</dt>
+                      <dd><span id="barren-snowscape-ski-patrol-number">617-431-0136</span></dd>
+                      <dt>Distance:</dt>
+                      <dd id="barren-snowscape-distance">46.0 miles</dd>
+                      </dl>
+                      <button type="button" name="barren-snowscape-button" id="barren-snowscape-button" class="btn btn-primary btn-block" data-dismiss="modal">Pick this resort</button>
+                    </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -194,7 +190,7 @@
                   <dd id="resort-price">$80</dd>
                   <dt>Number of ski patrol:</dt>
                   <dd><span id="ski-patrol-number">617-623-4582</span> (write this down!)</dd>
-				  <dt>Distance:</dt>
+				          <dt>Distance:</dt>
                   <dd id="resort-distance">46.0 miles</dd>
                 </dl>
               </div>

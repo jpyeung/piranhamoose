@@ -105,7 +105,7 @@ $(document).ready(function() {
     var empty_row = $('<tr class="new-row"><td></td><td>Helmet, Boots, Skis, Poles</td><td>Beginner</td><td></td></tr>');
 
     var edit_button = $(
-      '<button id="edit-row'+index+'" class="not-editing btn btn-info btn-xs">' +
+      '<button id="edit-row'+index+'" class="not-editing btn btn-default btn-xs">' +
       '<span class="glyphicon glyphicon-pencil"></span> Edit </button>'
     ).click(function() {
       var old_data = makeRowEditable(empty_row);
@@ -244,5 +244,9 @@ $(document).ready(function() {
 
   $('#save-name').click(function() {
     saveListener('#name');
+  });
+
+  $('#cancel-name').click(function () {
+    cancelListener('#name');
   });
 });
