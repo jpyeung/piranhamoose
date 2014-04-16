@@ -35,10 +35,10 @@
           <ul class="nav navbar-nav navbar-right">
           <div id="name-div">
             <span id="name">James Yeung</span>
-                    <button class="not-editing btn btn-default btn-xs" id="edit-name">
+                    <button class="not-editing btn btn-default btn-xs navbar-btn" id="edit-name">
                       <span class="glyphicon glyphicon-pencil"></span> Change name 
                     </button>
-                    <button class="editing btn btn-default btn-xs" id="save-name">
+                    <button class="editing btn btn-default btn-xs navbar-btn" id="save-name">
                       <span class="glyphicon glyphicon-ok"></span> Save  
                     </button>
             </ul>
@@ -58,39 +58,39 @@
                 <dt>Leaving at:</dt>
                 <dd>
                   <span id="leaving-at-val">8:00am, Mar 17</span>
-                  <button class="not-editing btn btn-default btn-xs" id="edit-leaving-at">
+                  <button class="not-editing btn btn-warning btn-xs" id="edit-leaving-at">
                     <span class="glyphicon glyphicon-pencil"></span> Edit 
                   </button>
-                  <button class="editing btn btn-default btn-xs" id="save-leaving-at">
+                  <button class="editing btn btn-success btn-xs" id="save-leaving-at">
                     <span class="glyphicon glyphicon-ok"></span> Save  
                   </button>
-                  <button class="editing btn btn-default btn-xs" id="cancel-leaving-at">
+                  <button class="editing btn btn-danger btn-xs" id="cancel-leaving-at">
                     <span class="glyphicon glyphicon-remove"></span> Cancel   
                   </button>
                 </dd>
                 <dt>Leaving from:</dt>
                 <dd>
                   <span id="leaving-from-val">Student Center</span>
-                  <button class="not-editing btn btn-default btn-xs" id="edit-leaving-from">
+                  <button class="not-editing btn btn-warning btn-xs" id="edit-leaving-from">
                     <span class="glyphicon glyphicon-pencil"></span> Edit 
                   </button>
-                  <button class="editing btn btn-default btn-xs" id="save-leaving-from">
+                  <button class="editing btn btn-success btn-xs" id="save-leaving-from">
                     <span class="glyphicon glyphicon-ok"></span> Save  
                   </button>
-                  <button class="editing btn btn-default btn-xs" id="cancel-leaving-from">
+                  <button class="editing btn btn-danger btn-xs" id="cancel-leaving-from">
                     <span class="glyphicon glyphicon-remove"></span> Cancel   
                   </button>
                 </dd>
                 <dt>Organizer number:</dt>
                 <dd>
                   <span id="organizer-number-val">617-682-5966</span>
-                  <button class="not-editing btn btn-default btn-xs" id="edit-organizer-number">
+                  <button class="not-editing btn btn-warning btn-xs" id="edit-organizer-number">
                     <span class="glyphicon glyphicon-pencil"></span> Edit 
                   </button>
-                  <button class="editing btn btn-default btn-xs" id="save-organizer-number">
+                  <button class="editing btn btn-success btn-xs" id="save-organizer-number">
                     <span class="glyphicon glyphicon-ok"></span> Save  
                   </button>
-                  <button class="editing btn btn-default btn-xs" id="cancel-organizer-number">
+                  <button class="editing btn btn-danger btn-xs" id="cancel-organizer-number">
                     <span class="glyphicon glyphicon-remove"></span> Cancel   
                   </button>
                 </dd>
@@ -133,7 +133,7 @@
                   <dd><span id="snowy-peaks-ski-patrol-number">617-623-4582</span></dd>
                   <dt>Distance:</dt>
                   <dd id="snowy-peaks-distance">27.1 miles</dd>
-                  <button type="button" name="snowy-peaks-button" id="snowy-peaks-button" data-dismiss="modal">Pick this resort</button> 
+                  <dd><button type="button" name="snowy-peaks-button" id="snowy-peaks-button" class="btn btn-primary" data-dismiss="modal">Pick this resort</button></dd>
 				  <script>
 					$('#snowy-peaks-btn').click(function () {
 						alert("hi");
@@ -155,7 +155,7 @@
                   <dd><span id="mountainview-ski-patrol-number">617-495-0261</span></dd>
                   <dt>Distance:</dt>
                   <dd id="mountainview-distance">73.8 miles</dd>
-                  <button type="button" name="mountainview-button" id="mountainview-button" data-dismiss="modal">Pick this resort</button> 
+                  <dd><button type="button" name="mountainview-button" id="mountainview-button" class="btn btn-primary" data-dismiss="modal">Pick this resort</button></dd> 
                   </dl>
                 </div>      
                 <div class="list-group-item">
@@ -172,7 +172,7 @@
                   <dd><span id="barren-snowscape-ski-patrol-number">617-431-0136</span></dd>
                   <dt>Distance:</dt>
                   <dd id="barren-snowscape-distance">46.0 miles</dd>
-                  <button type="button" name="barren-snowscape-button" id="barren-snowscape-button" data-dismiss="modal">Pick this resort</button> 
+                  <dd><button type="button" name="barren-snowscape-button" id="barren-snowscape-button" class="btn btn-primary" data-dismiss="modal">Pick this resort</button></dd>
                   </dl>
                 </div>
               </div>
@@ -199,7 +199,7 @@
                 </dl>
               </div>
               <div class="list-group-item">
-                <button class="btn btn-default btn-block" data-toggle="modal" data-target="#myModal">Change resort</button>
+                <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">Change resort</button>
               </div>
             </ul>
           </div>
@@ -224,7 +224,7 @@
             </table>
             <ul class="list-group">
               <div class="list-group-item">
-                <button id="add-person" class="btn btn-default">Add Person</button>
+                <button id="add-person" class="btn btn-primary">Add Person</button>
               </div>
             </ul>
           </div>
