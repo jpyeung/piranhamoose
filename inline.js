@@ -1,7 +1,24 @@
 $(document).ready(function() {
+  var showEditButtons = function(container) {
+    container.find('button.editing').show();
+    container.find('button.not-editing').hide();
+  }
+
+  var hideEditButtons = function(container) {
+    container.find('button.editing').hide();
+    container.find('button.not-editing').show();
+  }
+
   ///////////////////////////////////////
   // Table
   ///////////////////////////////////////
+  var columns = {
+    name: 0,
+    equip: 1,
+    skill: 2,
+    phone: 3,
+    actions: 4
+  }
 
   // hide buttons only used while editing
   $('#user-table tbody button.editing').hide();
@@ -51,28 +68,27 @@ $(document).ready(function() {
   var makeRowEditable = function(row) {
     var cells = row.find('td');
 
-    var old_name = cellToTextInput(cells.eq(0));
-    var old_equip = cellToTextInput(cells.eq(1));
-    var old_diff = cellToDropdown(cells.eq(2));
-    var old_phone = cellToTextInput(cells.eq(3));
+    var old_name = cellToTextInput(cells.eq(columns.name));
+    var old_equip = cellToTextInput(cells.eq(columns.equip));
+    var old_skill = cellToDropdown(cells.eq(columns.skill));
+    var old_phone = cellToTextInput(cells.eq(columns.phone));
 
-    cells.eq(4).find('button.not-editing').hide();
-    cells.eq(4).find('button.editing').show();
+    showEditButtons(cells.eq(columns.actions));
 
-    return { name: old_name, equip: old_equip, diff: old_diff, phone: old_phone };
+    return { name: old_name, equip: old_equip, skill: old_skill, phone: old_phone };
   };
 
   // sets field values to the current values of the respective inputs
   var saveRowChanges = function(row) {
     row.removeClass('new-row');
     var cells = row.find('td');
+    var action_cell = cells.eq(columns.actions);
 
-    cells.slice(0, 4).each(function() {
+    cells.not(action_cell).each(function() {
       saveCellChanges($(this));
     });
 
-    cells.eq(4).find('button.not-editing').show();
-    cells.eq(4).find('button.editing').hide();
+    hideEditButtons(action_cell);
   };
 
   // restores old values of fields, if the row was previously saved, otherwise
@@ -85,13 +101,12 @@ $(document).ready(function() {
     var cells = row.find('td');
     var old_data = row.data('old_data');
 
-    cancelCellChanges(cells.eq(0), old_data.name);
-    cancelCellChanges(cells.eq(1), old_data.equip);
-    cancelCellChanges(cells.eq(2), old_data.diff);
-    cancelCellChanges(cells.eq(3), old_data.phone);
+    cancelCellChanges(cells.eq(columns.name), old_data.name);
+    cancelCellChanges(cells.eq(columns.equip), old_data.equip);
+    cancelCellChanges(cells.eq(columns.skill), old_data.skill);
+    cancelCellChanges(cells.eq(columns.phone), old_data.phone);
 
-    cells.eq(4).find('button.not-editing').show();
-    cells.eq(4).find('button.editing').hide();
+    hideEditButtons(cells.eq(columns.actions));
   };
 
   // adding a new row. Includes listeners on the buttons
@@ -178,24 +193,21 @@ $(document).ready(function() {
     var old_val = spanToTextInput(span);
     span.data('old_data', old_val);
 
-    span.parent().find('button.not-editing').hide();
-    span.parent().find('button.editing').show();
+    showEditButtons(span.parent());
   };
 
   var cancelListener = function(selector) {
     var span = $(selector);
     cancelSpanChanges(span);
 
-    span.parent().find('button.not-editing').show();
-    span.parent().find('button.editing').hide();
+    hideEditButtons(span.parent());
   }
 
   var saveListener = function(selector) {
     var span = $(selector);
     saveSpanChanges(span);
 
-    span.parent().find('button.not-editing').show();
-    span.parent().find('button.editing').hide();
+    hideEditButtons(span.parent());
   }
   
   // edit buttons
