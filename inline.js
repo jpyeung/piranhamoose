@@ -159,7 +159,7 @@ $(document).ready(function() {
   };
 
   // if the row was previously saved, restores old values of fields, otherwise
-  //  removes the row entirely
+  //   removes the row entirely
   var cancelRowChanges = function(row) {
     if (row.hasClass('new-row')) {
       row.remove();
@@ -181,7 +181,7 @@ $(document).ready(function() {
   // adding a new row. Includes listeners on the buttons
   // note: because buttons are IDed by their current position in the table,
   //  some combinations of adds and deletes will produce buttons with the same
-  //  ID. This could cause issues!
+  //  ID. This could maybe cause issues!
   var addBlankRow = function() {
     var rows = $('#user-table tbody tr');
     var index = rows.length;
@@ -195,6 +195,8 @@ $(document).ready(function() {
       }
     }
 
+    // this is sloppy code and it makes me sad :( I could probably abstract it, but 
+    //   I don't think there's any reason to except my own sense of aesthetics
     var edit_button = $(
       '<button id="edit-row'+index+'" class="not-editing btn btn-default btn-xs">' +
       '<span class="glyphicon glyphicon-pencil"></span> Edit </button>'
@@ -231,6 +233,7 @@ $(document).ready(function() {
     new_row.append(action_cell);
     $('#user-table tbody').append(new_row);
 
+    // make the row editable on creation
     edit_button.click();
   }
 
@@ -240,8 +243,11 @@ $(document).ready(function() {
   ///////////////////////////////////////
   // Trip info
   ///////////////////////////////////////
+
+  // hide buttons used for editing trip info
   $('#trip-info button.editing').hide();
 
+  // Turn a span into a text input. Returns the old text
   var spanToTextInput = function(span) {
     var text = span.text();
     var input = $('<input type="text">').val(text);
@@ -252,18 +258,21 @@ $(document).ready(function() {
     return text;
   };
 
+  // Set the text of a span to the current value of its input
   var saveSpanChanges = function(span) {
     var text = span.find('input').val();
     span.empty();
     span.append(text);
   };
 
+  // Cancel the changes to a span by reinstating the old value
   var cancelSpanChanges = function(span) {
     var old_val = span.data('old_data');
     span.empty();
     span.text(old_val);
   };
 
+  // button listener for editing the span identified by the given jquery selector
   var editListener = function(selector) {
     var span = $(selector);
     var old_val = spanToTextInput(span);
@@ -272,6 +281,7 @@ $(document).ready(function() {
     showEditButtons(span.parent());
   };
 
+  // button listener for canceling edits to the span identified by the given jquery selector
   var cancelListener = function(selector) {
     var span = $(selector);
     cancelSpanChanges(span);
@@ -279,6 +289,7 @@ $(document).ready(function() {
     hideEditButtons(span.parent());
   }
 
+  // button listener for saving edits to the span identified by the given jquery selector
   var saveListener = function(selector) {
     var span = $(selector);
     saveSpanChanges(span);
@@ -286,7 +297,7 @@ $(document).ready(function() {
     hideEditButtons(span.parent());
   }
   
-  // edit buttons
+  // trip info edit buttons
   $('#edit-leaving-at').click(function() {
     editListener('#leaving-at-val');
   });
@@ -298,7 +309,7 @@ $(document).ready(function() {
   });
 
 
-  // save buttons
+  // trip info save buttons
   $('#save-leaving-at').click(function() {
     saveListener('#leaving-at-val');
   });
@@ -309,7 +320,7 @@ $(document).ready(function() {
     saveListener('#organizer-number-val');
   });
 
-  // cancel buttons
+  // trip info cancel buttons
   $('#cancel-leaving-at').click(function() {
     cancelListener('#leaving-at-val');
   });
@@ -324,8 +335,10 @@ $(document).ready(function() {
   // Name
   ///////////////////////////////////////
 
+  // hide buttons used for editing
   $('#name-div button.editing').hide();
 
+  // add button listeners for the name span
   $('#edit-name').click(function() {
     editListener('#name');
   });
