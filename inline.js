@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  // Helper functions to show or hide edit buttons
   var showEditButtons = function(container) {
     container.find('button.editing').show();
     container.find('button.not-editing').hide();
@@ -12,12 +13,42 @@ $(document).ready(function() {
   ///////////////////////////////////////
   // Table
   ///////////////////////////////////////
+
+  // info about each column in the table
   var columns = {
-    name: 0,
-    equip: 1,
-    skill: 2,
-    phone: 3,
-    actions: 4
+    is_org: { 
+      col: 0,
+      edit_fn: cellToCheckbox,
+      save_fn: saveCheckboxChanges,
+      default_val: 'No'
+    },
+    name: {
+      col: 1,
+      edit_fn: cellToTextInput,
+      save_fn: saveCellChanges,
+      default_val: ''
+    },
+    equip: {
+      col: 2,
+      edit_fn: cellToTextInput,
+      save_fn: saveCellChanges,
+      default_val: 'Helmet, Boots, Skis, Poles'
+    },
+    skill: {
+      col: 3,
+      edit_fn: cellToDropdown,
+      save_fn: saveCellChanges,
+      default_val: 'Beginner'
+    },
+    phone: {
+      col: 4,
+      edit_fn: cellToTextInput,
+      save_fn: saveCellChanges,
+      default_val: ''
+    },
+    actions: {
+      col: 5
+    }
   }
 
   // hide buttons only used while editing
@@ -25,7 +56,7 @@ $(document).ready(function() {
 
   // individual table cell functions
   // Turn a cell into a text input. Returns old field value.
-  var cellToTextInput = function(cell) {
+  function cellToTextInput(cell) {
     var text = cell.text();
     cell.empty();
 
@@ -33,10 +64,10 @@ $(document).ready(function() {
     cell.append(input);
 
     return text;
-  };
+  }
 
   // Turn a cell into a selection dropdown. Returns old field value.
-  var cellToDropdown = function(cell) {
+  function cellToDropdown(cell) {
     var text = cell.text();
     cell.empty();
 
@@ -50,49 +81,85 @@ $(document).ready(function() {
     cell.append(dropdown);
 
     return text;
-  };
+  }
 
-  var saveCellChanges = function(cell) {
+  // Turn a cell into a single checkbox. Returns old field value.
+  function cellToCheckbox(cell) {
+    var text = cell.text()
+
+    var checkbox = $('<input type="checkbox"></input>');
+    cell.empty();
+
+    if (text == 'Yes') {
+      checkbox.prop('checked',true);
+    }
+
+    cell.append(checkbox);
+
+    return text;
+  }
+
+  // save changes to a cell containing a text field or a dropdown
+  function saveCellChanges(cell) {
     var text = cell.find('input').val() || cell.find('select').val();
     cell.empty();
     cell.text(text);
   };
 
+  // save changes to a cell containing a checkbox
+  function saveCheckboxChanges(cell) {
+    var checked = cell.find('input').prop('checked');
+    cell.empty();
+
+    if (checked){
+      cell.text('Yes');
+    } else {
+      cell.text('No');
+    }
+    return;
+  }
+
+  // cancel changes to a cell by reinstating the old value
   var cancelCellChanges = function(cell, old_val) {
     cell.empty();
     cell.text(old_val);
   };
 
   // whole table row functions
-  // turn a whole row into inputs. Returns the old values of fields
+  // turn a whole row into the appropriate form. Returns the old values of fields
   var makeRowEditable = function(row) {
     var cells = row.find('td');
 
-    var old_name = cellToTextInput(cells.eq(columns.name));
-    var old_equip = cellToTextInput(cells.eq(columns.equip));
-    var old_skill = cellToDropdown(cells.eq(columns.skill));
-    var old_phone = cellToTextInput(cells.eq(columns.phone));
+    var results = {};
 
-    showEditButtons(cells.eq(columns.actions));
+    for (property in columns) {
+      if (property != 'actions') {
+        var info = columns[property];
+        results[property] = info.edit_fn(cells.eq(info.col));
+      }
+    }
 
-    return { name: old_name, equip: old_equip, skill: old_skill, phone: old_phone };
+    showEditButtons(cells.eq(columns.actions.col));
+
+    return results
   };
 
   // sets field values to the current values of the respective inputs
   var saveRowChanges = function(row) {
     row.removeClass('new-row');
     var cells = row.find('td');
-    var action_cell = cells.eq(columns.actions);
+    for (property in columns) {
+      if (property != 'actions') {
+        var info = columns[property];
+        info.save_fn(cells.eq(info.col));
+      }
+    }
 
-    cells.not(action_cell).each(function() {
-      saveCellChanges($(this));
-    });
-
-    hideEditButtons(action_cell);
+    hideEditButtons(cells.eq(columns.actions.col));
   };
 
-  // restores old values of fields, if the row was previously saved, otherwise
-  // removes the row entirely
+  // if the row was previously saved, restores old values of fields, otherwise
+  //  removes the row entirely
   var cancelRowChanges = function(row) {
     if (row.hasClass('new-row')) {
       row.remove();
@@ -101,12 +168,14 @@ $(document).ready(function() {
     var cells = row.find('td');
     var old_data = row.data('old_data');
 
-    cancelCellChanges(cells.eq(columns.name), old_data.name);
-    cancelCellChanges(cells.eq(columns.equip), old_data.equip);
-    cancelCellChanges(cells.eq(columns.skill), old_data.skill);
-    cancelCellChanges(cells.eq(columns.phone), old_data.phone);
+    for (property in columns) {
+      if (property != 'actions') {
+        var info = columns[property];
+        cancelCellChanges(cells.eq(info.col), old_data[property]);
+      }
+    }
 
-    hideEditButtons(cells.eq(columns.actions));
+    hideEditButtons(cells.eq(columns.actions.col));
   };
 
   // adding a new row. Includes listeners on the buttons
@@ -117,43 +186,50 @@ $(document).ready(function() {
     var rows = $('#user-table tbody tr');
     var index = rows.length;
 
-    var empty_row = $('<tr class="new-row"><td></td><td>Helmet, Boots, Skis, Poles</td><td>Beginner</td><td></td></tr>');
+    // create template for a new row
+    var new_row = $('<tr class="new-row"></tr>');
+    for (property in columns) {
+      if (property != 'actions') {
+        var default_val = columns[property].default_val
+        new_row.append($('<td></td>').text(default_val));
+      }
+    }
 
     var edit_button = $(
       '<button id="edit-row'+index+'" class="not-editing btn btn-default btn-xs">' +
       '<span class="glyphicon glyphicon-pencil"></span> Edit </button>'
     ).click(function() {
-      var old_data = makeRowEditable(empty_row);
-      empty_row.data('old_data', old_data);
+      var old_data = makeRowEditable(new_row);
+      new_row.data('old_data', old_data);
     });
     
     var delete_button = $(
       '<button id="delete-row'+index+'" class="not-editing btn btn-danger btn-xs">' +
       '<span class="glyphicon glyphicon-remove"></span> Delete </button>'
     ).click(function() {
-      empty_row.remove();
+      new_row.remove();
     });
 
     var save_button = $(
       '<button id="save-row'+index+'" class="editing btn btn-success btn-xs">' +
       '<span class="glyphicon glyphicon-ok"></span> Save </button> '
     ).click(function() {
-      saveRowChanges(empty_row);
+      saveRowChanges(new_row);
     }).hide();
 
     var cancel_button = $(
       '<button id="cancel-row'+index+'" class="editing btn btn-warning btn-xs">' +
       '<span class="glyphicon glyphicon-remove"></span> Cancel </button>'
     ).click(function() {
-      cancelRowChanges(empty_row);
+      cancelRowChanges(new_row);
     }).hide();
 
     var action_cell = $('<td></td>').append(
       edit_button, ' ', delete_button, ' ', save_button, ' ', cancel_button
     );
 
-    empty_row.append(action_cell);
-    $('#user-table tbody').append(empty_row);
+    new_row.append(action_cell);
+    $('#user-table tbody').append(new_row);
 
     edit_button.click();
   }
