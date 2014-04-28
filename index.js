@@ -1,11 +1,8 @@
 // This allows the Javascript code inside this block to only run when the page
 // has finished loading in the browser.
 
-var hi = function () {
-	console.log("hi");
-}
-
-console.log("asoindaosndoa" + $("#change_resort_button").length);
+var dataRef = new Firebase('https://dazzling-fire-3845.firebaseIO.com/');
+dataRef.set("I am now writing data into Firebase!");
 
 $(document).ready(function() {
 	var resort_dialog = function () {
