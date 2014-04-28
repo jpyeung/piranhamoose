@@ -16,8 +16,27 @@
 
     <link rel="shortcut icon" href="images/piranhamoose_icon.ico" type="image/x-icon"/>
 
+	<!-- Bootstrap Datetimepicker CSS file -->
+	<link href="./bootstrap-datetimepicker-master/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+	
     <script type="text/javascript" src="resort.js"></script>
     <script type="text/javascript" src="inline.js"></script>
+	
+	
+	<!-- Moment.js -->
+	<script src="./moment-develop/moment.js"></script>
+
+	<!-- Bootstrap Datetimepicker -->
+	<script src="./bootstrap-datetimepicker-master/build/js/bootstrap-datetimepicker.min.js"></script>
+
+	<!-- initialize the pickers -->
+	<script type="text/javascript">
+	  $(function () {
+		$('#start').datetimepicker();
+		$('#stop').datetimepicker();
+	  });
+	</script>
+	
   </head>
   <body>
     <div class="navbar navbar-default" role="navigation">
@@ -58,19 +77,24 @@
             </div>
             <div class="panel-body">
               <dl class="dl-horizontal" id="trip-info">
-                <dt>Leaving at:</dt>
-                <dd>
-                  <span id="leaving-at-val">8:00am, Mar 17</span>
-                  <button class="not-editing btn btn-default btn-xs" id="edit-leaving-at">
-                    <span class="glyphicon glyphicon-pencil"></span> 
-                  </button>
-                  <button class="editing btn btn-success btn-xs" id="save-leaving-at">
-                    <span class="glyphicon glyphicon-ok"></span>
-                  </button>
-                  <button class="editing btn btn-warning btn-xs" id="cancel-leaving-at">
-                    <span class="glyphicon glyphicon-remove"></span>
-                  </button>
-                </dd>
+	            <dt>Leaving at:</dt>
+				<dd>
+                  <div class='input-group date' id='start'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+				  </div>
+				</dd>
+                <dt>Getting Back:</dt>
+				<dd>
+                  <div class='input-group date' id='stop'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                  </div>
+				</dd>
                 <dt>Leaving from:</dt>
                 <dd>
                   <span id="leaving-from-val">Student Center</span>
@@ -228,17 +252,21 @@
         </div>
       </div>
     </div>
-      
-  	<!--
-    <div class="well">
-  	  <div id="datetimepicker2" class="input-append">
-  		<input data-format="MM/dd/yyyy HH:mm:ss PP" type="text"></input>
-  		<span class="add-on">
-  		  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-  		  </i>
-  		</span>
-  	  </div>
-  	</div>
-    -->
+	<div class="container" style="width: 500px;">
+	  <span>Start:</span>
+      <div class='input-group date' id='start'>
+        <input type='text' class="form-control" />
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+	  </div>
+      <span>End:</start>
+      <div class='input-group date' id='stop'>
+        <input type='text' class="form-control" />
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
+    </div>
   </body>
 </html>
