@@ -1,8 +1,10 @@
-var geocoder, location1, location2, gDir;
+var geocoder, location1, location2, gDir, map, directionsPanel;
 
 function initialize() {
     geocoder = new GClientGeocoder();
-    gDir = new GDirections();
+    map = new GMap2(document.getElementById("map_canvas"));
+    directionsPanel = document.getElementById("directions");    
+    gDir = new GDirections(map, directionsPanel);
     GEvent.addListener(gDir, "load", function() {
         var drivingDistanceMiles = gDir.getDistance().meters / 1609.344;
         var drivingDistanceKilometers = gDir.getDistance().meters / 1000;
