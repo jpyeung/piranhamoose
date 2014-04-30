@@ -2,7 +2,7 @@
 // has finished loading in the browser.
 
 $(document).ready(function() {
-	resorts = ["snowy-peaks", "mountainview", "barren-snowscape"];
+	resorts = ["blue-hills", "nashoba-valley", "wachusett-mountain"];
 
 	// The below is a function to attach a listener to the appropriate choice button in the resort form,
 	// given the name of the resort form.
