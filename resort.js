@@ -7,7 +7,15 @@ $(document).ready(function() {
 	// The below is a function to attach a listener to the appropriate choice button in the resort form,
 	// given the name of the resort form.
 	var makeResortListener = function(resort) {
-		$("#" + resort + "-button").click(function() {
+        $("#" + resort).css('cursor','pointer');
+
+        $("#" + resort).hover(function() {
+            this.style.backgroundColor = '#d9edf7';
+        }, function() {
+            this.style.backgroundColor = 'white';
+        });
+
+		$("#" + resort).click(function() {
 	
 	    document.getElementById("resort-name").innerHTML = 
 		  document.getElementById("" + resort + "-name").innerHTML;
@@ -21,9 +29,10 @@ $(document).ready(function() {
 	    document.getElementById("resort-price").innerHTML = 
 		  document.getElementById("" + resort + "-price").innerHTML;
 	  
-	    document.getElementById("ski-patrol-number").innerHTML = 
-		  document.getElementById("" + resort + "-ski-patrol-number").innerHTML;
+	    document.getElementById("resort-phone-number").innerHTML = 
+		  document.getElementById("" + resort + "-phone-number").innerHTML;
 
+        $('#myModal').modal('hide');
         showLocation();
     	});
   	}

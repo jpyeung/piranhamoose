@@ -15,6 +15,7 @@ function initialize() {
 }
 
 function showLocation() {
+    console.log("Location!");
     geocoder.getLocations(document.getElementById("leaving-from-val").innerHTML, function (response) {
         if (!response || response.Status.code != 200)
         {
