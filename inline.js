@@ -107,7 +107,7 @@ $(document).ready(function() {
     return text;
   }
 
-  // save functions: 
+  // save functions:
   //  take a cell with an input field and return the appropriate text
   //  representation of the data.
 
@@ -115,6 +115,7 @@ $(document).ready(function() {
   function saveCellChanges(cell) {
     var text = cell.find('input').val() || cell.find('select').val();
     cell.empty();
+    cell.text(text)
     return text;
   };
 
@@ -124,8 +125,10 @@ $(document).ready(function() {
     cell.empty();
 
     if (checked){
+      cell.text('Yes');
       return 'Yes';
     } else {
+      cell.text('No');
       return 'No';
     }
   }
@@ -197,9 +200,6 @@ $(document).ready(function() {
 
   // add a new row to the table, including listeners on the buttons
   var displayNewRow = function(rowRefName, is_new) {
-    var rows = $('#user-table tbody tr');
-    var index = rows.length;
-
     // create template for a new row
     var new_row = $('<tr></tr>');
     for (property in columns) {
@@ -216,28 +216,28 @@ $(document).ready(function() {
     // this is sloppy code and it makes me sad :( I could probably abstract it, but 
     //   I don't think there's any reason to except my own sense of aesthetics
     var edit_button = $(
-      '<button id="edit-row'+index+'" class="not-editing btn btn-default btn-xs">' +
+      '<button class="not-editing btn btn-default btn-xs">' +
       '<span class="glyphicon glyphicon-pencil"></span> Edit </button>'
     ).click(function() {
       makeRowEditable(new_row);
     });
     
     var delete_button = $(
-      '<button id="delete-row'+index+'" class="not-editing btn btn-danger btn-xs">' +
+      '<button class="not-editing btn btn-danger btn-xs">' +
       '<span class="glyphicon glyphicon-remove"></span> Delete </button>'
     ).click(function() {
       peopleRef.child(rowRefName).set({});
     });
 
     var save_button = $(
-      '<button id="save-row'+index+'" class="editing btn btn-success btn-xs">' +
+      '<button class="editing btn btn-success btn-xs">' +
       '<span class="glyphicon glyphicon-ok"></span> Save </button> '
     ).click(function() {
       saveRowChanges(new_row);
     }).hide();
 
     var cancel_button = $(
-      '<button id="cancel-row'+index+'" class="editing btn btn-warning btn-xs">' +
+      '<button class="editing btn btn-warning btn-xs">' +
       '<span class="glyphicon glyphicon-remove"></span> Cancel </button>'
     ).click(function() {
       cancelRowChanges(new_row);
@@ -276,8 +276,8 @@ $(document).ready(function() {
   $('#add-person').click(function() {
     // get a new unique id for the row
     var newRowRef = peopleRef.push();
-
     var rowRefName = newRowRef.name();
+
     // display the new row, and mark it as truly new
     displayNewRow(rowRefName, true);
   });
