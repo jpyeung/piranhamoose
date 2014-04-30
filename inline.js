@@ -14,6 +14,9 @@ $(document).ready(function() {
   // Table
   ///////////////////////////////////////
 
+  // map from FireBase ref to html row
+  var refToRow = {};
+
   // info about each column in the table
   var columns = {
     is_org: { 
@@ -54,7 +57,12 @@ $(document).ready(function() {
   // hide buttons only used while editing
   $('#user-table tbody button.editing').hide();
 
-  // individual table cell functions
+  /////////////// individual table cell functions ////////////////////
+
+  // edit functions:
+  //  take a cell with a text value, change the contents of the cell
+  //  to the appropriate input form, and return the old text
+
   // Turn a cell into a text input. Returns old field value.
   function cellToTextInput(cell) {
     var text = cell.text();
@@ -99,11 +107,16 @@ $(document).ready(function() {
     return text;
   }
 
+  // save functions:
+  //  take a cell with an input field and return the appropriate text
+  //  representation of the data.
+
   // save changes to a cell containing a text field or a dropdown
   function saveCellChanges(cell) {
     var text = cell.find('input').val() || cell.find('select').val();
     cell.empty();
-    cell.text(text);
+    cell.text(text)
+    return text;
   };
 
   // save changes to a cell containing a checkbox
@@ -113,10 +126,11 @@ $(document).ready(function() {
 
     if (checked){
       cell.text('Yes');
+      return 'Yes';
     } else {
       cell.text('No');
+      return 'No';
     }
-    return;
   }
 
   // cancel changes to a cell by reinstating the old value
@@ -125,41 +139,47 @@ $(document).ready(function() {
     cell.text(old_val);
   };
 
-  // whole table row functions
-  // turn a whole row into the appropriate form. Returns the old values of fields
+  //////////////////////// whole table row functions //////////////////////////
+
+  // turn a whole row into the appropriate form. Set old field values as data on the row
   var makeRowEditable = function(row) {
     var cells = row.find('td');
 
-    var results = {};
+    var old_vals = {};
 
     for (property in columns) {
       if (property != 'actions') {
         var info = columns[property];
-        results[property] = info.edit_fn(cells.eq(info.col));
+        old_vals[property] = info.edit_fn(cells.eq(info.col));
       }
     }
 
     showEditButtons(cells.eq(columns.actions.col));
 
-    return results
+    row.data('old_data',old_vals);
   };
 
-  // sets field values to the current values of the respective inputs
+  // set field values to the current values of their respective inputs
   var saveRowChanges = function(row) {
+    var rowRef = peopleRef.child(row.data('rowRefName'));
     row.removeClass('new-row');
     var cells = row.find('td');
+
+    var new_data = {};
     for (property in columns) {
       if (property != 'actions') {
         var info = columns[property];
-        info.save_fn(cells.eq(info.col));
+        // empty string is so that firebase can update the property if it is left blank
+        var new_val = info.save_fn(cells.eq(info.col)) || '';
+        new_data[property] = new_val;
       }
     }
-
+    rowRef.update(new_data);
     hideEditButtons(cells.eq(columns.actions.col));
   };
 
-  // if the row was previously saved, restores old values of fields, otherwise
-  //   removes the row entirely
+  // restore old values of fields if the row had been previously saved, otherwise
+  //   remove the row entirely
   var cancelRowChanges = function(row) {
     if (row.hasClass('new-row')) {
       row.remove();
@@ -178,16 +198,10 @@ $(document).ready(function() {
     hideEditButtons(cells.eq(columns.actions.col));
   };
 
-  // adding a new row. Includes listeners on the buttons
-  // note: because buttons are IDed by their current position in the table,
-  //  some combinations of adds and deletes will produce buttons with the same
-  //  ID. This could maybe cause issues!
-  var addBlankRow = function() {
-    var rows = $('#user-table tbody tr');
-    var index = rows.length;
-
+  // add a new row to the table, including listeners on the buttons
+  var displayNewRow = function(rowRefName, is_new) {
     // create template for a new row
-    var new_row = $('<tr class="new-row"></tr>');
+    var new_row = $('<tr></tr>');
     for (property in columns) {
       if (property != 'actions') {
         var default_val = columns[property].default_val
@@ -195,32 +209,35 @@ $(document).ready(function() {
       }
     }
 
+    if (is_new) {
+      new_row.addClass('new-row');
+    }
+
     // this is sloppy code and it makes me sad :( I could probably abstract it, but 
     //   I don't think there's any reason to except my own sense of aesthetics
     var edit_button = $(
-      '<button id="edit-row'+index+'" class="not-editing btn btn-default btn-xs">' +
+      '<button class="not-editing btn btn-default btn-xs">' +
       '<span class="glyphicon glyphicon-pencil"></span> Edit </button>'
     ).click(function() {
-      var old_data = makeRowEditable(new_row);
-      new_row.data('old_data', old_data);
+      makeRowEditable(new_row);
     });
     
     var delete_button = $(
-      '<button id="delete-row'+index+'" class="not-editing btn btn-danger btn-xs">' +
+      '<button class="not-editing btn btn-danger btn-xs">' +
       '<span class="glyphicon glyphicon-remove"></span> Delete </button>'
     ).click(function() {
-      new_row.remove();
+      peopleRef.child(rowRefName).set({});
     });
 
     var save_button = $(
-      '<button id="save-row'+index+'" class="editing btn btn-success btn-xs">' +
+      '<button class="editing btn btn-success btn-xs">' +
       '<span class="glyphicon glyphicon-ok"></span> Save </button> '
     ).click(function() {
       saveRowChanges(new_row);
     }).hide();
 
     var cancel_button = $(
-      '<button id="cancel-row'+index+'" class="editing btn btn-warning btn-xs">' +
+      '<button class="editing btn btn-warning btn-xs">' +
       '<span class="glyphicon glyphicon-remove"></span> Cancel </button>'
     ).click(function() {
       cancelRowChanges(new_row);
@@ -231,14 +248,58 @@ $(document).ready(function() {
     );
 
     new_row.append(action_cell);
+
+    // associate html with firebase ref
+    new_row.data('rowRefName',rowRefName);
+    refToRow[rowRefName] = new_row;
+
     $('#user-table tbody').append(new_row);
 
-    // make the row editable on creation
-    edit_button.click();
-  }
+    // make the row editable on creation if it is new
+    if (is_new){
+      edit_button.click();
+    }
+  };
 
-  $('#add-person').click(addBlankRow);
+  // update the data in a row, as identified by a firebase ref
+  var updateDisplayedRow = function(data, rowRefName) {
+    var row = refToRow[rowRefName];
+    var cells = row.find('td');
 
+    for (property in data) {
+      var info = columns[property];
+      cells.eq(info.col).text(data[property]);
+    }
+  };
+
+  // add a new node to the list of people and add a new row
+  $('#add-person').click(function() {
+    // get a new unique id for the row
+    var newRowRef = peopleRef.push();
+    var rowRefName = newRowRef.name();
+
+    // display the new row, and mark it as truly new
+    displayNewRow(rowRefName, true);
+  });
+
+  // firebase listeners
+  peopleRef.on('child_added', function(snapshot) {
+    // only display a new row if we do not have a reference to the row already
+    if ( ! refToRow[snapshot.name()] ) {
+      displayNewRow(snapshot.name());
+    }
+    // always update the display in case this is the first time this row is modified
+    updateDisplayedRow(snapshot.val(), snapshot.name());
+  });
+
+  peopleRef.on('child_changed', function(snapshot) {
+    updateDisplayedRow(snapshot.val(), snapshot.name());
+  });
+
+  peopleRef.on('child_removed', function(snapshot) {
+    refToRow[snapshot.name()].remove();
+    delete refToRow[snapshot.name()];
+  });
 
   ///////////////////////////////////////
   // Trip info
