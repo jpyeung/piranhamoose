@@ -315,6 +315,7 @@ $(document).ready(function() {
   });
   $('#save-leaving-from').click(function() {
     saveListener('#leaving-from-val');
+    showLocation();
   });
   $('#save-organizer-number').click(function() {
     saveListener('#organizer-number-val');

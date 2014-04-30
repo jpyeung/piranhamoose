@@ -23,9 +23,8 @@ $(document).ready(function() {
 	  
 	    document.getElementById("ski-patrol-number").innerHTML = 
 		  document.getElementById("" + resort + "-ski-patrol-number").innerHTML;
-		
-	    document.getElementById("resort-distance").innerHTML = 
-	      document.getElementById("" + resort + "-distance").innerHTML;
+
+        showLocation();
     	});
   	}
   

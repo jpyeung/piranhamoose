@@ -42,7 +42,7 @@
     <script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyDh3WHCnH2nQFF0JNYGV_OBMFO9nGF67ts" type="text/javascript"></script>
 
   </head>
-  <body onload="initialize()">
+  <body onload="initialize(); showLocation();">
     <div class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -126,21 +126,12 @@
                   </button>
                 </dd>
                 <dt>Predicted weather:</dt>
-                <dd id="weather">Snowy</span></dd>
-                <dt>Car ride length:</dt>
-                <dd id="car-time">2 hours</span></dd>
+                <dd id="weather">Snowy</dd>
               </dl>
-                <form action="#" onsubmit="showLocation(); return false;">
-                  <p>
-                    <input type="text" name="address1" value="Address 1" />
-                    <input type="text" name="address2" value="Address 2" />
-                    <input type="submit" value="Search" />
-                  </p>
-                </form>
+              <button id="showDirections" type="hidden" onclick="showLocation()">Show Directions</button>
                 <p id="results"></p>
                 <div id="map_canvas"></div>
                 <div id="directions"></div>
-              <!--<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?q=ski+resorts+near+Boston,+MA,+United+States&key=AIzaSyDh3WHCnH2nQFF0JNYGV_OBMFO9nGF67ts"></iframe>-->
             </div>
           </div>
         </div>
@@ -173,8 +164,6 @@
                       <dd id="blue-hills-price">$39</dd>
                       <dt>Number of ski patrol:</dt>
                       <dd><span id="blue-hills-ski-patrol-number">(781) 828-5070</span></dd>
-                      <dt>Distance:</dt>
-                      <dd id="blue hills-distance">27.1 miles</dd>
                       </dl>
                       <button type="button" name="blue-hills-button" id="blue-hills-button" class="btn btn-primary btn-block" data-dismiss="modal">Pick this resort</button>
                     </div>
@@ -190,8 +179,6 @@
                       <dd id="nashoba-valley-price">$50</dd>
                       <dt>Number of ski patrol:</dt>
                       <dd><span id="nashoba-valley-ski-patrol-number">(978) 692-3033</span></dd>
-                      <dt>Distance:</dt>
-                      <dd id="nashoba-valley-distance">73.8 miles</dd>
                       </dl>
                       <button type="button" name="nashoba-valley-button" id="nashoba-valley-button" class="btn btn-primary btn-block" data-dismiss="modal">Pick this resort</button>
                     </div>
@@ -207,8 +194,6 @@
                       <dd id="wachusett-mountain-price">$60</dd>
                       <dt>Number of ski patrol:</dt>
                       <dd><span id="wachusett-mountain-ski-patrol-number">(978) 464-2300</span></dd>
-                      <dt>Distance:</dt>
-                      <dd id="wachusett-mountain-distance">46.0 miles</dd>
                       </dl>
                       <button type="button" name="wachusett-mountain-button" id="wachusett-mountain-button" class="btn btn-primary btn-block" data-dismiss="modal">Pick this resort</button>
                     </div>
@@ -229,8 +214,6 @@
                   <dd id="resort-price">$39</dd>
                   <dt>Number of ski patrol:</dt>
                   <dd><span id="ski-patrol-number">(781) 828-5070</span> (write this down!)</dd>
-				          <dt>Distance:</dt>
-                  <dd id="resort-distance">27.1 miles</dd>
                 </dl>
               </div>
               <div class="list-group-item">
