@@ -23,6 +23,7 @@
     <script type="text/javascript" src="resort.js"></script>
     <script type="text/javascript" src="inline.js"></script>
     <script type="text/javascript" src="firebase.js"></script>
+    <script type="text/javascript" src="maps.js"></script>
 	
 	  <!-- Moment.js -->
 	  <script src="./moment-develop/moment.js"></script>
@@ -37,8 +38,11 @@
 		    $('#stop').datetimepicker();
 	    });
 	  </script>
+
+    <script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyDh3WHCnH2nQFF0JNYGV_OBMFO9nGF67ts" type="text/javascript"></script>
+
   </head>
-  <body>
+  <body onload="initialize()">
     <div class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -126,7 +130,15 @@
                 <dt>Car ride length:</dt>
                 <dd id="car-time">2 hours</span></dd>
               </dl>
-              <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?q=ski+resorts+near+Boston,+MA,+United+States&key=AIzaSyDh3WHCnH2nQFF0JNYGV_OBMFO9nGF67ts"></iframe>
+                <form action="#" onsubmit="showLocation(); return false;">
+                  <p>
+                    <input type="text" name="address1" value="Address 1" />
+                    <input type="text" name="address2" value="Address 2" />
+                    <input type="submit" value="Search" />
+                  </p>
+                </form>
+                <p id="results"></p>
+              <!--<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?q=ski+resorts+near+Boston,+MA,+United+States&key=AIzaSyDh3WHCnH2nQFF0JNYGV_OBMFO9nGF67ts"></iframe>-->
             </div>
           </div>
         </div>
