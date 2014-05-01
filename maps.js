@@ -17,7 +17,7 @@ function showLocation() {
     geocoder.getLocations(document.getElementById("leaving-from-val").innerHTML, function (response) {
         if (!response || response.Status.code != 200)
         {
-            alert("Sorry, we were unable to geocode the first address");
+            alert("Sorry, we were unable to geocode the departure address");
         }
         else
         {
@@ -25,7 +25,7 @@ function showLocation() {
             geocoder.getLocations(document.getElementById("resort-address").innerHTML, function (response) {
                 if (!response || response.Status.code != 200)
                 {
-                    alert("Sorry, we were unable to geocode the second address");
+                    alert("Sorry, we were unable to geocode the resort address");
                 }
                 else
                 {
