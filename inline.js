@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  // Helper functions to show or hide edit buttons
+  // Helper functions to show or hide edit buttons  
   var showEditButtons = function(container) {
     container.find('button.editing').show();
     container.find('button.not-editing').hide();
@@ -301,6 +301,19 @@ $(document).ready(function() {
     delete refToRow[snapshot.name()];
   });
 
+  // Boolean values used by the date-time picker for setting the value 
+  // to the default the first time
+  var defaultShouldBeSetStart = true;
+  var defaultShouldBeSetStop = true;
+  
+  // Today's date; the current value
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1;
+  var yyyy = today.getFullYear();
+  
+  var currentDateString = mm + "/" + dd + "/" + yyyy;
+  
   ///////////////////////////////////////
   // Trip info
   ///////////////////////////////////////
@@ -369,12 +382,20 @@ $(document).ready(function() {
 // nice to see what you'll revert back to if you cancel? 
  
     document.getElementById('start').style.visibility = 'visible'; 
+    if (defaultShouldBeSetStart) {
+      $("#start").data("DateTimePicker").setDate(currentDateString);
+      defaultShouldBeSetStart = false;
+    }
   });
   $('#edit-getting-back').click(function() {
     var span = $('#getting-back-val');
     showEditButtons(span.parent());
     
     document.getElementById('stop').style.visibility = 'visible'; 
+    if (defaultShouldBeSetStop) {
+      $("#stop").data("DateTimePicker").setDate(currentDateString);
+      defaultShouldBeSetStop = false;
+    }
   });
   $('#edit-leaving-from').click(function() {
     editListener('#leaving-from-val');
@@ -450,4 +471,5 @@ $(document).ready(function() {
   $('#cancel-name').click(function () {
     cancelListener('#name');
   });
+  
 });
