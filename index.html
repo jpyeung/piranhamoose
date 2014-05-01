@@ -78,23 +78,43 @@
             <div class="panel-body">
               <dl class="dl-horizontal" id="trip-info">
 	            <dt>Leaving at:</dt>
-				<dd>
-                  <div class='input-group date' id='start'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-				  </div>
-				</dd>
-                <dt>Getting Back:</dt>
-				<dd>
-                  <div class='input-group date' id='stop'>
+                <dd>
+                  <span id="leaving-at-val">Thursday, January 1, 1970 12:00:00 AM</span>
+                    <button class="not-editing btn btn-default btn-xs" id="edit-leaving-at">
+                      <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button class="editing btn btn-success btn-xs" id="save-leaving-at">
+                      <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                    <button class="editing btn btn-warning btn-xs" id="cancel-leaving-at">
+                      <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                  <div class='input-group date' id='start' style='visibility: hidden'>
                     <input type='text' class="form-control" />
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                   </div>
-				</dd>
+                </dd>
+                <dt>Getting Back:</dt>
+                  <dd>
+                    <span id="getting-back-val">Thursday, January 1, 1970 12:00:00 AM</span>
+                      <button class="not-editing btn btn-default btn-xs" id="edit-getting-back">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                      </button>
+                      <button class="editing btn btn-success btn-xs" id="save-getting-back">
+                        <span class="glyphicon glyphicon-ok"></span>
+                      </button>
+                      <button class="editing btn btn-warning btn-xs" id="cancel-getting-back">
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                      <div class='input-group date' id='stop' style='visibility: hidden'>
+                      <input type='text' class="form-control" />
+                      <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                    </div>
+                  </dd>
                 <dt>Leaving from:</dt>
                 <dd>
                   <span id="leaving-from-val">Student Center</span>

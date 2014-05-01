@@ -299,7 +299,21 @@ $(document).ready(function() {
   
   // trip info edit buttons
   $('#edit-leaving-at').click(function() {
-    editListener('#leaving-at-val');
+    var span = $('#leaving-at-val');
+    showEditButtons(span.parent());
+    
+//    document.getElementById("leaving-at-val").style.visibility = 'hidden';
+
+//  I don't rightly know whether we want to keep the old label hidden--it's 
+// nice to see what you'll revert back to if you cancel? 
+ 
+    document.getElementById('start').style.visibility = 'visible'; 
+  });
+  $('#edit-getting-back').click(function() {
+    var span = $('#getting-back-val');
+    showEditButtons(span.parent());
+    
+    document.getElementById('stop').style.visibility = 'visible'; 
   });
   $('#edit-leaving-from').click(function() {
     editListener('#leaving-from-val');
@@ -311,7 +325,24 @@ $(document).ready(function() {
 
   // trip info save buttons
   $('#save-leaving-at').click(function() {
-    saveListener('#leaving-at-val');
+    var span = $('#leaving-at-val');
+    var text = $("#start").data("DateTimePicker").getDate()._d.toLocaleString();
+
+    span.empty();
+    span.append(text);
+    
+    hideEditButtons(span.parent());
+    document.getElementById("start").style.visibility = "hidden";
+  });
+  $('#save-getting-back').click(function() {
+    var span = $('#getting-back-val');
+    var text = $("#stop").data("DateTimePicker").getDate()._d.toLocaleString();
+
+    span.empty();
+    span.append(text);
+    
+    hideEditButtons(span.parent());
+    document.getElementById("stop").style.visibility = "hidden";
   });
   $('#save-leaving-from').click(function() {
     saveListener('#leaving-from-val');
@@ -322,7 +353,14 @@ $(document).ready(function() {
 
   // trip info cancel buttons
   $('#cancel-leaving-at').click(function() {
-    cancelListener('#leaving-at-val');
+    var span = $('#leaving-at-val');
+    hideEditButtons(span.parent());
+    document.getElementById("start").style.visibility = "hidden";
+  });
+  $('#cancel-getting-back').click(function() {
+    var span = $('#getting-back-val');
+    hideEditButtons(span.parent());
+    document.getElementById("stop").style.visibility = "hidden";
   });
   $('#cancel-leaving-from').click(function() {
     cancelListener('#leaving-from-val');
