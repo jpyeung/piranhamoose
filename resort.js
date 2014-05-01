@@ -2,7 +2,7 @@
 // has finished loading in the browser.
 
 $(document).ready(function() {
-	resorts = ["blue-hills", "nashoba-valley", "wachusett-mountain"];
+	resorts = ["blue-hills", "nashoba-valley", "boston-ski", "ski-bradford", "weston", "wachusett-mountain"];
 
 	// The below is a function to attach a listener to the appropriate choice button in the resort form,
 	// given the name of the resort form.
@@ -31,6 +31,9 @@ $(document).ready(function() {
 	  
 	    document.getElementById("resort-phone-number").innerHTML = 
 		  document.getElementById("" + resort + "-phone-number").innerHTML;
+
+        document.getElementById("resort-website").innerHTML = 
+          document.getElementById("" + resort + "-website").innerHTML;
 
         $('#myModal').modal('hide');
         showLocation();
