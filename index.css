@@ -1,7 +1,11 @@
 /* Document-wide */
 
 #title {
-    font-size: 4em;
-    font-family: 'Gochi Hand', cursive;
+    font-size: 3em;
+    font-family: 'Berkshire Swash', cursive;
     vertical-align: bottom;
+}
+
+#myModal {
+    height: 80%;
 }
