@@ -31,14 +31,7 @@
 	  <!-- Bootstrap Datetimepicker -->
 	  <script src="./bootstrap-datetimepicker-master/build/js/bootstrap-datetimepicker.min.js"></script>
 
-	  <!-- initialize the pickers -->
-	  <script type="text/javascript">
-	    $(function () {
-		    $('#start').datetimepicker();
-		    $('#stop').datetimepicker();
-	    });
-	  </script>
-
+    <!-- Maps -->
     <script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyDh3WHCnH2nQFF0JNYGV_OBMFO9nGF67ts" type="text/javascript"></script>
 
   </head>
@@ -58,7 +51,7 @@
           <ul class="nav navbar-nav navbar-right">
           <div id="name-div">
             <span id="name">James Yeung</span>
-              <button class="not-editing btn btn-default btn-xs navbar-btn" id="edit-name">
+              <!-- <button class="not-editing btn btn-default btn-xs navbar-btn" id="edit-name">
                 <span class="glyphicon glyphicon-pencil"></span> Change name
               </button>
               <button class="editing btn btn-success btn-xs navbar-btn" id="save-name">
@@ -66,92 +59,49 @@
               </button>
               <button class="editing btn btn-warning btn-xs navbar-btn" id="cancel-name">
                 <span class="glyphicon glyphicon-remove"></span> Cancel
-              </button>
+              </button> -->
             </ul>
           </div>
         </div><!--/.nav-collapse -->
       </div><!--/.container-fluid -->
     </div>
+
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-6">
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title" id="trip-header">Trip Info</h3>
+              <h3 class="panel-title" id="trip-header">Trip Info
+                <div id="trip-buttons" class="pull-right">
+                  <button id="edit-trip-info" class="not-editing btn btn-default btn-xs">
+                    <span class="glyphicon glyphicon-pencil"></span> Edit
+                  </button>
+                  <button id="save-trip-info" class="editing btn btn-success btn-xs">
+                    <span class="glyphicon glyphicon-ok"></span> Save
+                  </button>
+                  <button id="cancel-trip-info" class="editing btn btn-warning btn-xs">
+                    <span class="glyphicon glyphicon-remove"></span> Cancel
+                  </button>
+                </div>
+              </h3>
             </div>
             <div class="panel-body">
               <dl class="dl-horizontal" id="trip-info">
 	            <dt>Leaving at:</dt>
-                <dd>
-                  <span id="leaving-at-val">Thursday, January 1, 1970 12:00:00 AM</span>
-                    <button class="not-editing btn btn-default btn-xs" id="edit-leaving-at">
-                      <span class="glyphicon glyphicon-pencil"></span>
-                    </button>
-                    <button class="editing btn btn-success btn-xs" id="save-leaving-at">
-                      <span class="glyphicon glyphicon-ok"></span>
-                    </button>
-                    <button class="editing btn btn-warning btn-xs" id="cancel-leaving-at">
-                      <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                <dd>
-                  <div class='input-group date' id='start' style='visibility: hidden'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                  </div>
+                <dd id="leaving-at-val">Thursday, January 1, 1970 12:00:00 AM
                 </dd>
                 <dt>Getting Back:</dt>
-                  <dd>
-                    <span id="getting-back-val">Thursday, January 1, 1970 12:00:00 AM</span>
-                      <button class="not-editing btn btn-default btn-xs" id="edit-getting-back">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                      </button>
-                      <button class="editing btn btn-success btn-xs" id="save-getting-back">
-                        <span class="glyphicon glyphicon-ok"></span>
-                      </button>
-                      <button class="editing btn btn-warning btn-xs" id="cancel-getting-back">
-                        <span class="glyphicon glyphicon-remove"></span>
-                      </button>
-                      <div class='input-group date' id='stop' style='visibility: hidden'>
-                      <input type='text' class="form-control" />
-                      <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                      </span>
-                    </div>
-                  </dd>
+                <dd id="getting-back-val">Thursday, January 1, 1970 12:00:00 AM</dd>
                 <dt>Leaving from:</dt>
-                <dd>
-                  <span id="leaving-from-val">77 Massachusetts Avenue, Cambridge, MA 02139</span>
-                  <button class="not-editing btn btn-default btn-xs" id="edit-leaving-from">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                  </button>
-                  <button class="editing btn btn-success btn-xs" id="save-leaving-from">
-                    <span class="glyphicon glyphicon-ok"></span>
-                  </button>
-                  <button class="editing btn btn-warning btn-xs" id="cancel-leaving-from">
-                    <span class="glyphicon glyphicon-remove"></span>
-                  </button>
-                </dd>
+                <dd id="leaving-from-val">77 Massachusetts Avenue, Cambridge, MA 02139</dd>
                 <dt>Organizer number:</dt>
-                <dd>
-                  <span id="organizer-number-val">617-682-5966</span>
-                  <button class="not-editing btn btn-default btn-xs" id="edit-organizer-number">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                  </button>
-                  <button class="editing btn btn-success btn-xs" id="save-organizer-number">
-                    <span class="glyphicon glyphicon-ok"></span>
-                  </button>
-                  <button class="editing btn btn-warning btn-xs" id="cancel-organizer-number">
-                    <span class="glyphicon glyphicon-remove"></span>
-                  </button>
-                </dd>
+                <dd id="organizer-number-val">617-682-5966</dd>
                 <dt>Predicted weather:</dt>
                 <dd id="weather">Snowy</dd>
               </dl>
-                <p id="results"></p>
-                <div id="map_canvas"></div>
-                <div id="directions"></div>
+              <p id="results"></p>
+              <div id="map_canvas"></div>
+              <div id="directions"></div>
             </div>
           </div>
         </div>

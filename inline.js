@@ -68,7 +68,7 @@ $(document).ready(function() {
     var text = cell.text();
     cell.empty();
 
-    var input = $('<input type="text">').val(text);
+    var input = $('<input type="text" class="form-control">').val(text);
     cell.append(input);
 
     return text;
@@ -80,7 +80,7 @@ $(document).ready(function() {
     cell.empty();
 
     var dropdown = $(
-      '<select>' +
+      '<select class="form-control">' +
         '<option value="Beginner">Beginner</option>' +
         '<option value="Intermediate">Intermediate</option>' +
         '<option value="Advanced">Advanced</option>' +
@@ -318,57 +318,73 @@ $(document).ready(function() {
   // Trip info
   ///////////////////////////////////////
 
+  // info about the fields in tripinfo
+  var fields = {
+    leaving_at: {
+      index: 0,
+      editable: true,
+      edit_fn: ddToDatetime,
+      save_fn: saveDatetimeChanges
+    },
+    getting_back: {
+      index: 1,
+      editable: true,
+      edit_fn: ddToDatetime,
+      save_fn: saveDatetimeChanges
+    },
+    leaving_from: {
+      index: 2,
+      editable: true,
+      edit_fn: ddToTextInput,
+      save_fn: saveTextChanges
+    },
+    organizer_number: {
+      index: 3
+    },
+    predicted_weather: {
+      index: 4
+    }
+  };
+
   // hide buttons used for editing trip info
-  $('#trip-info button.editing').hide();
+  $('#trip-buttons button.editing').hide();
 
-  // Turn a span into a text input. Returns the old text
-  var spanToTextInput = function(span) {
-    var text = span.text();
-    var input = $('<input type="text">').val(text);
+  // Turn a dd into a text input
+  function ddToTextInput(dd) {
+    var text = dd.text();
+    var input = $('<input type="text" class="form-control">').val(text);
 
-    span.empty();
-    span.append(input);
+    dd.empty();
+    dd.append(input);
 
-    return text;
-  };
-
-  // Set the text of a span to the current value of its input
-  var saveSpanChanges = function(span) {
-    var text = span.find('input').val();
-    span.empty();
-    span.append(text);
-  };
-
-  // Cancel the changes to a span by reinstating the old value
-  var cancelSpanChanges = function(span) {
-    var old_val = span.data('old_data');
-    span.empty();
-    span.text(old_val);
-  };
-
-  // button listener for editing the span identified by the given jquery selector
-  var editListener = function(selector) {
-    var span = $(selector);
-    var old_val = spanToTextInput(span);
-    span.data('old_data', old_val);
-
-    showEditButtons(span.parent());
-  };
-
-  // button listener for canceling edits to the span identified by the given jquery selector
-  var cancelListener = function(selector) {
-    var span = $(selector);
-    cancelSpanChanges(span);
-
-    hideEditButtons(span.parent());
+    dd.data('old_data', text);
+    //return text;
   }
 
-  // button listener for saving edits to the span identified by the given jquery selector
-  var saveListener = function(selector) {
-    var span = $(selector);
-    saveSpanChanges(span);
+  function ddToDatetime(dd) {
+    var text = dd.text();
 
-    hideEditButtons(span.parent());
+    var datetime = $(
+      '<div class="input-group date">' +
+        '<input type="text" class="form-control" />' +
+        '<span class="input-group-addon">' +
+          '<span class="glyphicon glyphicon-calendar"></span>' +
+        '</span>' +
+      '</div>'
+    ).datetimepicker();
+
+    dd.empty();
+    dd.append(datetime);
+    dd.data('old_data', text);
+  }
+
+  // Set the text of a dd to the current value of its input. Return new value
+  function saveTextChanges(container) {
+    var text = container.find('input').val();
+    container.empty();
+    container.append(text);
+
+    return text;
   }
   
   // trip info edit buttons
@@ -403,73 +419,72 @@ $(document).ready(function() {
   $('#edit-organizer-number').click(function() {
     editListener('#organizer-number-val');
   });
+  
+  function saveDatetimeChanges(container) {
+    var date = container.find('.date').data("DateTimePicker").getDate()._d.toLocaleString();
+    container.empty();
+    container.text(date);
+    return date;
+  }
 
+  // Cancel the changes to a field by reinstating the old value
+  var cancelInfoChanges = function(container) {
+    var old_val = container.data('old_data');
+    container.empty();
+    container.text(old_val);
+  };
 
-  // trip info save buttons
-  $('#save-leaving-at').click(function() {
-    var span = $('#leaving-at-val');
-    var text = $("#start").data("DateTimePicker").getDate()._d.toLocaleString();
+  var editTripInfo = function() {
+    var dds = $('#trip-info').find('dd');
+    for (property in fields) {
+      var info = fields[property];
+      if (info.editable) {
+        info.edit_fn(dds.eq(info.index));
+      }
+    }
 
-    span.empty();
-    span.append(text);
-    
-    hideEditButtons(span.parent());
-    document.getElementById("start").style.visibility = "hidden";
-  });
-  $('#save-getting-back').click(function() {
-    var span = $('#getting-back-val');
-    var text = $("#stop").data("DateTimePicker").getDate()._d.toLocaleString();
+    showEditButtons($('#trip-buttons'));
+  }
 
-    span.empty();
-    span.append(text);
-    
-    hideEditButtons(span.parent());
-    document.getElementById("stop").style.visibility = "hidden";
-  });
-  $('#save-leaving-from').click(function() {
-    saveListener('#leaving-from-val');
+  var saveTripInfo = function() {
+    var dds = $('#trip-info').find('dd');
+    var update_data = {};
+    for (property in fields) {
+      var info = fields[property];
+      if (info.editable) {
+        update_data[property] = info.save_fn(dds.eq(info.index));
+      }
+    }
+
+    tripInfoRef.update(update_data);
+    hideEditButtons($('#trip-buttons'));
+  }
+
+  var cancelTripInfo = function() {
+    var dds = $('#trip-info').find('dd');
+    for (property in fields) {
+      var info = fields[property];
+      if (info.editable) {
+        cancelInfoChanges(dds.eq(info.index));
+      }
+    }
+
+    hideEditButtons($('#trip-buttons'));
+  }
+
+  $('#edit-trip-info').click(editTripInfo);
+  $('#save-trip-info').click(function() {
+    saveTripInfo();
     showLocation();
   });
-  $('#save-organizer-number').click(function() {
-    saveListener('#organizer-number-val');
-  });
+  $('#cancel-trip-info').click(cancelTripInfo);
 
-  // trip info cancel buttons
-  $('#cancel-leaving-at').click(function() {
-    var span = $('#leaving-at-val');
-    hideEditButtons(span.parent());
-    document.getElementById("start").style.visibility = "hidden";
-  });
-  $('#cancel-getting-back').click(function() {
-    var span = $('#getting-back-val');
-    hideEditButtons(span.parent());
-    document.getElementById("stop").style.visibility = "hidden";
-  });
-  $('#cancel-leaving-from').click(function() {
-    cancelListener('#leaving-from-val');
-  });
-  $('#cancel-organizer-number').click(function() {
-    cancelListener('#organizer-number-val');
-  });
-
-  ///////////////////////////////////////
-  // Name
-  ///////////////////////////////////////
-
-  // hide buttons used for editing
-  $('#name-div button.editing').hide();
-
-  // add button listeners for the name span
-  $('#edit-name').click(function() {
-    editListener('#name');
-  });
-
-  $('#save-name').click(function() {
-    saveListener('#name');
-  });
-
-  $('#cancel-name').click(function () {
-    cancelListener('#name');
+  tripInfoRef.on('value', function (snapshot) {
+    var dds = $('#trip-info').find('dd');
+    for (property in snapshot.val()) {
+      dds.eq(fields[property].index).text(snapshot.val()[property]);
+    }
+    showLocation();
   });
   
 });
