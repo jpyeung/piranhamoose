@@ -8,4 +8,18 @@
 
 #myModal {
     height: 80%;
+    overflow: hidden;
+}
+
+.modal-dialog {
+    height: 100%;
+}
+
+.modal-content {
+    height: 100%;
+}
+
+.modal-body {
+    height: calc(100% - 86px);
+    overflow: auto;
 }
