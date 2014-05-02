@@ -174,7 +174,16 @@ $(document).ready(function() {
         new_data[property] = new_val;
       }
     }
-    rowRef.update(new_data);
+
+    // use priorities to sort organizers and non-organizers
+    //  priority is in lexographic order, but no priority comes before
+    //  any other priority, so to let organizers be on top of the table,
+    //  non-organizers need a priority that comes after 'o'
+    if (cells.eq(columns.is_org.col).text() == 'Yes') {
+      rowRef.setWithPriority(new_data, 'organizer');
+    } else {
+      rowRef.setWithPriority(new_data, 'z-comes-after-o');
+    }
     hideEditButtons(cells.eq(columns.actions.col));
   };
 
@@ -299,6 +308,21 @@ $(document).ready(function() {
   peopleRef.on('child_removed', function(snapshot) {
     refToRow[snapshot.name()].remove();
     delete refToRow[snapshot.name()];
+  });
+
+  // update the trip info 'organizer number' field with all organizers' phone numbers
+  //  anything else that should be done for organizers should be done here also
+  organizersRef.on('value', function(snapshot) {
+    var phones = [];
+    for (row in snapshot.val()) {
+      phones.push(snapshot.val()[row].phone);
+    }
+
+    if (phones.length > 0) {
+      $('#organizer-number-val').text(phones.join(', '));
+    } else {
+      $('#organizer-number-val').text('No organizers');
+    }
   });
 
   // Boolean values used by the date-time picker for setting the value 
