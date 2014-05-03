@@ -1,0 +1,85 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Skii</title>
+
+  <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+  <script src="bootstrap/js/bootstrap.js"></script>
+  <script src='https://cdn.firebase.com/js/client/1.0.11/firebase.js'></script>
+
+  <link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.css"/>
+  <link rel="stylesheet" href="index.css" >
+
+  <script src="./firebase.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#create-new-trip').click(function() {
+        tripRef = tripsRef.push();
+        location.href = './index.html#?trip=' + tripRef.name();
+      });
+
+      tripsRef.on('value', function(snapshot) {
+        var tripHolder = $('#existing-trips');
+        tripHolder.empty();
+        for (trip in snapshot.val()) {
+          console.log('trip:',trip);
+          var link = $('<div><a href="./index.html#?trip=' + trip + '" role="button" class="btn btn-primary">' + trip + '</a></div>');
+          tripHolder.append(link);
+        }
+      });
+
+    });
+  </script>
+</head>
+
+<body>
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" id="title" href="#">Skii</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+        <div id="name-div">
+          <!-- <span id="name">James Yeung</span>
+          <button class="not-editing btn btn-default btn-xs navbar-btn" id="edit-name">
+            <span class="glyphicon glyphicon-pencil"></span> Change name
+          </button>
+          <button class="editing btn btn-success btn-xs navbar-btn" id="save-name">
+            <span class="glyphicon glyphicon-ok"></span> Save
+          </button>
+          <button class="editing btn btn-warning btn-xs navbar-btn" id="cancel-name">
+            <span class="glyphicon glyphicon-remove"></span> Cancel
+          </button> -->
+        </ul>
+      </div>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container-fluid -->
+  <div class="container">
+    <div class="jumbotron">
+      <h1> Welcome to <span class="fancy-title">Skii</span> </h1>
+      <p> Get started with a new ski trip by clicking the button below. </p>
+      <p>
+        <button id="create-new-trip" class="btn btn-lg btn-primary">Create a Trip</button>
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h2> Existing trips: 
+          <small>This probably won't be here in the final version</small>
+        </h2>
+        <div id="existing-trips"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

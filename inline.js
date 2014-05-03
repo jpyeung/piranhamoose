@@ -1,4 +1,38 @@
+// Taken from PS2:
+//    This script extracts parameters from the URL
+//    from jquery-howto.blogspot.com
+$.extend({
+  getUrlVars : function() {
+    var vars = [], hash;
+    var hashes = window.location.href.slice(
+        window.location.href.indexOf('?') + 1).split('&');
+    for ( var i = 0; i < hashes.length; i++) {
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
+    return vars;
+  },
+  getUrlVar : function(name) {
+    return $.getUrlVars()[name];
+  }
+});
+
 $(document).ready(function() {
+
+  // if this is for a different trip, use those firebase refs instead
+  if ($.getUrlVar('trip')) {
+    var tripRefName = $.getUrlVar('trip');
+    console.log('tripRefName:',tripRefName);
+    tripRef = tripsRef.child(tripRefName);
+
+    peopleRef = tripRef.child('people');
+    organizersRef = peopleRef.startAt('organizer').endAt('organizer');
+    tripInfoRef = tripRef.child('tripInfo');
+    resortInfoRef = tripRef.child('resortInfo');
+  }
+
+
   // Helper functions to show or hide edit buttons  
   var showEditButtons = function(container) {
     container.find('button.editing').show();

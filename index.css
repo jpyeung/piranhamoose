@@ -6,6 +6,10 @@
     vertical-align: bottom;
 }
 
+.fancy-title {
+  font-family: 'Berkshire Swash', cursive;
+}
+
 #myModal {
     height: 80%;
     overflow: hidden;
