@@ -67,9 +67,9 @@ $(document).ready(function() {
     },
     equip: {
       col: 2,
-      edit_fn: cellToTextInput,
-      save_fn: saveCellChanges,
-      default_val: 'Helmet, Boots, Skis, Poles'
+      edit_fn: cellToMultiCheckboxes,
+      save_fn: saveMultiCheckboxChanges,
+      default_val: 'Skis, Helmet, Boots, Poles'
     },
     skill: {
       col: 3,
@@ -127,9 +127,10 @@ $(document).ready(function() {
 
   // Turn a cell into a single checkbox. Returns old field value.
   function cellToCheckbox(cell) {
-    var text = cell.text()
+    var text = cell.text();
 
-    var checkbox = $('<input type="checkbox"></input>');
+    var checkbox = $('<div class="checkbox"><label><input type="checkbox"></input> ' +
+      'Organizer? </label></div>');
     cell.empty();
 
     if (text == 'Yes') {
@@ -137,6 +138,47 @@ $(document).ready(function() {
     }
 
     cell.append(checkbox);
+
+    return text;
+  }
+
+  function cellToMultiCheckboxes(cell) {
+    var text = cell.text();
+    var items = text.split(', ');
+    var default_items = columns.equip.default_val.split(', ');
+    cell.empty();
+
+    for (var i in default_items) {
+      var checkbox = $(
+        '<div class="checkbox"><label><input type="checkbox"></input>' +
+        default_items[i] + '</label></div>'
+      );
+
+      if (items.indexOf(default_items[i]) != -1) {
+        checkbox.find('input').prop('checked', true);
+      }
+      cell.append(checkbox);
+    }
+
+    for (var i in items) {
+      if (items[i] != ''){
+        var checkbox = $(
+          '<div class="checkbox"><label><input type="checkbox"></input>' + 
+          items[i] + '</label></div>'
+        );
+        checkbox.find('input').prop('checked', true);
+        if (default_items.indexOf(items[i]) == -1) {
+          cell.append(checkbox);
+        }
+      }
+    }
+
+    var other_checkbox = $('<div class="checkbox"><label>' +
+      '<input type="checkbox"></input> Other (please specify): ' +
+      '</label></div>'
+    );
+    var other_input = $('<input type="text" class="form-control other-input"></input>');
+    cell.append(other_checkbox, other_input);
 
     return text;
   }
@@ -165,6 +207,31 @@ $(document).ready(function() {
       cell.text('No');
       return 'No';
     }
+  }
+
+  function saveMultiCheckboxChanges(cell) {
+    var labels = cell.find('label');
+    var items = [];
+
+    for (var i in labels) {
+      var label = labels.eq(i)
+      var checkbox = label.find('input');
+      if (checkbox.prop('checked')){
+        var item = label.text();
+        if (item.indexOf('Other') == -1) {
+          items.push(item);
+        } else {
+          var other_items = cell.find('.other-input').val()
+          if (other_items) {
+            items = items.concat(other_items.split(', '));
+          }
+        }
+      }
+    }
+
+    cell.empty();
+    cell.text(items.join(', '));
+    return items.join(', ');
   }
 
   // cancel changes to a cell by reinstating the old value
