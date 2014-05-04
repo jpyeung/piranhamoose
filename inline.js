@@ -23,7 +23,6 @@ $(document).ready(function() {
   // if this is for a different trip, use those firebase refs instead
   if ($.getUrlVar('trip')) {
     var tripRefName = $.getUrlVar('trip');
-    console.log('tripRefName:',tripRefName);
     tripRef = tripsRef.child(tripRefName);
 
     peopleRef = tripRef.child('people');
@@ -248,7 +247,7 @@ $(document).ready(function() {
 
     var old_vals = {};
 
-    for (property in columns) {
+    for (var property in columns) {
       if (property != 'actions') {
         var info = columns[property];
         old_vals[property] = info.edit_fn(cells.eq(info.col));
@@ -267,7 +266,7 @@ $(document).ready(function() {
     var cells = row.find('td');
 
     var new_data = {};
-    for (property in columns) {
+    for (var property in columns) {
       if (property != 'actions') {
         var info = columns[property];
         // empty string is so that firebase can update the property if it is left blank
@@ -298,7 +297,7 @@ $(document).ready(function() {
     var cells = row.find('td');
     var old_data = row.data('old_data');
 
-    for (property in columns) {
+    for (var property in columns) {
       if (property != 'actions') {
         var info = columns[property];
         cancelCellChanges(cells.eq(info.col), old_data[property]);
@@ -312,7 +311,7 @@ $(document).ready(function() {
   var displayNewRow = function(rowRefName, is_new) {
     // create template for a new row
     var new_row = $('<tr></tr>');
-    for (property in columns) {
+    for (var property in columns) {
       if (property != 'actions') {
         var default_val = columns[property].default_val
         new_row.append($('<td></td>').text(default_val));
@@ -376,7 +375,7 @@ $(document).ready(function() {
     var row = refToRow[rowRefName];
     var cells = row.find('td');
 
-    for (property in data) {
+    for (var property in data) {
       var info = columns[property];
       cells.eq(info.col).text(data[property]);
     }
@@ -415,7 +414,7 @@ $(document).ready(function() {
   //  anything else that should be done for organizers should be done here also
   organizersRef.on('value', function(snapshot) {
     var phones = [];
-    for (row in snapshot.val()) {
+    for (var row in snapshot.val()) {
       phones.push(snapshot.val()[row].phone);
     }
 
@@ -561,7 +560,7 @@ $(document).ready(function() {
 
   var editTripInfo = function() {
     var dds = $('#trip-info').find('dd');
-    for (property in fields) {
+    for (var property in fields) {
       var info = fields[property];
       if (info.editable) {
         info.edit_fn(dds.eq(info.index));
@@ -574,7 +573,7 @@ $(document).ready(function() {
   var saveTripInfo = function() {
     var dds = $('#trip-info').find('dd');
     var update_data = {};
-    for (property in fields) {
+    for (var property in fields) {
       var info = fields[property];
       if (info.editable) {
         update_data[property] = info.save_fn(dds.eq(info.index));
@@ -587,7 +586,7 @@ $(document).ready(function() {
 
   var cancelTripInfo = function() {
     var dds = $('#trip-info').find('dd');
-    for (property in fields) {
+    for (var property in fields) {
       var info = fields[property];
       if (info.editable) {
         cancelInfoChanges(dds.eq(info.index));
@@ -606,7 +605,7 @@ $(document).ready(function() {
 
   tripInfoRef.on('value', function (snapshot) {
     var dds = $('#trip-info').find('dd');
-    for (property in snapshot.val()) {
+    for (var property in snapshot.val()) {
       dds.eq(fields[property].index).text(snapshot.val()[property]);
     }
     showLocation();
