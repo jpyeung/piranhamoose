@@ -10,6 +10,7 @@ function initialize() {
         var drivingDistanceKilometers = (gDir.getDistance().meters / 1000).toFixed(2);
         var drivingDuration = gDir.getDuration().html;
         document.getElementById('results').innerHTML = '<strong>Address 1: </strong>' + location1.address + '<br /><strong>Address 2: </strong>' + location2.address + '<br /><strong>Driving Distance: </strong>' + drivingDistanceMiles + ' miles (' + drivingDistanceKilometers + ' kilometers)' + '<br /><strong>Driving Duration: </strong>' + drivingDuration;
+        document.getElementById('map_canvas').innerHTML = "<iframe width='100%' height='450' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?origin=" + encodeURIComponent(location1.address) + '&destination=' + encodeURIComponent(location2.address) + "&key=AIzaSyDh3WHCnH2nQFF0JNYGV_OBMFO9nGF67ts'></iframe>"
     });
 }
 
