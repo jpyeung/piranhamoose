@@ -6,10 +6,10 @@ function initialize() {
     directionsPanel = document.getElementById("directions");    
     gDir = new GDirections(map, directionsPanel);
     GEvent.addListener(gDir, "load", function() {
-        var drivingDistanceMiles = gDir.getDistance().meters / 1609.344;
-        var drivingDistanceKilometers = gDir.getDistance().meters / 1000;
+        var drivingDistanceMiles = (gDir.getDistance().meters / 1609.344).toFixed(2);
+        var drivingDistanceKilometers = (gDir.getDistance().meters / 1000).toFixed(2);
         var drivingDuration = gDir.getDuration().html;
-        document.getElementById('results').innerHTML = '<strong>Address 1: </strong>' + location1.address + ' (' + location1.lat + ':' + location1.lon + ')<br /><strong>Address 2: </strong>' + location2.address + ' (' + location2.lat + ':' + location2.lon + ')<br /><strong>Driving Distance: </strong>' + drivingDistanceMiles + ' miles (or ' + drivingDistanceKilometers + ' kilometers)' + '<br /><strong>Driving Duration: </strong>' + drivingDuration;
+        document.getElementById('results').innerHTML = '<strong>Address 1: </strong>' + location1.address + '<br /><strong>Address 2: </strong>' + location2.address + '<br /><strong>Driving Distance: </strong>' + drivingDistanceMiles + ' miles (' + drivingDistanceKilometers + ' kilometers)' + '<br /><strong>Driving Duration: </strong>' + drivingDuration;
     });
 }
 
