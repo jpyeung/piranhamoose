@@ -1,6 +1,35 @@
 $(document).ready(function() {
   resorts = ["blue-hills", "nashoba-valley", "boston-ski", "ski-bradford", "weston", "wachusett-mountain", "ski-ward"];
 
+  // Change the displayed info about the resort given the name of the resort
+  function changeResort(resort) {
+    document.getElementById("resort-name").innerHTML = 
+      document.getElementById("" + resort + "-name").innerHTML;
+
+    document.getElementById("resort-address").innerHTML = 
+      document.getElementById("" + resort + "-address").innerHTML;
+
+    document.getElementById("resort-difficulty").innerHTML = 
+      document.getElementById("" + resort + "-difficulty").innerHTML;
+
+    document.getElementById("resort-price").innerHTML = 
+      document.getElementById("" + resort + "-price").innerHTML;
+
+    document.getElementById("resort-phone-number").innerHTML = 
+      document.getElementById("" + resort + "-phone-number").innerHTML;
+
+    document.getElementById("resort-website").innerHTML = 
+      document.getElementById("" + resort + "-website").innerHTML;
+
+    showLocation();
+    var address = document.getElementById("resort-address").innerHTML;
+    updateWeatherFromLocation(address.substring(address.length - 6));
+  }
+
+  resortInfoRef.on('value', function(snapshot) {
+    changeResort(snapshot.val());
+  });
+
   // The below is a function to attach a listener to the appropriate choice button in the resort form,
   // given the name of the resort form.
   var makeResortListener = function(resort) {
@@ -13,29 +42,9 @@ $(document).ready(function() {
     });
 
     $("#" + resort).click(function() {
-  
-      document.getElementById("resort-name").innerHTML = 
-        document.getElementById("" + resort + "-name").innerHTML;
-
-      document.getElementById("resort-address").innerHTML = 
-        document.getElementById("" + resort + "-address").innerHTML;
-    
-      document.getElementById("resort-difficulty").innerHTML = 
-        document.getElementById("" + resort + "-difficulty").innerHTML;
-    
-      document.getElementById("resort-price").innerHTML = 
-        document.getElementById("" + resort + "-price").innerHTML;
-    
-      document.getElementById("resort-phone-number").innerHTML = 
-        document.getElementById("" + resort + "-phone-number").innerHTML;
-
-      document.getElementById("resort-website").innerHTML = 
-        document.getElementById("" + resort + "-website").innerHTML;
-
+      resortInfoRef.set(resort);
+      //changeResort(resort);
       $('#myModal').modal('hide');
-      showLocation();
-      var address = document.getElementById("resort-address").innerHTML;
-      updateWeatherFromLocation(address.substring(address.length - 6));
     });
   }
   
