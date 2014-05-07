@@ -40,7 +40,7 @@ function makeWeatherApp(today, queriedDay) {
   queriedDayDate.setTime(queriedDay);
   
   document.getElementById("weather-prediction").innerHTML = "Weather in " + location + " on " 
-    + queriedDayDate.toDateString() + ": " + temp_of_queried_day;
+    + queriedDayDate.toDateString() + ":</br>" + temp_of_queried_day;
   document.getElementById("weather-img").src = img_url;
 }
 
