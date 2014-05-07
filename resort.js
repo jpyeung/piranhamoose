@@ -37,6 +37,8 @@ $(document).ready(function() {
 
         $('#myModal').modal('hide');
         showLocation();
+        var address = document.getElementById("resort-address").innerHTML;
+        updateWeatherFromLocation(address.substring(address.length - 6));
     	});
   	}
   

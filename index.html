@@ -24,6 +24,7 @@
     <script type="text/javascript" src="resort.js"></script>
     <script type="text/javascript" src="inline.js"></script>
     <script type="text/javascript" src="maps.js"></script>
+    <script type="text/javascript" src="weather.js"></script>
 	
 	  <!-- Moment.js -->
 	  <script src="./moment-develop/moment.js"></script>
@@ -34,6 +35,23 @@
     <!-- Maps -->
     <script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyDh3WHCnH2nQFF0JNYGV_OBMFO9nGF67ts" type="text/javascript"></script>
 
+<!--  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script> -->
+    <script> jQuery(document).ready(function() {
+      var address = document.getElementById("resort-address").innerHTML;
+      updateWeatherFromLocation(address.substring(address.length - 6));
+    /*function() { 
+      $.ajax({ 
+//        url : "http://api.wunderground.com/api/5e612b96bba18491/geolookup/conditions/q/IA/Cedar_Rapids.json", 
+        url : "http://api.wunderground.com/api/5e612b96bba18491/forecast10day/geolookup/conditions/q/MA/02139.json",
+        dataType : "jsonp",
+        success : function(parsed_json) {
+            setParsedJson(parsed_json);
+            makeWeatherApp(0, 100000000, 0);
+          } 
+        }); 
+      }*/}); 
+    </script> 
+    
   </head>
   <body onload="initialize(); showLocation();">
     <div class="navbar navbar-default" role="navigation">
@@ -90,6 +108,18 @@
                 </div>
               </div>
             </div>
+            <div class="col-md-12">
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title" id="weather-header">Weather Prediction
+                  </h3>
+                </div>
+                <div class="panel-body" id="weather-prediction">
+                Give Adam Yedidia all your money
+                </div>
+                <img id="weather-img" src="http://icons.wxug.com/i/c/i/partlycloudy.gif" width="200" height="200"></img>
+              </div>
+            </div>            
             <div class="col-md-12">
               <div class="panel panel-info">
                 <div class="panel-heading">

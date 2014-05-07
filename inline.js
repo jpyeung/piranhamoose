@@ -437,6 +437,7 @@ $(document).ready(function() {
   var yyyy = today.getFullYear();
   
   var currentDateString = mm + "/" + dd + "/" + yyyy;
+  var msInDay = 86400000;
   
   ///////////////////////////////////////
   // Trip info
@@ -522,20 +523,20 @@ $(document).ready(function() {
 // nice to see what you'll revert back to if you cancel? 
  
     document.getElementById('start').style.visibility = 'visible'; 
-    if (defaultShouldBeSetStart) {
+/*    if (defaultShouldBeSetStart) {
       $("#start").data("DateTimePicker").setDate(currentDateString);
       defaultShouldBeSetStart = false;
-    }
+    }*/
   });
   $('#edit-getting-back').click(function() {
     var span = $('#getting-back-val');
     showEditButtons(span.parent());
     
     document.getElementById('stop').style.visibility = 'visible'; 
-    if (defaultShouldBeSetStop) {
+/*    if (defaultShouldBeSetStop) {
       $("#stop").data("DateTimePicker").setDate(currentDateString);
       defaultShouldBeSetStop = false;
-    }
+    }*/
   });
   $('#edit-leaving-from').click(function() {
     editListener('#leaving-from-val');
@@ -545,12 +546,16 @@ $(document).ready(function() {
   });
   
   function saveDatetimeChanges(container) {
-    var date = container.find('.date').data("DateTimePicker").getDate()._d.toLocaleString();
+    var date = container.find('.date').data("DateTimePicker").getDate();
+    var dateString = date._d.toLocaleString();
     container.empty();
-    container.text(date);
-    return date;
+    container.text(dateString);
+    
+    updateWeatherFromDate(date);
+    
+    return dateString;
   }
-
+  
   // Cancel the changes to a field by reinstating the old value
   var cancelInfoChanges = function(container) {
     var old_val = container.data('old_data');
