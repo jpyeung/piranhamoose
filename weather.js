@@ -27,8 +27,14 @@ function makeWeatherApp(today, queriedDay) {
   var differenceInPeriods = differenceInDays * 2;
   
   var location = parsed_json['location']['city']; 
-  var temp_of_queried_day = parsed_json['forecast']['txt_forecast']['forecastday'][differenceInPeriods]['fcttext'];
-  var img_url = parsed_json['forecast']['txt_forecast']['forecastday'][differenceInPeriods]['icon_url'];
+  
+  if ((differenceInPeriods >= 0) && (differenceInPeriods < 20)) {
+    var temp_of_queried_day = parsed_json['forecast']['txt_forecast']['forecastday'][differenceInPeriods]['fcttext'];
+    var img_url = parsed_json['forecast']['txt_forecast']['forecastday'][differenceInPeriods]['icon_url'];
+  }
+  else {
+    var temp_of_queried_day = "No weather available for this date."
+  }
   
   var queriedDayDate = new Date();
   queriedDayDate.setTime(queriedDay);
