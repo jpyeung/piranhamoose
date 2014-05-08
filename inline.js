@@ -1,6 +1,10 @@
 // Taken from PS2:
 //    This script extracts parameters from the URL
 //    from jquery-howto.blogspot.com
+
+var saveOtherEditedThings;
+var thingBeingEdited;
+
 $.extend({
   getUrlVars : function() {
     var vars = [], hash;
@@ -257,6 +261,9 @@ $(document).ready(function() {
     showEditButtons(cells.eq(columns.actions.col));
 
     row.data('old_data',old_vals);
+    
+    // This helps save edited stuff when other things are changed
+    thingBeingEdited = row;
   };
 
   // set field values to the current values of their respective inputs
@@ -285,6 +292,8 @@ $(document).ready(function() {
       rowRef.setWithPriority(new_data, 'z-comes-after-o');
     }
     hideEditButtons(cells.eq(columns.actions.col));
+    
+    thingBeingEdited = undefined;
   };
 
   // restore old values of fields if the row had been previously saved, otherwise
@@ -307,6 +316,21 @@ $(document).ready(function() {
     hideEditButtons(cells.eq(columns.actions.col));
   };
 
+  thingBeingEdited = undefined;
+  
+  saveOtherEditedThings = function() {
+    if (!(thingBeingEdited == undefined)) {
+      if (thingBeingEdited == "trip") {
+        saveTripInfo();
+      }
+      else {
+        saveRowChanges(thingBeingEdited);
+      }
+      
+      thingBeingEdited = undefined;
+    }
+  }
+  
   // add a new row to the table, including listeners on the buttons
   var displayNewRow = function(rowRefName, is_new) {
     // create template for a new row
@@ -324,10 +348,14 @@ $(document).ready(function() {
 
     // this is sloppy code and it makes me sad :( I could probably abstract it, but 
     //   I don't think there's any reason to except my own sense of aesthetics
+    
+    // Why is this sloppy code? It looks fine to me.
     var edit_button = $(
       '<button class="not-editing btn btn-default btn-xs">' +
       '<span class="glyphicon glyphicon-pencil"></span> Edit </button>'
     ).click(function() {
+      // This saves other things that might be being edited at this time
+      saveOtherEditedThings();
       makeRowEditable(new_row);
     });
     
@@ -368,6 +396,8 @@ $(document).ready(function() {
     if (is_new){
       edit_button.click();
     }
+    
+    thingBeingEdited = new_row;
   };
 
   // update the data in a row, as identified by a firebase ref
@@ -386,7 +416,10 @@ $(document).ready(function() {
     // get a new unique id for the row
     var newRowRef = peopleRef.push();
     var rowRefName = newRowRef.name();
-
+ 
+    // This saves other things that might be being edited at this time
+    saveOtherEditedThings();
+    
     // display the new row, and mark it as truly new
     displayNewRow(rowRefName, true);
   });
@@ -564,6 +597,10 @@ $(document).ready(function() {
   };
 
   var editTripInfo = function() {
+    // This saves other things that might be being edited at this time
+    saveOtherEditedThings();
+    thingBeingEdited = "trip";
+    
     var dds = $('#trip-info').find('dd');
     for (var property in fields) {
       var info = fields[property];
@@ -576,6 +613,8 @@ $(document).ready(function() {
   }
 
   var saveTripInfo = function() {
+    thingBeingEdited = undefined;
+  
     var dds = $('#trip-info').find('dd');
     var update_data = {};
     for (var property in fields) {
@@ -590,6 +629,8 @@ $(document).ready(function() {
   }
 
   var cancelTripInfo = function() {
+    thingBeingEdited = undefined;
+  
     var dds = $('#trip-info').find('dd');
     for (var property in fields) {
       var info = fields[property];
@@ -617,3 +658,23 @@ $(document).ready(function() {
   });
   
 });
+
+/*$(document).load(function() {
+
+  alert("loaded");
+  // This cuts off the part of the date that we care about (i.e. "May 21, 2014")
+  var writtenDate = document.getElementById("getting-back-val").innerHTML;
+  var start = writtenDate.indexOf(",") + 2;
+  var end = writtenDate.indexOf(" ", start) + 1;
+  var end = writtenDate.indexOf(" ", end) + 1;
+  var end = writtenDate.indexOf(" ", end);
+  var writtenDate = writtenDate.substring(start, end);
+  
+  alert(writtenDate);
+  
+  var numberOfMs = Date.parse(writtenDate);
+  var date = new Date();
+  date.setTime(numberOfMs);
+  
+  updateWeatherFromDate(date);
+});*/

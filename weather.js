@@ -57,3 +57,64 @@ function updateWeatherFromLocation(zipcode) {
   storedZipcode = zipcode;
   rebuildParsedJson(todayRoundedDown, storedQueriedDay, zipcode);
 }
+
+function getMonthNumber(month) {
+  if (month == "January") {
+    return "0";
+  }
+  if (month == "February") {
+    return "1";
+  }
+  if (month == "March") {
+    return "2";
+  }
+  if (month == "April") {
+    return "3";
+  }
+  if (month == "May") {
+    return "4";
+  }
+  if (month == "June") {
+    return "5";
+  }
+  if (month == "July") {
+    return "6";
+  }
+  if (month == "August") {
+    return "7";
+  }
+  if (month == "September") {
+    return "8";
+  }
+  if (month == "October") {
+    return "9";
+  }
+  if (month == "November") {
+    return "10";
+  }
+  if (month == "December") {
+    return "11";
+  }
+  throw "Not a month: " + month;
+}
+
+function getMonthFromWrittenDate(date) {
+  var start = date.indexOf(",") + 2;
+  var end = date.indexOf(" ", start);
+  var wordMonth = date.substring(start, end);
+  return getMonthNumber(wordMonth);
+}
+
+function getDayFromWrittenDate(date) {
+  var start = date.indexOf(" ") + 1;
+  var start = date.indexOf(" ", start) + 1;
+  var end = date.indexOf(",", start);
+  return date.substring(start, end);
+}
+
+function getYearFromWrittenDate(date) {
+  var start = date.indexOf(",") + 1;
+  var start = date.indexOf(",", start) + 2;
+  var end = date.indexOf(" ", start);
+  return date.substring(start, end);
+}

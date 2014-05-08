@@ -3,6 +3,7 @@ $(document).ready(function() {
 
   // Change the displayed info about the resort given the name of the resort
   function changeResort(resort) {
+    
     document.getElementById("resort-name").innerHTML = 
       document.getElementById("" + resort + "-name").innerHTML;
 
@@ -26,6 +27,12 @@ $(document).ready(function() {
     updateWeatherFromLocation(address.substring(address.length - 6));
   }
 
+  $('#myModal').on('shown.bs.modal', function (e) {
+    // This saves other things that might be being edited at this time
+    saveOtherEditedThings();
+    thingBeingEdited = undefined;
+  });
+  
   resortInfoRef.on('value', function(snapshot) {
     changeResort(snapshot.val());
   });
