@@ -1,10 +1,6 @@
 // Taken from PS2:
 //    This script extracts parameters from the URL
 //    from jquery-howto.blogspot.com
-
-var saveOtherEditedThings;
-var thingBeingEdited;
-
 $.extend({
   getUrlVars : function() {
     var vars = [], hash;
@@ -23,6 +19,7 @@ $.extend({
 });
 
 $(document).ready(function() {
+  var thingBeingEdited = undefined;
 
   // if this is for a different trip, use those firebase refs instead
   if ($.getUrlVar('trip')) {
@@ -268,6 +265,7 @@ $(document).ready(function() {
 
   // set field values to the current values of their respective inputs
   var saveRowChanges = function(row) {
+    thingBeingEdited = undefined;
     var rowRef = peopleRef.child(row.data('rowRefName'));
     row.removeClass('new-row');
     var cells = row.find('td');
@@ -292,8 +290,6 @@ $(document).ready(function() {
       rowRef.setWithPriority(new_data, 'z-comes-after-o');
     }
     hideEditButtons(cells.eq(columns.actions.col));
-    
-    thingBeingEdited = undefined;
   };
 
   // restore old values of fields if the row had been previously saved, otherwise
@@ -315,10 +311,8 @@ $(document).ready(function() {
 
     hideEditButtons(cells.eq(columns.actions.col));
   };
-
-  thingBeingEdited = undefined;
   
-  saveOtherEditedThings = function() {
+  function saveOtherEditedThings() {
     if (!(thingBeingEdited == undefined)) {
       if (thingBeingEdited == "trip") {
         saveTripInfo();
@@ -350,6 +344,9 @@ $(document).ready(function() {
     //   I don't think there's any reason to except my own sense of aesthetics
     
     // Why is this sloppy code? It looks fine to me.
+    //  Just because of the repetition and similarity (DRY!) If we were being super generalizable 
+    //  this wouldn't fly, because if you wanted to add another button you'd have to
+    //  repeat yourself again. But in this case it's fine.
     var edit_button = $(
       '<button class="not-editing btn btn-default btn-xs">' +
       '<span class="glyphicon glyphicon-pencil"></span> Edit </button>'
@@ -561,46 +558,13 @@ $(document).ready(function() {
     return text;
   }
   
-  // trip info edit buttons
-  $('#edit-leaving-at').click(function() {
-    var span = $('#leaving-at-val');
-    showEditButtons(span.parent());
-    
-//    document.getElementById("leaving-at-val").style.visibility = 'hidden';
-
-//  I don't rightly know whether we want to keep the old label hidden--it's 
-// nice to see what you'll revert back to if you cancel? 
- 
-    document.getElementById('start').style.visibility = 'visible'; 
-/*    if (defaultShouldBeSetStart) {
-      $("#start").data("DateTimePicker").setDate(currentDateString);
-      defaultShouldBeSetStart = false;
-    }*/
-  });
-  $('#edit-getting-back').click(function() {
-    var span = $('#getting-back-val');
-    showEditButtons(span.parent());
-    
-    document.getElementById('stop').style.visibility = 'visible'; 
-/*    if (defaultShouldBeSetStop) {
-      $("#stop").data("DateTimePicker").setDate(currentDateString);
-      defaultShouldBeSetStop = false;
-    }*/
-  });
-  $('#edit-leaving-from').click(function() {
-    editListener('#leaving-from-val');
-  });
-  $('#edit-organizer-number').click(function() {
-    editListener('#organizer-number-val');
-  });
-  
   function saveDatetimeChanges(container) {
     var date = container.find('.date').data("DateTimePicker").getDate();
     var dateString = date._d.toLocaleString();
     container.empty();
     container.text(dateString);
     
-    updateWeatherFromDate(date);
+    //updateWeatherFromDate(date);
     
     return dateString;
   }

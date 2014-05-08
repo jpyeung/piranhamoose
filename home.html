@@ -25,7 +25,6 @@
         var tripHolder = $('#existing-trips');
         tripHolder.empty();
         for (trip in snapshot.val()) {
-          console.log('trip:',trip);
           var link = $('<div><a href="./index.html#?trip=' + trip + '" role="button" class="btn btn-primary">' + trip + '</a></div>');
           tripHolder.append(link);
         }
