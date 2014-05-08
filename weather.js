@@ -33,7 +33,8 @@ function makeWeatherApp(today, queriedDay) {
     var img_url = parsed_json['forecast']['txt_forecast']['forecastday'][differenceInPeriods]['icon_url'];
   }
   else {
-    var temp_of_queried_day = "No weather available for this date."
+    var temp_of_queried_day = "No weather available for this date.";
+    var img_url = "images/question.jpg";
   }
   
   var queriedDayDate = new Date();
