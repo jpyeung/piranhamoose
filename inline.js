@@ -439,7 +439,8 @@ $(document).ready(function() {
   });
 
   peopleRef.on('value', function(snapshot) {
-    var skill_dict = {}
+    var skill_dict = {};
+    var equip_dict = {};
     snapshot.forEach(function(personSnapshot) {
       var skill = personSnapshot.child('skill').val();
       if (skill in skill_dict) {
@@ -448,11 +449,28 @@ $(document).ready(function() {
       else {
         skill_dict[skill] = 1
       }
+
+      var equip = personSnapshot.child('equip').val();
+      var items = equip.split(', ');
+      for (item in items) {
+        if (items[item] in equip_dict) {
+          equip_dict[items[item]] += 1
+        }
+        else {
+          equip_dict[items[item]] = 1
+        }
+      }
     });
-    document.getElementById('summary').innerHTML = "";
+    document.getElementById('skill-summary').innerHTML = "";
     for (level in skill_dict) {
       string = level + ": " + skill_dict[level]+ "<br>";
-      document.getElementById('summary').innerHTML += string;
+      document.getElementById('skill-summary').innerHTML += string;
+    }
+
+    document.getElementById('equip-summary').innerHTML = "";
+    for (item in equip_dict) {
+      string = item + ": " + equip_dict[item]+ "<br>";
+      document.getElementById('equip-summary').innerHTML += string;
     }
   });
 
