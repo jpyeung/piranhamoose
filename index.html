@@ -34,19 +34,6 @@
 
     <!-- Maps -->
     <script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyDh3WHCnH2nQFF0JNYGV_OBMFO9nGF67ts" type="text/javascript"></script>
-
-<!--  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script> -->
-    <script> jQuery(document).ready(function() {
-      var address = document.getElementById("resort-address").innerHTML;
-      updateWeatherFromLocation(address.substring(address.length - 6));
-      
-      /*var month = getMonthFromWrittenDate(writtenDate);
-      var day = getDayFromWrittenDate(writtenDate);
-      var year = getYearFromWrittenDate(writtenDate);
-    
-      var inputDate = month + "/" + day + "/" + year;*/
-    }); 
-    </script> 
     
   </head>
   <body onload="initialize(); showLocation();">
@@ -102,20 +89,7 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="col-md-12">
-              <div class="panel panel-info">
-                <div class="panel-heading">
-                  <h3 class="panel-title" id="weather-header">Weather Prediction
-                  </h3>
-                </div>
-                <div class="panel-body">
-                  <div id="weather-prediction">
-                    Give Adam Yedidia all your money
-                  </div>
-                  <img id="weather-img" src="http://icons.wxug.com/i/c/i/partlycloudy.gif" width="50" height="50"></img>
-                </div>
-              </div>
-            </div>  -->           
+
             <div class="col-md-12">
               <div class="panel panel-info">
                 <div class="panel-heading">
@@ -269,6 +243,7 @@
                 </ul>
               </div>
             </div>
+
             <div class="col-md-12">
               <div class="panel panel-info">
                 <div class="panel-heading">
@@ -277,12 +252,13 @@
                 </div>
                 <div class="panel-body">
                   <div id="weather-prediction">
-                    Give Adam Yedidia all your money
+                    No weather prediction yet...
                   </div>
                   <img id="weather-img" src="http://icons.wxug.com/i/c/i/partlycloudy.gif" width="50" height="50"></img>
                 </div>
               </div>
             </div>
+
             <div class="col-md-12">
               <div class="panel panel-info">
                 <div class="panel-heading">
