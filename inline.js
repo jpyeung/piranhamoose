@@ -457,7 +457,6 @@ $(document).ready(function() {
     document.getElementById('summary').innerHTML = "";
     for (level in skill_dict) {
       string = level + ": " + skill_dict[level]+ "<br>";
-      console.log(string);
       document.getElementById('summary').innerHTML += string;
     }
   });
