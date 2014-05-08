@@ -396,8 +396,6 @@ $(document).ready(function() {
     if (is_new){
       edit_button.click();
     }
-    
-    thingBeingEdited = new_row;
   };
 
   // update the data in a row, as identified by a firebase ref
