@@ -443,6 +443,25 @@ $(document).ready(function() {
     delete refToRow[snapshot.name()];
   });
 
+  peopleRef.on('value', function(snapshot) {
+    var skill_dict = {}
+    snapshot.forEach(function(personSnapshot) {
+      var skill = personSnapshot.child('skill').val();
+      if (skill in skill_dict) {
+        skill_dict[skill] += 1
+      }
+      else {
+        skill_dict[skill] = 1
+      }
+    });
+    document.getElementById('summary').innerHTML = "";
+    for (level in skill_dict) {
+      string = level + ": " + skill_dict[level]+ "<br>";
+      console.log(string);
+      document.getElementById('summary').innerHTML += string;
+    }
+  });
+
   // update the trip info 'organizer number' field with all organizers' phone numbers
   //  anything else that should be done for organizers should be done here also
   organizersRef.on('value', function(snapshot) {
