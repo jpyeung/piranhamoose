@@ -597,7 +597,8 @@ $(document).ready(function() {
   
   function saveDatetimeChanges(container) {
     var date = container.find('.date').data("DateTimePicker").getDate();
-    var dateString = date._d.toLocaleString();
+    //var dateString = date._d.toLocaleString();
+    var dateString = date.format("dddd, MMMM D, YYYY hh:mm a");
     container.empty();
     container.text(dateString);
     
