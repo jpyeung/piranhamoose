@@ -568,8 +568,19 @@ $(document).ready(function() {
   function ddToDatetime(dd) {
     var text = dd.text();
 
-    var datetime = $('<input type="text" class="form-control" />').datetimepicker();
+    var datetime = $('<input type="text" class="form-control date" />').datetimepicker();
 
+// =======
+//     var datetime = $(
+//       '<div class="input-group date">' +
+//         '<input type="text" class="form-control" />' +
+//         '<span class="input-group-addon">' +
+//           '<span class="glyphicon glyphicon-calendar"></span>' +
+//         '</span>' +
+//       '</div>'
+//     ).datetimepicker();
+    
+    datetime.data("DateTimePicker").setValue(moment(text, ["dddd, MMMM D, YYYY hh:mm:ss a", "MMMM D, YYYY hh:mm:ss a L"]));
     dd.empty();
     dd.append(datetime);
     dd.data('old_data', text);
