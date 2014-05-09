@@ -201,8 +201,8 @@ $(document).ready(function() {
     cell.append(other_checkbox, other_input);
 
     return text;
-  }
-
+  } 
+  
   // save functions:
   //  take a cell with an input field and return the appropriate text
   //  representation of the data.
@@ -576,7 +576,9 @@ $(document).ready(function() {
         '</span>' +
       '</div>'
     ).datetimepicker();
-
+    
+    datetime.data("DateTimePicker").setValue(moment(text, "dddd, MMMM D, YYYY hh:mm:ss a"));
+    
     dd.empty();
     dd.append(datetime);
     dd.data('old_data', text);
@@ -629,6 +631,7 @@ $(document).ready(function() {
     var dds = $('#trip-info').find('dd');
     var update_data = {};
     for (var property in fields) {
+      console.log(property);
       var info = fields[property];
       if (info.editable) {
         update_data[property] = info.save_fn(dds.eq(info.index));
