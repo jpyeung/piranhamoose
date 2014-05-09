@@ -11,7 +11,7 @@ function setParsedJson(s) {
 
 function rebuildParsedJson(today, queriedDay, zipcode) { 
   $.ajax({ 
-    url : "http://api.wunderground.com/api/5e612b96bba18491/forecast10day/geolookup/conditions/q/MA/" + zipcode + ".json",
+    url : "http://api.wunderground.com/api/a3b4d4d3f9c829fc/forecast10day/geolookup/conditions/q/MA/" + zipcode + ".json",
     dataType : "jsonp",
     success : function(parsed_json) {
         setParsedJson(parsed_json);
@@ -49,7 +49,8 @@ function updateWeatherFromDate(date) {
   var queriedDay = date.valueOf();
   storedQueriedDay = queriedDay;
   var todayRoundedDown = today.valueOf() - today.valueOf() % msInDay;
-  rebuildParsedJson(todayRoundedDown, queriedDay, storedZipcode);
+//  rebuildParsedJson(todayRoundedDown, queriedDay, storedZipcode);
+  makeWeatherApp(today, queriedDay);
 }
 
 function updateWeatherFromLocation(zipcode) {
