@@ -21,6 +21,26 @@ $.extend({
 $(document).ready(function() {
   var thingBeingEdited = undefined;
 
+  tripInfoRef.on('value', function (snapshot) {
+    var dds = $('#trip-info').find('dd');
+    for (var property in snapshot.val()) {
+      dds.eq(fields[property].index).text(snapshot.val()[property]);
+    }
+    
+    var writtenDate = document.getElementById("getting-back-val").innerHTML;
+    var start = writtenDate.indexOf(",") + 2;
+    var end = writtenDate.indexOf(" ", start) + 1;
+    var end = writtenDate.indexOf(" ", end) + 1;
+    var end = writtenDate.indexOf(" ", end);
+    var writtenDate = writtenDate.substring(start, end);
+    var numberOfMs = Date.parse(writtenDate);
+    var date = new Date();
+    date.setTime(numberOfMs);  
+    updateWeatherFromDate(date);
+    
+    showLocation();
+  });
+
   // if this is for a different trip, use those firebase refs instead
   if ($.getUrlVar('trip')) {
     var tripRefName = $.getUrlVar('trip');
@@ -577,8 +597,6 @@ $(document).ready(function() {
     container.empty();
     container.text(dateString);
     
-    //updateWeatherFromDate(date);
-    
     return dateString;
   }
   
@@ -641,13 +659,5 @@ $(document).ready(function() {
     showLocation();
   });
   $('#cancel-trip-info').click(cancelTripInfo);
-
-  tripInfoRef.on('value', function (snapshot) {
-    var dds = $('#trip-info').find('dd');
-    for (var property in snapshot.val()) {
-      dds.eq(fields[property].index).text(snapshot.val()[property]);
-    }
-    showLocation();
-  });
   
 });
