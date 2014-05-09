@@ -27,7 +27,7 @@ $(document).ready(function() {
       dds.eq(fields[property].index).text(snapshot.val()[property]);
     }
     
-    var writtenDate = document.getElementById("getting-back-val").innerHTML;
+    var writtenDate = document.getElementById("leaving-at-val").innerHTML;
     var start = writtenDate.indexOf(",") + 2;
     var end = writtenDate.indexOf(" ", start) + 1;
     var end = writtenDate.indexOf(" ", end) + 1;
