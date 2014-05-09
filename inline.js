@@ -340,13 +340,6 @@ $(document).ready(function() {
       new_row.addClass('new-row');
     }
 
-    // this is sloppy code and it makes me sad :( I could probably abstract it, but 
-    //   I don't think there's any reason to except my own sense of aesthetics
-    
-    // Why is this sloppy code? It looks fine to me.
-    //  Just because of the repetition and similarity (DRY!) If we were being super generalizable 
-    //  this wouldn't fly, because if you wanted to add another button you'd have to
-    //  repeat yourself again. But in this case it's fine.
     var edit_button = $(
       '<button class="not-editing btn btn-default btn-xs">' +
       '<span class="glyphicon glyphicon-pencil"></span> Edit </button>'
@@ -453,11 +446,13 @@ $(document).ready(function() {
       var equip = personSnapshot.child('equip').val();
       var items = equip.split(', ');
       for (item in items) {
-        if (items[item] in equip_dict) {
-          equip_dict[items[item]] += 1
-        }
-        else {
-          equip_dict[items[item]] = 1
+        if (items[item] !== "") {
+          if (items[item] in equip_dict) {
+            equip_dict[items[item]] += 1
+          }
+          else {
+            equip_dict[items[item]] = 1
+          }
         }
       }
     });
@@ -656,23 +651,3 @@ $(document).ready(function() {
   });
   
 });
-
-/*$(document).load(function() {
-
-  alert("loaded");
-  // This cuts off the part of the date that we care about (i.e. "May 21, 2014")
-  var writtenDate = document.getElementById("getting-back-val").innerHTML;
-  var start = writtenDate.indexOf(",") + 2;
-  var end = writtenDate.indexOf(" ", start) + 1;
-  var end = writtenDate.indexOf(" ", end) + 1;
-  var end = writtenDate.indexOf(" ", end);
-  var writtenDate = writtenDate.substring(start, end);
-  
-  alert(writtenDate);
-  
-  var numberOfMs = Date.parse(writtenDate);
-  var date = new Date();
-  date.setTime(numberOfMs);
-  
-  updateWeatherFromDate(date);
-});*/
