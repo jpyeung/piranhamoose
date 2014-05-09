@@ -568,14 +568,7 @@ $(document).ready(function() {
   function ddToDatetime(dd) {
     var text = dd.text();
 
-    var datetime = $(
-      '<div class="input-group date">' +
-        '<input type="text" class="form-control" />' +
-        '<span class="input-group-addon">' +
-          '<span class="glyphicon glyphicon-calendar"></span>' +
-        '</span>' +
-      '</div>'
-    ).datetimepicker();
+    var datetime = $('<input type="text" class="form-control" />').datetimepicker();
 
     dd.empty();
     dd.append(datetime);
