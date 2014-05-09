@@ -577,7 +577,12 @@ $(document).ready(function() {
       '</div>'
     ).datetimepicker();
     
-    datetime.data("DateTimePicker").setValue(moment(text, "dddd, MMMM D, YYYY hh:mm:ss a"));
+    console.log(text);
+    
+    
+    var textLength;
+    
+    datetime.data("DateTimePicker").setValue(moment(text, ["dddd, MMMM D, YYYY hh:mm:ss a", "MMMM D, YYYY hh:mm:ss a L"]));
     
     dd.empty();
     dd.append(datetime);
